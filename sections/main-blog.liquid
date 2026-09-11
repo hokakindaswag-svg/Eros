@@ -1,0 +1,39 @@
+<section class="page-hero">
+  <div class="page-width"><h1 class="page-hero__title">{{ blog.title }}</h1></div>
+</section>
+<section class="section">
+  <div class="page-width">
+    {%- paginate blog.articles by 12 -%}
+      <div class="product-grid" style="--cols-m:1;--cols-t:2;--cols-d:3">
+        {%- for article in blog.articles -%}
+          <article class="card reveal" style="--reveal-delay:{{ forloop.index0 | times: 50 }}ms">
+            <a href="{{ article.url }}">
+              <div class="card__media flash" style="--card-ratio:3/2">
+                {%- if article.image -%}
+                  <img class="card__img card__img--main" src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.title | escape }}" loading="lazy" width="{{ article.image.width }}" height="{{ article.image.height }}">
+                {%- else -%}
+                  <div class="media__placeholder">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
+                {%- endif -%}
+              </div>
+              <div class="card__body">
+                <h2 class="card__title">{{ article.title }}</h2>
+                <p class="t-body">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</p>
+              </div>
+            </a>
+          </article>
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination">
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>
+            {%- else -%}<span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>{%- endif -%}
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "Blog", "tag": "section" }
+{% endschema %}

@@ -1,0 +1,31 @@
+{%- comment -%}
+  Section technique : résultats de recherche instantanée.
+{%- endcomment -%}
+<div data-predictive-results>
+  {%- if predictive_search.performed -%}
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <p class="t-eyebrow" style="margin-bottom:14px">{{ 'general.search.products' | t }}</p>
+      <div class="product-grid" style="--cols-m:2;--cols-t:4;--cols-d:6">
+        {%- for product in predictive_search.resources.products -%}
+          {% render 'product-card', product: product, index: forloop.index0, show_quick_add: false, reveal: false %}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if predictive_search.resources.collections.size > 0 -%}
+      <p class="t-eyebrow" style="margin:26px 0 12px">{{ 'general.search.collections' | t }}</p>
+      <div class="searchbar__hint">
+        {%- for collection in predictive_search.resources.collections -%}
+          <a href="{{ collection.url }}">{{ collection.title }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if predictive_search.resources.products.size == 0 and predictive_search.resources.collections.size == 0 -%}
+      <p class="t-body">{{ 'general.search.no_results' | t: terms: predictive_search.terms }}</p>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+{% schema %}
+{ "name": "Recherche instantanée" }
+{% endschema %}

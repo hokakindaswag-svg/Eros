@@ -1,0 +1,40 @@
+<div class="drawer drawer--top" id="eros-search-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="{{ 'general.search.search' | t }}">
+  <div class="drawer__overlay" data-drawer-close></div>
+  <div class="drawer__panel">
+    <div class="drawer__head">
+      <span class="drawer__title">{{ 'general.search.search' | t }}</span>
+      <button type="button" class="drawer__close" data-drawer-close aria-label="{{ 'accessibility.close' | t }}">
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+    <div class="drawer__body">
+      <div class="searchbar page-width">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="searchbar__form">
+          <input type="hidden" name="options[prefix]" value="last">
+          <input
+            type="search"
+            name="q"
+            class="searchbar__input"
+            placeholder="{{ 'general.search.placeholder' | t }}"
+            autocomplete="off"
+            data-predictive-input
+            data-drawer-focus
+            aria-label="{{ 'general.search.search' | t }}"
+          >
+          <button type="submit" class="hbtn" aria-label="{{ 'general.search.search' | t }}">
+            {% render 'icon', name: 'arrow' %}
+          </button>
+        </form>
+
+        <div class="searchbar__hint">
+          {%- assign quick = 'NOUVEAUTÉS,BEST-SELLERS,BRACELETS,CHAÎNES,COLLIERS,BAGUES,BOUCLES D’OREILLES,DUO' | split: ',' -%}
+          {%- for term in quick -%}
+            <a href="{{ routes.search_url }}?q={{ term | url_encode }}">{{ term }}</a>
+          {%- endfor -%}
+        </div>
+
+        <div data-predictive-results style="margin-top:26px"></div>
+      </div>
+    </div>
+  </div>
+</div>

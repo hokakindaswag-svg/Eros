@@ -1,0 +1,201 @@
+{%- liquid
+  assign transparent = false
+  if section.settings.transparent_on_home and request.page_type == 'index'
+    assign transparent = true
+  endif
+  if section.settings.transparent_on_collection and request.page_type == 'collection'
+    assign transparent = true
+  endif
+-%}
+
+<div class="header-wrap{% if transparent %} header--transparent{% endif %}" data-header>
+  <header class="header">
+    <div class="page-width header__inner">
+
+      <div class="header__left">
+        <button
+          type="button"
+          class="hbtn burger"
+          data-drawer-open="eros-menu-drawer"
+          aria-controls="eros-menu-drawer"
+          aria-expanded="false"
+          aria-label="{{ 'accessibility.menu' | t }}"
+        >
+          <span class="burger__bars"><span></span><span></span></span>
+        </button>
+
+        <nav class="nav" aria-label="{{ 'accessibility.menu' | t }}">
+          {%- for link in section.settings.menu.links -%}
+            {%- assign lt = link.title | downcase -%}
+            {%- assign accent = false -%}
+            {%- if lt contains 'promesse' -%}{%- assign accent = true -%}{%- endif -%}
+            <div class="nav__item">
+              <a
+                href="{{ link.url }}"
+                class="nav__link{% if accent %} nav__link--accent{% endif %}"
+                {% if link.current %}aria-current="page"{% endif %}
+              >{{ link.title }}</a>
+              {%- if link.links.size > 0 -%}
+                <div class="megamenu">
+                  {%- for child in link.links -%}
+                    <a href="{{ child.url }}">{{ child.title }}</a>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </nav>
+      </div>
+
+      {%- if request.page_type == 'index' -%}
+        <h1 class="header__logo">
+      {%- else -%}
+        <div class="header__logo">
+      {%- endif -%}
+        <a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+          {%- if settings.logo -%}
+            <img
+              src="{{ settings.logo | image_url: width: 600 }}"
+              alt="{{ shop.name | escape }}"
+              style="--logo-h:{{ settings.logo_height }}px"
+              width="{{ settings.logo.width }}" height="{{ settings.logo.height }}"
+            >
+          {%- else -%}
+            {{ settings.brand_name | default: shop.name }}
+          {%- endif -%}
+        </a>
+      {%- if request.page_type == 'index' -%}</h1>{%- else -%}</div>{%- endif -%}
+
+      <div class="header__right">
+        <button
+          type="button"
+          class="hbtn"
+          data-drawer-open="eros-search-drawer"
+          aria-controls="eros-search-drawer"
+          aria-expanded="false"
+          aria-label="{{ 'accessibility.search' | t }}"
+        >
+          {% render 'icon', name: 'search' %}
+        </button>
+
+        {%- if shop.customer_accounts_enabled -%}
+          <a
+            href="{{ routes.account_url }}"
+            class="hbtn"
+            aria-label="{{ 'accessibility.account' | t }}"
+          >{% render 'icon', name: 'account' %}</a>
+        {%- endif -%}
+
+        {%- if settings.cart_type == 'drawer' -%}
+          <button
+            type="button"
+            class="hbtn"
+            data-drawer-open="eros-cart-drawer"
+            aria-controls="eros-cart-drawer"
+            aria-expanded="false"
+            aria-label="{{ 'accessibility.cart' | t }}"
+          >
+            {% render 'icon', name: 'cart' %}
+            <span class="hbtn__count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+          </button>
+        {%- else -%}
+          <a href="{{ routes.cart_url }}" class="hbtn" aria-label="{{ 'accessibility.cart' | t }}">
+            {% render 'icon', name: 'cart' %}
+            <span class="hbtn__count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+          </a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </header>
+</div>
+
+{%- comment -%} Menu mobile {%- endcomment -%}
+<div class="drawer drawer--left" id="eros-menu-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="{{ 'accessibility.menu' | t }}">
+  <div class="drawer__overlay" data-drawer-close></div>
+  <div class="drawer__panel">
+    <div class="drawer__head">
+      <span class="drawer__title">{{ settings.brand_name | default: shop.name }}</span>
+      <button type="button" class="drawer__close" data-drawer-close aria-label="{{ 'accessibility.close' | t }}" data-drawer-focus>
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+
+    <div class="drawer__body">
+      {%- if section.settings.show_doors_in_menu -%}
+        <div class="mnav__doors">
+          <a class="mnav__door" href="{{ section.settings.door_self_url | default: routes.all_products_collection_url }}">{{ section.settings.door_self_label }}</a>
+          <a class="mnav__door" href="{{ section.settings.door_promise_url | default: routes.root_url }}">{{ section.settings.door_promise_label }}</a>
+          <a class="mnav__door" href="{{ section.settings.door_duo_url | default: routes.root_url }}">{{ section.settings.door_duo_label }}</a>
+        </div>
+      {%- endif -%}
+
+      <nav class="mnav" aria-label="{{ 'accessibility.menu' | t }}">
+        {%- for link in section.settings.menu.links -%}
+          <div class="mnav__item">
+            {%- if link.links.size > 0 -%}
+              <button
+                type="button"
+                class="mnav__link"
+                data-mnav-toggle
+                aria-expanded="false"
+                aria-controls="mnav-{{ forloop.index }}"
+              >
+                {{ link.title }}
+                {% render 'icon', name: 'plus' %}
+              </button>
+              <div class="mnav__sub" id="mnav-{{ forloop.index }}">
+                <a href="{{ link.url }}">{{ 'collections.general.view_all' | t }}</a>
+                {%- for child in link.links -%}
+                  <a href="{{ child.url }}">{{ child.title }}</a>
+                {%- endfor -%}
+              </div>
+            {%- else -%}
+              <a href="{{ link.url }}" class="mnav__link">{{ link.title }}</a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </nav>
+
+      <div class="mnav__foot">
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a>
+        {%- endif -%}
+        {%- if settings.social_instagram != blank -%}
+          <a href="{{ settings.social_instagram }}" target="_blank" rel="noopener">INSTAGRAM</a>
+        {%- endif -%}
+        {%- if settings.social_tiktok != blank -%}
+          <a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener">TIKTOK</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "En-tête",
+  "class": "section-header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu principal", "default": "main-menu" },
+    {
+      "type": "header",
+      "content": "Comportement"
+    },
+    { "type": "checkbox", "id": "transparent_on_home", "label": "En-tête transparent sur la page d'accueil", "default": true },
+    { "type": "checkbox", "id": "transparent_on_collection", "label": "En-tête transparent sur les collections", "default": false },
+    {
+      "type": "header",
+      "content": "Les 3 portes (menu mobile)"
+    },
+    { "type": "checkbox", "id": "show_doors_in_menu", "label": "Afficher POUR SOI / LA PROMESSE / DUO", "default": true },
+    { "type": "text", "id": "door_self_label", "label": "Libellé 1", "default": "POUR SOI" },
+    { "type": "url", "id": "door_self_url", "label": "Lien 1" },
+    { "type": "text", "id": "door_promise_label", "label": "Libellé 2", "default": "LA PROMESSE" },
+    { "type": "url", "id": "door_promise_url", "label": "Lien 2" },
+    { "type": "text", "id": "door_duo_label", "label": "Libellé 3", "default": "DUO" },
+    { "type": "url", "id": "door_duo_url", "label": "Lien 3" }
+  ],
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

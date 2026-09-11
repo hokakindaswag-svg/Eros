@@ -1,0 +1,36 @@
+{%- if recommendations.performed or section.settings.enable -%}
+<section class="section" data-recommendations-section>
+  <div class="page-width">
+    <div class="section-head">
+      <h2 class="section-title reveal" style="font-size:clamp(22px,5vw,44px)">
+        {{ section.settings.title | default: 'VOUS AIMEREZ AUSSI' }}
+      </h2>
+    </div>
+
+    <div
+      data-recommendations
+      data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.count }}"
+    >
+      {%- if recommendations.performed and recommendations.products_count > 0 -%}
+        <div class="product-grid" style="--cols-m:2;--cols-d:{{ section.settings.count }}">
+          {%- for product in recommendations.products -%}
+            {% render 'product-card', product: product, index: forloop.index0 %}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Recommandations",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "enable", "label": "Activer", "default": true },
+    { "type": "text", "id": "title", "label": "Titre", "default": "VOUS AIMEREZ AUSSI" },
+    { "type": "range", "id": "count", "min": 2, "max": 8, "step": 1, "label": "Nombre de produits", "default": 4 }
+  ]
+}
+{% endschema %}

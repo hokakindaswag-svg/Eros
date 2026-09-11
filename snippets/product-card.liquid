@@ -1,0 +1,136 @@
+{%- comment -%}
+  EROS — Carte produit
+  Params :
+    product        (obligatoire)
+    ratio          (ex '3/4') — défaut : réglage du thème
+    index          (int) pour le délai de reveal
+    show_quick_add (bool)
+    reveal         (bool, défaut true)
+{%- endcomment -%}
+
+{%- liquid
+  assign card_ratio = ratio | default: settings.card_ratio | default: '3/4'
+  assign quick = show_quick_add
+  if quick == nil
+    assign quick = settings.card_quick_add
+  endif
+
+  assign alt_image = null
+  if settings.card_hover_image and product.media.size > 1
+    assign alt_image = product.media[1].preview_image
+  endif
+
+  assign delay = 0
+  if index
+    assign delay = index | modulo: 4 | times: 60
+  endif
+
+  assign is_new = false
+  if settings.badge_new_tag != blank
+    for t in product.tags
+      assign tl = t | downcase
+      assign nt = settings.badge_new_tag | downcase
+      if tl == nt
+        assign is_new = true
+        break
+      endif
+    endfor
+  endif
+-%}
+
+<article
+  class="card{% if alt_image == null %} card--no-alt{% endif %}{% if reveal != false %} reveal{% endif %}"
+  style="--card-ratio:{{ card_ratio }};--reveal-delay:{{ delay }}ms"
+>
+  <div class="card__media flash">
+    {%- if product.featured_media -%}
+      <img
+        src="{{ product.featured_media | image_url: width: 800 }}"
+        srcset="{{ product.featured_media | image_url: width: 400 }} 400w,
+                {{ product.featured_media | image_url: width: 600 }} 600w,
+                {{ product.featured_media | image_url: width: 900 }} 900w,
+                {{ product.featured_media | image_url: width: 1200 }} 1200w"
+        sizes="(min-width: 1100px) 24vw, (min-width: 750px) 32vw, 48vw"
+        alt="{{ product.featured_media.alt | escape | default: product.title | escape }}"
+        loading="lazy"
+        width="{{ product.featured_media.width }}"
+        height="{{ product.featured_media.height }}"
+        class="card__img card__img--main"
+      >
+      {%- if alt_image -%}
+        <img
+          src="{{ alt_image | image_url: width: 800 }}"
+          srcset="{{ alt_image | image_url: width: 400 }} 400w, {{ alt_image | image_url: width: 900 }} 900w"
+          sizes="(min-width: 1100px) 24vw, (min-width: 750px) 32vw, 48vw"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          width="{{ alt_image.width }}" height="{{ alt_image.height }}"
+          class="card__img card__img--alt"
+        >
+      {%- endif -%}
+    {%- else -%}
+      <div class="media__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+
+    <div class="card__badges">
+      {%- if product.available == false -%}
+        <span class="badge badge--sold">{{ 'products.product.sold_out' | t }}</span>
+      {%- elsif product.compare_at_price > product.price -%}
+        <span class="badge">{{ 'products.product.sale' | t }}</span>
+      {%- elsif is_new -%}
+        <span class="badge badge--outline">{{ 'products.product.new' | t }}</span>
+      {%- endif -%}
+    </div>
+
+    <a class="card__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}"></a>
+
+    {%- if quick and product.available -%}
+      <div class="card__quick">
+        {%- if product.variants.size == 1 -%}
+          <form method="post" action="{{ routes.cart_add_url }}" data-quick-add>
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="btn">{{ 'products.product.quick_add' | t }}</button>
+          </form>
+        {%- else -%}
+          <a href="{{ product.url }}" class="btn">{{ 'products.product.choose_options' | t }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="card__body">
+    <h3 class="card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+    <div class="card__price">{% render 'price', product: product, show_from: true %}</div>
+
+    {%- for option in product.options_with_values -%}
+      {%- assign oname = option.name | downcase -%}
+      {%- if oname contains 'couleur' or oname contains 'color' or oname contains 'finition' -%}
+        <div class="card__swatches" aria-hidden="true">
+          {%- for value in option.values limit: 5 -%}
+            {%- assign v = value | downcase -%}
+            {%- liquid
+              assign swatch = '#8E969F'
+              if v contains 'or' or v contains 'gold' or v contains 'doré'
+                assign swatch = 'linear-gradient(135deg,#B98A34,#F4D98B,#9A6C22)'
+              elsif v contains 'argent' or v contains 'silver' or v contains 'blanc'
+                assign swatch = 'linear-gradient(135deg,#8E969F,#FFFFFF,#B9C0C7)'
+              elsif v contains 'noir' or v contains 'black'
+                assign swatch = '#141414'
+              elsif v contains 'rose'
+                assign swatch = 'linear-gradient(135deg,#C48A7C,#F3CBC0)'
+              elsif v contains 'bleu'
+                assign swatch = 'linear-gradient(135deg,#2B4E8C,#93B6F0)'
+              elsif v contains 'vert'
+                assign swatch = 'linear-gradient(135deg,#2C6B4F,#8FD9B5)'
+              endif
+            -%}
+            <span class="card__swatch" style="background:{{ swatch }}"></span>
+          {%- endfor -%}
+        </div>
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</article>

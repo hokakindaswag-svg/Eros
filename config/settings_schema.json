@@ -1,0 +1,275 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "EROS PARIS",
+    "theme_version": "1.0.0",
+    "theme_author": "EROS PARIS",
+    "theme_documentation_url": "https://shopify.dev",
+    "theme_support_url": "https://shopify.dev"
+  },
+  {
+    "name": "Identité",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Nom de la marque (wordmark)",
+        "default": "EROS PARIS"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo (optionnel — remplace le wordmark)"
+      },
+      {
+        "type": "range",
+        "id": "logo_height",
+        "min": 14,
+        "max": 60,
+        "step": 2,
+        "unit": "px",
+        "label": "Hauteur du logo",
+        "default": 28
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "share_image",
+        "label": "Image de partage (réseaux sociaux)"
+      }
+    ]
+  },
+  {
+    "name": "Typographie",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Police d'interface",
+        "default": "assistant_n4",
+        "info": "Sans-serif contemporaine recommandée."
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "label": "Police des titres",
+        "default": "archivo_n7",
+        "info": "Utilisée en capitales sur les grands titres."
+      },
+      {
+        "type": "select",
+        "id": "heading_weight",
+        "label": "Graisse des titres",
+        "options": [
+          {
+            "value": "600",
+            "label": "Semi-bold"
+          },
+          {
+            "value": "700",
+            "label": "Bold"
+          },
+          {
+            "value": "800",
+            "label": "Extra-bold"
+          },
+          {
+            "value": "900",
+            "label": "Black"
+          }
+        ],
+        "default": "800"
+      },
+      {
+        "type": "range",
+        "id": "heading_letter_spacing",
+        "min": -5,
+        "max": 10,
+        "step": 1,
+        "unit": "%",
+        "label": "Interlettrage des titres",
+        "default": -2
+      }
+    ]
+  },
+  {
+    "name": "Mise en page",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1200,
+        "max": 1900,
+        "step": 20,
+        "unit": "px",
+        "label": "Largeur maximale du site",
+        "default": 1680
+      },
+      {
+        "type": "checkbox",
+        "id": "animations_enabled",
+        "label": "Activer les animations d'apparition",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Produits",
+    "settings": [
+      {
+        "type": "select",
+        "id": "card_ratio",
+        "label": "Format des images produit",
+        "options": [
+          {
+            "value": "1/1",
+            "label": "Carré"
+          },
+          {
+            "value": "4/5",
+            "label": "Portrait doux"
+          },
+          {
+            "value": "3/4",
+            "label": "Portrait"
+          },
+          {
+            "value": "2/3",
+            "label": "Portrait haut"
+          }
+        ],
+        "default": "3/4"
+      },
+      {
+        "type": "checkbox",
+        "id": "card_hover_image",
+        "label": "Changer d'image au survol",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_quick_add",
+        "label": "Ajout rapide au panier sur les cartes produit",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Afficher le vendeur sur la fiche produit",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "badge_new_tag",
+        "label": "Tag produit affichant le badge NOUVEAUTÉ",
+        "default": "nouveaute",
+        "info": "Les produits portant ce tag affichent un badge."
+      }
+    ]
+  },
+  {
+    "name": "Panier",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Type de panier",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Panneau latéral"
+          },
+          {
+            "value": "page",
+            "label": "Page panier"
+          }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "richtext",
+        "id": "cart_note",
+        "label": "Mention sous le bouton de commande",
+        "default": "<p>Taxes incluses. Livraison calculée au paiement.</p>"
+      }
+    ]
+  },
+  {
+    "name": "LA PROMESSE",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Concept signature EROS PARIS. Affiché sur les fiches produit et dans la navigation."
+      },
+      {
+        "type": "checkbox",
+        "id": "promise_on_product",
+        "label": "Afficher l'encart LA PROMESSE sur les fiches produit",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "promise_title",
+        "label": "Titre de l'encart",
+        "default": "LA PROMESSE"
+      },
+      {
+        "type": "richtext",
+        "id": "promise_text",
+        "label": "Texte de l'encart",
+        "default": "<p>Ce bijou peut être acheté comme une promesse faite à une personne précise.</p>"
+      },
+      {
+        "type": "url",
+        "id": "promise_link",
+        "label": "Lien vers la page LA PROMESSE"
+      },
+      {
+        "type": "text",
+        "id": "promise_link_label",
+        "label": "Libellé du lien",
+        "default": "EN SAVOIR PLUS"
+      }
+    ]
+  },
+  {
+    "name": "Réseaux sociaux",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok",
+        "label": "TikTok"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube",
+        "label": "YouTube"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_handle",
+        "label": "Pseudo affiché",
+        "default": "@erosparis"
+      }
+    ]
+  }
+]

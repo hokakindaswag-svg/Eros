@@ -1,0 +1,39 @@
+<div class="auth page-width">
+  <h1 class="auth__title">{{ 'customer.login.title' | t }}</h1>
+  {% form 'customer_login', novalidate: 'novalidate' %}
+    {{ form.errors | default_errors }}
+    <div style="margin-top:26px">
+      <div class="field">
+        <label class="visually-hidden" for="login-email">{{ 'customer.login.email' | t }}</label>
+        <input class="input" type="email" id="login-email" name="customer[email]" autocomplete="email" placeholder="{{ 'customer.login.email' | t }}" required>
+      </div>
+      <div class="field">
+        <label class="visually-hidden" for="login-pass">{{ 'customer.login.password' | t }}</label>
+        <input class="input" type="password" id="login-pass" name="customer[password]" autocomplete="current-password" placeholder="{{ 'customer.login.password' | t }}">
+      </div>
+      <button type="submit" class="btn btn--primary btn--full btn--lg" style="margin-top:14px">{{ 'customer.login.sign_in' | t }}</button>
+    </div>
+  {% endform %}
+
+  <p class="auth__alt">
+    <a href="#recover" class="link-underline">{{ 'customer.login.forgot_password' | t }}</a>
+  </p>
+  <p class="auth__alt">
+    {{ 'customer.login.no_account' | t }}
+    <a href="{{ routes.account_register_url }}" class="link-underline">{{ 'customer.login.create_account' | t }}</a>
+  </p>
+
+  <div id="recover" style="margin-top:44px;border-top:1px solid var(--eros-line-soft);padding-top:30px">
+    <h2 class="t-label">{{ 'customer.recover_password.title' | t }}</h2>
+    {% form 'recover_customer_password' %}
+      {%- if form.posted_successfully? -%}
+        <p class="form-success">{{ 'customer.recover_password.success' | t }}</p>
+      {%- endif -%}
+      <div class="field" style="margin-top:12px">
+        <label class="visually-hidden" for="recover-email">{{ 'customer.login.email' | t }}</label>
+        <input class="input" type="email" id="recover-email" name="email" placeholder="{{ 'customer.login.email' | t }}" required>
+      </div>
+      <button type="submit" class="btn btn--ghost btn--full" style="margin-top:10px">{{ 'customer.recover_password.submit' | t }}</button>
+    {% endform %}
+  </div>
+</div>

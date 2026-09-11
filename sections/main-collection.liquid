@@ -1,0 +1,130 @@
+{%- liquid
+  assign s = section.settings
+  assign img = collection.image
+-%}
+
+<section class="coll-hero{% if img == blank %} coll-hero--plain{% endif %}">
+  {%- if img != blank -%}
+    <div class="coll-hero__media">
+      <img src="{{ img | image_url: width: 2000 }}"
+           srcset="{{ img | image_url: width: 1000 }} 1000w, {{ img | image_url: width: 2000 }} 2000w"
+           sizes="100vw" alt="{{ collection.title | escape }}" fetchpriority="high"
+           width="{{ img.width }}" height="{{ img.height }}">
+    </div>
+    <span class="coll-hero__veil"></span>
+  {%- endif -%}
+  <div class="page-width coll-hero__inner">
+    <h1 class="coll-hero__title reveal">{{ collection.title }}</h1>
+    {%- if s.show_description and collection.description != blank -%}
+      <div class="coll-hero__desc rte reveal">{{ collection.description }}</div>
+    {%- endif -%}
+    {%- if s.show_count -%}
+      <p class="coll-hero__count reveal">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- if s.show_bar -%}
+  <div class="coll-bar">
+    <div class="page-width coll-bar__inner">
+      <div class="coll-bar__filters">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'filter_link' and block.settings.label != blank -%}
+            {%- assign target = block.settings.url | default: '' -%}
+            <a href="{{ target }}"
+               class="chip{% if request.path == target %} is-active{% endif %}"
+               {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if s.show_sort -%}
+        <form method="get" id="sort-form">
+          <label class="visually-hidden" for="sort-by">{{ 'products.facets.sort_by_label' | t }}</label>
+          <select name="sort_by" id="sort-by" class="input" onchange="this.form.submit()">
+            {%- for option in collection.sort_options -%}
+              <option value="{{ option.value }}" {% if option.value == collection.sort_by or option.value == collection.default_sort_by %}selected{% endif %}>
+                {{ option.name }}
+              </option>
+            {%- endfor -%}
+          </select>
+        </form>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<section class="section">
+  <div class="page-width">
+    {%- paginate collection.products by s.per_page -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="product-grid" style="--cols-m:{{ s.cols_mobile }};--cols-t:3;--cols-d:{{ s.cols_desktop }}">
+          {%- for product in collection.products -%}
+            {% render 'product-card', product: product, index: forloop.index0, ratio: s.ratio %}
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="Pagination">
+            {%- if paginate.previous -%}
+              <a href="{{ paginate.previous.url }}" aria-label="{{ 'general.pagination.previous' | t }}">&larr;</a>
+            {%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- else -%}
+                <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}
+              <a href="{{ paginate.next.url }}" aria-label="{{ 'general.pagination.next' | t }}">&rarr;</a>
+            {%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- else -%}
+        <div class="empty-state">
+          <p class="empty-state__t">{{ 'collections.general.no_matches' | t }}</p>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost" style="margin-top:22px">
+            {{ 'collections.general.view_all' | t }}
+          </a>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "show_description", "label": "Afficher la description", "default": true },
+    { "type": "checkbox", "id": "show_count", "label": "Afficher le nombre de pièces", "default": true },
+    { "type": "checkbox", "id": "show_bar", "label": "Afficher la barre de navigation", "default": true },
+    { "type": "checkbox", "id": "show_sort", "label": "Afficher le tri", "default": true },
+    { "type": "range", "id": "per_page", "min": 8, "max": 48, "step": 4, "label": "Produits par page", "default": 24 },
+    { "type": "range", "id": "cols_mobile", "min": 1, "max": 2, "step": 1, "label": "Colonnes mobile", "default": 2 },
+    { "type": "range", "id": "cols_desktop", "min": 2, "max": 6, "step": 1, "label": "Colonnes desktop", "default": 4 },
+    {
+      "type": "select", "id": "ratio", "label": "Format des images",
+      "options": [
+        { "value": "1/1", "label": "Carré" },
+        { "value": "4/5", "label": "Portrait doux" },
+        { "value": "3/4", "label": "Portrait" },
+        { "value": "2/3", "label": "Portrait haut" }
+      ],
+      "default": "3/4"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "filter_link",
+      "name": "Raccourci",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Libellé" },
+        { "type": "url", "id": "url", "label": "Lien" }
+      ]
+    }
+  ]
+}
+{% endschema %}

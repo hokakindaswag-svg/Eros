@@ -1,0 +1,43 @@
+<section class="section">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <h2 class="section-title reveal" style="margin-bottom:26px">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    <div class="faq">
+      <div class="acc">
+        {%- for block in section.blocks -%}
+          <div class="acc__item" {{ block.shopify_attributes }}>
+            <button type="button" class="acc__btn" data-acc aria-expanded="false" aria-controls="faq-{{ block.id }}">
+              {{ block.settings.question }}
+              <span class="acc__icon"></span>
+            </button>
+            <div class="acc__panel" id="faq-{{ block.id }}">
+              <div class="acc__inner rte">{{ block.settings.answer }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titre", "default": "FAQ" }
+  ],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Réponse" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQ" }]
+}
+{% endschema %}

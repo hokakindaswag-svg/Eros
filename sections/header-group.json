@@ -1,0 +1,29 @@
+{
+  "type": "header",
+  "name": "En-tête",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "a1": { "type": "message", "settings": { "text": "LIVRAISON OFFERTE DÈS 100 €" } },
+        "a2": { "type": "message", "settings": { "text": "PAIEMENT EN 3X" } },
+        "a3": { "type": "message", "settings": { "text": "RETOURS 30 JOURS" } }
+      },
+      "block_order": ["a1", "a2", "a3"],
+      "settings": { "marquee": false }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "main-menu",
+        "transparent_on_home": true,
+        "transparent_on_collection": false,
+        "show_doors_in_menu": true,
+        "door_self_label": "POUR SOI",
+        "door_promise_label": "LA PROMESSE",
+        "door_duo_label": "DUO"
+      }
+    }
+  },
+  "order": ["announcement-bar", "header"]
+}

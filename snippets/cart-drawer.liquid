@@ -1,0 +1,16 @@
+{%- if settings.cart_type == 'drawer' -%}
+<div class="drawer" id="eros-cart-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="{{ 'cart.general.title' | t }}">
+  <div class="drawer__overlay" data-drawer-close></div>
+  <div class="drawer__panel">
+    <div class="drawer__head">
+      <span class="drawer__title">{{ 'cart.general.title' | t }}</span>
+      <button type="button" class="drawer__close" data-drawer-close aria-label="{{ 'accessibility.close' | t }}" data-drawer-focus>
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+    <div data-cart-contents style="display:contents">
+      {% render 'cart-drawer-contents' %}
+    </div>
+  </div>
+</div>
+{%- endif -%}

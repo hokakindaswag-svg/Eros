@@ -1,0 +1,178 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "EROS PARIS",
+        "title": "NOUVEAUTÉS",
+        "chrome_title": false,
+        "cta_label": "DÉCOUVRIR",
+        "align": "left",
+        "vertical": "flex-end",
+        "height_mobile": 88,
+        "height_desktop": 94,
+        "overlay_top": 45,
+        "overlay_bottom": 60,
+        "show_scroll": true
+      }
+    },
+    "bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "BEST-SELLERS",
+        "count": 8,
+        "layout": "grid",
+        "cols_mobile": 2,
+        "cols_desktop": 4,
+        "ratio": "3/4",
+        "show_view_all": true,
+        "view_all_label": "TOUT VOIR",
+        "show_cta": false
+      }
+    },
+    "doors": {
+      "type": "eros-doors",
+      "blocks": {
+        "d1": {
+          "type": "door",
+          "settings": {
+            "title": "POUR SOI",
+            "text": "Je l'ai vu. Je l'aime. Je le veux.",
+            "cta": "DÉCOUVRIR"
+          }
+        },
+        "d2": {
+          "type": "door",
+          "settings": {
+            "title": "LA PROMESSE",
+            "text": "Un bijou acheté pour une personne précise.",
+            "cta": "DÉCOUVRIR"
+          }
+        },
+        "d3": {
+          "type": "door",
+          "settings": {
+            "title": "DUO",
+            "text": "Deux pièces pensées pour aller ensemble.",
+            "cta": "DÉCOUVRIR"
+          }
+        }
+      },
+      "block_order": ["d1", "d2", "d3"],
+      "settings": {
+        "title": "TROIS FAÇONS DE PORTER EROS",
+        "height_mobile": 58,
+        "height_desktop": 78
+      }
+    },
+    "categories": {
+      "type": "category-grid",
+      "blocks": {
+        "c1": { "type": "category", "settings": { "title": "BRACELETS" } },
+        "c2": { "type": "category", "settings": { "title": "CHAÎNES" } },
+        "c3": { "type": "category", "settings": { "title": "COLLIERS" } },
+        "c4": { "type": "category", "settings": { "title": "BAGUES" } },
+        "c5": { "type": "category", "settings": { "title": "BOUCLES D’OREILLES" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5"],
+      "settings": { "title": "CATÉGORIES", "link_label": "TOUT VOIR", "ratio": "4/5" }
+    },
+    "campaign": {
+      "type": "lifestyle-campaign",
+      "settings": {
+        "title": "LA NUIT VOUS VA BIEN",
+        "chrome_title": true,
+        "cta_label": "SHOPPER LA COLLECTION",
+        "align": "left",
+        "vertical": "flex-end",
+        "height_mobile": 74,
+        "height_desktop": 88,
+        "overlay_top": 30,
+        "overlay_bottom": 65
+      }
+    },
+    "promise": {
+      "type": "eros-promise",
+      "blocks": {
+        "p1": { "type": "point", "settings": { "title": "UNE INTENTION", "text": "Vous choisissez la pièce en pensant à une personne précise." } },
+        "p2": { "type": "point", "settings": { "title": "UN DESTINATAIRE", "text": "Le bijou est offert à cette personne, et à personne d'autre." } },
+        "p3": { "type": "point", "settings": { "title": "UNE VALEUR", "text": "Ce qui est porté vaut plus que ce qui est acheté." } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "eyebrow": "SIGNATURE EROS PARIS",
+        "title": "LA PROMESSE",
+        "chrome_title": true,
+        "lede": "Un bijou acheté pour une personne précise.",
+        "cta_label": "DÉCOUVRIR",
+        "reverse": false,
+        "image_overlay": 15
+      }
+    },
+    "duo": {
+      "type": "eros-duo",
+      "settings": {
+        "eyebrow": "DEUX PIÈCES, UNE MÊME IDENTITÉ",
+        "title": "DUO",
+        "lede": "Deux bijoux pensés pour être portés ensemble.",
+        "label_a": "PIÈCE A",
+        "label_b": "PIÈCE B",
+        "show_chip": true,
+        "cta_label": "DÉCOUVRIR LES DUOS",
+        "reverse": true,
+        "image_overlay": 10,
+        "show_collection": false,
+        "collection_count": 4
+      }
+    },
+    "collection-focus": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "SÉLECTION",
+        "title": "NOUVEAUTÉS",
+        "count": 8,
+        "layout": "rail",
+        "cols_mobile": 2,
+        "cols_desktop": 4,
+        "ratio": "3/4",
+        "show_view_all": true,
+        "show_cta": true,
+        "cta_label": "SHOPPER LA COLLECTION"
+      }
+    },
+    "ticker": {
+      "type": "ticker",
+      "settings": { "text": "EROS PARIS, POUR SOI, LA PROMESSE, DUO", "chrome": true, "speed": 26 }
+    },
+    "social": {
+      "type": "social-editorial",
+      "blocks": {
+        "s1": { "type": "post", "settings": { "size": "tall" } },
+        "s2": { "type": "post", "settings": { "size": "b" } },
+        "s3": { "type": "post", "settings": { "size": "b" } },
+        "s4": { "type": "post", "settings": { "size": "a" } },
+        "s5": { "type": "post", "settings": { "size": "wide" } },
+        "s6": { "type": "post", "settings": { "size": "a" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"],
+      "settings": { "eyebrow": "COMMUNAUTÉ", "title": "PORTÉ PAR VOUS", "link_label": "@EROSPARIS", "full_width": true }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": { "title": "RESTEZ DANS LA BOUCLE", "background": "#060606" }
+    }
+  },
+  "order": [
+    "hero",
+    "bestsellers",
+    "doors",
+    "categories",
+    "campaign",
+    "promise",
+    "duo",
+    "collection-focus",
+    "ticker",
+    "social",
+    "newsletter"
+  ]
+}

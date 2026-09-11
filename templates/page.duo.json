@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "DEUX PIÈCES, UNE MÊME IDENTITÉ",
+        "title": "DUO",
+        "subtitle": "PENSÉES POUR ÊTRE PORTÉES ENSEMBLE",
+        "cta_label": "DÉCOUVRIR",
+        "align": "left",
+        "vertical": "flex-end",
+        "height_mobile": 74,
+        "height_desktop": 84,
+        "overlay_top": 40,
+        "overlay_bottom": 62,
+        "show_scroll": false
+      }
+    },
+    "concept": {
+      "type": "eros-duo",
+      "settings": {
+        "eyebrow": "LE PRINCIPE",
+        "title": "PAS IDENTIQUES. COMPLÉMENTAIRES.",
+        "lede": "Une forme, un détail, une pierre, une finition en commun.",
+        "label_a": "PIÈCE A",
+        "label_b": "PIÈCE B",
+        "show_chip": true,
+        "reverse": false,
+        "image_overlay": 12,
+        "show_collection": true,
+        "collection_title": "LES DUOS",
+        "collection_count": 8
+      }
+    },
+    "page": { "type": "main-page", "settings": {} },
+    "campaign": {
+      "type": "lifestyle-campaign",
+      "settings": {
+        "title": "À DEUX",
+        "chrome_title": true,
+        "cta_label": "SHOPPER LA COLLECTION",
+        "align": "left",
+        "vertical": "flex-end",
+        "height_mobile": 70,
+        "height_desktop": 84,
+        "overlay_top": 25,
+        "overlay_bottom": 62
+      }
+    }
+  },
+  "order": ["hero", "concept", "page", "campaign"]
+}

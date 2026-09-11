@@ -1,0 +1,97 @@
+<section class="section">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="section-head">
+        <h2 class="section-title reveal">{{ section.settings.title }}</h2>
+        {%- if section.settings.link_url != blank -%}
+          <a href="{{ section.settings.link_url }}" class="section-head__link reveal">{{ section.settings.link_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="cats" style="--cats-cols:{{ section.blocks.size | at_most: 6 }}">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign b = block.settings
+          assign coll = b.collection
+          assign img = b.image | default: coll.featured_image
+          assign url = b.url | default: coll.url
+          assign label = b.title | default: coll.title
+        -%}
+        <a
+          href="{{ url | default: routes.all_products_collection_url }}"
+          class="cat reveal"
+          style="--reveal-delay:{{ forloop.index0 | times: 50 }}ms;--cat-ratio:{{ section.settings.ratio }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="cat__media flash">
+            {%- if img != blank -%}
+              <img
+                src="{{ img | image_url: width: 900 }}"
+                srcset="{{ img | image_url: width: 400 }} 400w, {{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1200 }} 1200w"
+                sizes="(min-width: 750px) 20vw, 50vw"
+                alt="{{ label | escape }}"
+                loading="lazy"
+                width="{{ img.width | default: 800 }}"
+                height="{{ img.height | default: 1000 }}"
+              >
+            {%- else -%}
+              <div class="media__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+            <span class="cat__veil"></span>
+          </div>
+          <div class="cat__body">
+            <h3 class="cat__title">{{ label }}</h3>
+            <span class="cat__arrow">{% render 'icon', name: 'arrow' %}</span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Catégories",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titre", "default": "CATÉGORIES" },
+    { "type": "text", "id": "link_label", "label": "Lien à droite", "default": "TOUT VOIR" },
+    { "type": "url", "id": "link_url", "label": "URL du lien" },
+    {
+      "type": "select", "id": "ratio", "label": "Format des images",
+      "options": [
+        { "value": "1/1", "label": "Carré" },
+        { "value": "4/5", "label": "Portrait doux" },
+        { "value": "3/4", "label": "Portrait" },
+        { "value": "2/3", "label": "Portrait haut" }
+      ],
+      "default": "4/5"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Catégorie",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "image_picker", "id": "image", "label": "Image (remplace celle de la collection)" },
+        { "type": "text", "id": "title", "label": "Titre affiché" },
+        { "type": "url", "id": "url", "label": "Lien personnalisé", "info": "Utile pour cibler une recherche par tag si la collection n'existe pas encore." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Catégories",
+      "blocks": [
+        { "type": "category", "settings": { "title": "BRACELETS" } },
+        { "type": "category", "settings": { "title": "CHAÎNES" } },
+        { "type": "category", "settings": { "title": "COLLIERS" } },
+        { "type": "category", "settings": { "title": "BAGUES" } },
+        { "type": "category", "settings": { "title": "BOUCLES D’OREILLES" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

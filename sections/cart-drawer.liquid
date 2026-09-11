@@ -1,0 +1,9 @@
+{%- comment -%}
+  Section technique : utilisée par le JS pour rafraîchir le panier (?section_id=cart-drawer).
+{%- endcomment -%}
+<div data-cart-contents>
+  {% render 'cart-drawer-contents' %}
+</div>
+{% schema %}
+{ "name": "Panier (technique)" }
+{% endschema %}

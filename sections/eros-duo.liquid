@@ -1,0 +1,135 @@
+{%- comment -%}
+  EROS PARIS — DUO
+  Deux pièces pensées pour aller ensemble. Pas « bijoux de couple ».
+{%- endcomment -%}
+
+{%- assign s = section.settings -%}
+
+<section class="section" style="--section-pt:0;--section-pb:0;--section-pt-d:0;--section-pb-d:0">
+  <div class="split{% if s.reverse %} split--reverse{% endif %}">
+    <div class="split__media">
+      {%- if s.image != blank -%}
+        <img
+          src="{{ s.image | image_url: width: 1600 }}"
+          srcset="{{ s.image | image_url: width: 800 }} 800w, {{ s.image | image_url: width: 1600 }} 1600w"
+          sizes="(min-width: 990px) 50vw, 100vw"
+          alt="{{ s.image.alt | escape | default: s.title }}"
+          loading="lazy"
+          width="{{ s.image.width }}" height="{{ s.image.height }}"
+        >
+      {%- else -%}
+        <div class="media__placeholder">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
+      {%- endif -%}
+      {%- if s.image_overlay > 0 -%}
+        <span style="position:absolute;inset:0;background:rgba(0,0,0,{{ s.image_overlay | divided_by: 100.0 }})"></span>
+      {%- endif -%}
+    </div>
+
+    <div class="split__body">
+      {%- if s.eyebrow != blank -%}<p class="t-eyebrow reveal">{{ s.eyebrow }}</p>{%- endif -%}
+      <h2 class="split__title reveal" style="margin-top:14px;--reveal-delay:50ms">{{ s.title }}</h2>
+      {%- if s.lede != blank -%}<p class="split__lede reveal" style="--reveal-delay:90ms">{{ s.lede }}</p>{%- endif -%}
+      {%- if s.text != blank -%}<div class="split__text t-body rte reveal" style="--reveal-delay:120ms">{{ s.text }}</div>{%- endif -%}
+
+      {%- comment -%} La paire : deux produits réels du catalogue {%- endcomment -%}
+      {%- assign pa = s.product_a -%}
+      {%- assign pb = s.product_b -%}
+      {%- if pa != blank or pb != blank -%}
+        <div class="duo-pair duo-link reveal" style="margin-top:30px;--reveal-delay:160ms">
+          {%- if s.show_chip -%}<span class="duo-link__chip">+</span>{%- endif -%}
+          {%- if pa != blank -%}
+            <div class="duo-pair__item">
+              <a href="{{ pa.url }}">
+                <div class="duo-pair__media flash">
+                  {%- if s.label_a != blank -%}<span class="duo-pair__tag">{{ s.label_a }}</span>{%- endif -%}
+                  {%- if pa.featured_media -%}
+                    <img src="{{ pa.featured_media | image_url: width: 800 }}" alt="{{ pa.title | escape }}" loading="lazy" width="{{ pa.featured_media.preview_image.width }}" height="{{ pa.featured_media.preview_image.height }}">
+                  {%- else -%}
+                    <div class="media__placeholder">{{ 'product-2' | placeholder_svg_tag }}</div>
+                  {%- endif -%}
+                </div>
+                <div class="duo-pair__body">
+                  <p class="card__title">{{ pa.title }}</p>
+                  <p class="card__price">{% render 'price', product: pa, show_from: true %}</p>
+                </div>
+              </a>
+            </div>
+          {%- endif -%}
+          {%- if pb != blank -%}
+            <div class="duo-pair__item">
+              <a href="{{ pb.url }}">
+                <div class="duo-pair__media flash">
+                  {%- if s.label_b != blank -%}<span class="duo-pair__tag">{{ s.label_b }}</span>{%- endif -%}
+                  {%- if pb.featured_media -%}
+                    <img src="{{ pb.featured_media | image_url: width: 800 }}" alt="{{ pb.title | escape }}" loading="lazy" width="{{ pb.featured_media.preview_image.width }}" height="{{ pb.featured_media.preview_image.height }}">
+                  {%- else -%}
+                    <div class="media__placeholder">{{ 'product-3' | placeholder_svg_tag }}</div>
+                  {%- endif -%}
+                </div>
+                <div class="duo-pair__body">
+                  <p class="card__title">{{ pb.title }}</p>
+                  <p class="card__price">{% render 'price', product: pb, show_from: true %}</p>
+                </div>
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if s.cta_label != blank -%}
+        <div class="reveal" style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;--reveal-delay:200ms">
+          <a href="{{ s.cta_url | default: routes.all_products_collection_url }}" class="btn btn--primary btn--lg">{{ s.cta_label }}</a>
+        </div>
+      {%- endif -%}
+
+      {%- if s.note != blank -%}<p class="split__note reveal">{{ s.note }}</p>{%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%} Collection DUO sous la section éditoriale {%- endcomment -%}
+  {%- if s.collection != blank and s.show_collection -%}
+    <div class="page-width" style="padding-block:52px">
+      <div class="section-head">
+        <h3 class="section-title reveal" style="font-size:clamp(20px,4.5vw,38px)">{{ s.collection_title | default: s.collection.title }}</h3>
+        <a href="{{ s.collection.url }}" class="section-head__link reveal">TOUT VOIR</a>
+      </div>
+      <div class="product-grid" style="--cols-m:2;--cols-d:4">
+        {%- for product in s.collection.products limit: s.collection_count -%}
+          {% render 'product-card', product: product, index: forloop.index0 %}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "DUO",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "range", "id": "image_overlay", "min": 0, "max": 70, "step": 5, "unit": "%", "label": "Assombrissement de l'image", "default": 10 },
+    { "type": "checkbox", "id": "reverse", "label": "Inverser image / texte", "default": true },
+    { "type": "header", "content": "Texte" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "DEUX PIÈCES, UNE MÊME IDENTITÉ" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "DUO" },
+    { "type": "text", "id": "lede", "label": "Phrase d'accroche", "default": "Deux bijoux pensés pour être portés ensemble." },
+    { "type": "richtext", "id": "text", "label": "Texte" },
+    { "type": "text", "id": "note", "label": "Mention en bas" },
+    { "type": "header", "content": "La paire" },
+    { "type": "product", "id": "product_a", "label": "Pièce A" },
+    { "type": "text", "id": "label_a", "label": "Étiquette A", "default": "PIÈCE A" },
+    { "type": "product", "id": "product_b", "label": "Pièce B" },
+    { "type": "text", "id": "label_b", "label": "Étiquette B", "default": "PIÈCE B" },
+    { "type": "checkbox", "id": "show_chip", "label": "Afficher le symbole entre les deux pièces", "default": true },
+    { "type": "text", "id": "cta_label", "label": "Bouton", "default": "DÉCOUVRIR LES DUOS" },
+    { "type": "url", "id": "cta_url", "label": "Lien du bouton" },
+    { "type": "header", "content": "Collection DUO" },
+    { "type": "checkbox", "id": "show_collection", "label": "Afficher une grille sous la section", "default": false },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "collection_title", "label": "Titre de la grille" },
+    { "type": "range", "id": "collection_count", "min": 2, "max": 12, "step": 1, "label": "Nombre de produits", "default": 4 }
+  ],
+  "presets": [{ "name": "DUO" }]
+}
+{% endschema %}

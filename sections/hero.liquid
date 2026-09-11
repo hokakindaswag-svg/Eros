@@ -1,0 +1,166 @@
+{%- liquid
+  assign s = section.settings
+  assign align_map = 'flex-start'
+  case s.align
+    when 'center'
+      assign align_map = 'center'
+    when 'right'
+      assign align_map = 'flex-end'
+  endcase
+-%}
+
+<section
+  class="hero"
+  style="
+    --hero-h-m:{{ s.height_mobile }}svh;
+    --hero-h-d:{{ s.height_desktop }}svh;
+    --hero-align:{{ align_map }};
+    --hero-text-align:{{ s.align }};
+    --hero-justify:{{ s.vertical }};
+  "
+>
+  <div class="hero__media">
+    {%- if s.video_desktop != blank -%}
+      <video
+        class="hero__media--desktop"
+        autoplay muted loop playsinline data-autoplay
+        {% if s.image_desktop %}poster="{{ s.image_desktop | image_url: width: 1600 }}"{% endif %}
+        style="position:absolute;inset:0;"
+      >
+        <source src="{{ s.video_desktop }}" type="video/mp4">
+      </video>
+    {%- elsif s.image_desktop != blank -%}
+      <img
+        class="hero__media--desktop"
+        src="{{ s.image_desktop | image_url: width: 2400 }}"
+        srcset="{{ s.image_desktop | image_url: width: 1200 }} 1200w,
+                {{ s.image_desktop | image_url: width: 1800 }} 1800w,
+                {{ s.image_desktop | image_url: width: 2400 }} 2400w"
+        sizes="100vw"
+        alt="{{ s.image_desktop.alt | escape }}"
+        width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}"
+        fetchpriority="high"
+        style="position:absolute;inset:0;--focal:{{ s.image_desktop.presentation.focal_point }}"
+      >
+    {%- endif -%}
+
+    {%- if s.video_mobile != blank -%}
+      <video
+        class="hero__media--mobile"
+        autoplay muted loop playsinline data-autoplay
+        {% if s.image_mobile %}poster="{{ s.image_mobile | image_url: width: 900 }}"{% endif %}
+        style="position:absolute;inset:0;"
+      >
+        <source src="{{ s.video_mobile }}" type="video/mp4">
+      </video>
+    {%- elsif s.image_mobile != blank -%}
+      <img
+        class="hero__media--mobile"
+        src="{{ s.image_mobile | image_url: width: 1200 }}"
+        srcset="{{ s.image_mobile | image_url: width: 600 }} 600w, {{ s.image_mobile | image_url: width: 1200 }} 1200w"
+        sizes="100vw"
+        alt="{{ s.image_mobile.alt | escape }}"
+        width="{{ s.image_mobile.width }}" height="{{ s.image_mobile.height }}"
+        fetchpriority="high"
+        style="position:absolute;inset:0;--focal:{{ s.image_mobile.presentation.focal_point }}"
+      >
+    {%- elsif s.image_desktop != blank -%}
+      <img
+        class="hero__media--mobile"
+        src="{{ s.image_desktop | image_url: width: 1200 }}"
+        alt="{{ s.image_desktop.alt | escape }}"
+        fetchpriority="high"
+        width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}"
+        style="position:absolute;inset:0;--focal:{{ s.image_desktop.presentation.focal_point }}"
+      >
+    {%- endif -%}
+
+    {%- if s.image_desktop == blank and s.image_mobile == blank and s.video_desktop == blank -%}
+      <div class="media__placeholder">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+  </div>
+
+  <div
+    class="hero__overlay"
+    style="background:linear-gradient(180deg,rgba(0,0,0,{{ s.overlay_top | divided_by: 100.0 }}) 0%,rgba(0,0,0,0) 38%,rgba(0,0,0,{{ s.overlay_bottom | divided_by: 100.0 }}) 100%);"
+  ></div>
+
+  <div class="page-width hero__inner">
+    {%- if s.eyebrow != blank -%}
+      <p class="t-eyebrow hero__eyebrow reveal">{{ s.eyebrow }}</p>
+    {%- endif -%}
+
+    {%- if s.title != blank -%}
+      <h2 class="hero-title hero__title reveal{% if s.chrome_title %} chrome-text{% endif %}" style="--reveal-delay:60ms">
+        {{ s.title }}
+      </h2>
+    {%- endif -%}
+
+    {%- if s.subtitle != blank -%}
+      <p class="hero__sub reveal" style="--reveal-delay:120ms">{{ s.subtitle }}</p>
+    {%- endif -%}
+
+    {%- if s.cta_label != blank or s.cta2_label != blank -%}
+      <div class="hero__ctas reveal" style="--reveal-delay:180ms">
+        {%- if s.cta_label != blank -%}
+          <a href="{{ s.cta_url | default: routes.all_products_collection_url }}" class="btn btn--primary btn--lg">{{ s.cta_label }}</a>
+        {%- endif -%}
+        {%- if s.cta2_label != blank -%}
+          <a href="{{ s.cta2_url | default: routes.all_products_collection_url }}" class="btn btn--ghost btn--lg">{{ s.cta2_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if s.show_scroll -%}
+    <div class="hero__scroll">SCROLL</div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Visuels" },
+    { "type": "image_picker", "id": "image_desktop", "label": "Image desktop" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Image mobile" },
+    { "type": "url", "id": "video_desktop", "label": "Vidéo desktop (MP4)", "info": "Téléversez le fichier dans Contenu > Fichiers, puis collez son URL. Prioritaire sur l'image." },
+    { "type": "url", "id": "video_mobile", "label": "Vidéo mobile (MP4)" },
+    { "type": "header", "content": "Texte" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "EROS PARIS" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "NOUVEAUTÉS" },
+    { "type": "checkbox", "id": "chrome_title", "label": "Titre effet chrome", "default": false },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre" },
+    { "type": "text", "id": "cta_label", "label": "Bouton 1", "default": "DÉCOUVRIR" },
+    { "type": "url", "id": "cta_url", "label": "Lien bouton 1" },
+    { "type": "text", "id": "cta2_label", "label": "Bouton 2" },
+    { "type": "url", "id": "cta2_url", "label": "Lien bouton 2" },
+    { "type": "header", "content": "Mise en page" },
+    {
+      "type": "select", "id": "align", "label": "Alignement du texte",
+      "options": [
+        { "value": "left", "label": "Gauche" },
+        { "value": "center", "label": "Centre" },
+        { "value": "right", "label": "Droite" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select", "id": "vertical", "label": "Position verticale",
+      "options": [
+        { "value": "flex-start", "label": "Haut" },
+        { "value": "center", "label": "Milieu" },
+        { "value": "flex-end", "label": "Bas" }
+      ],
+      "default": "flex-end"
+    },
+    { "type": "range", "id": "height_mobile", "min": 60, "max": 100, "step": 2, "unit": "%", "label": "Hauteur mobile", "default": 88 },
+    { "type": "range", "id": "height_desktop", "min": 60, "max": 100, "step": 2, "unit": "%", "label": "Hauteur desktop", "default": 94 },
+    { "type": "range", "id": "overlay_top", "min": 0, "max": 90, "step": 5, "unit": "%", "label": "Assombrissement haut", "default": 45 },
+    { "type": "range", "id": "overlay_bottom", "min": 0, "max": 90, "step": 5, "unit": "%", "label": "Assombrissement bas", "default": 60 },
+    { "type": "checkbox", "id": "show_scroll", "label": "Indicateur de scroll", "default": true }
+  ],
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

@@ -1,0 +1,62 @@
+<section class="page-hero">
+  <div class="page-width">
+    <h1 class="page-hero__title">{{ 'general.search.search' | t }}</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" class="searchbar__form" style="margin-top:20px">
+      <input type="hidden" name="options[prefix]" value="last">
+      <input type="search" name="q" value="{{ search.terms | escape }}" class="searchbar__input"
+             placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.search' | t }}">
+      <button type="submit" class="hbtn" aria-label="{{ 'general.search.search' | t }}">{% render 'icon', name: 'arrow' %}</button>
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="page-width">
+    {%- if search.performed -%}
+      <p class="t-eyebrow" style="margin-bottom:22px">
+        {{ 'general.search.results_with_count' | t: count: search.results_count }}
+      </p>
+      {%- paginate search.results by 24 -%}
+        {%- if search.results_count > 0 -%}
+          <div class="product-grid" style="--cols-m:2;--cols-d:4">
+            {%- for item in search.results -%}
+              {%- if item.object_type == 'product' -%}
+                {% render 'product-card', product: item, index: forloop.index0 %}
+              {%- else -%}
+                <article class="card reveal">
+                  <div class="card__body">
+                    <h3 class="card__title"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                    <p class="t-body">{{ item.content | strip_html | truncatewords: 22 }}</p>
+                  </div>
+                </article>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <nav class="pagination">
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}">{{ part.title }}</a>
+                {%- else -%}
+                  <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+            </nav>
+          {%- endif -%}
+        {%- else -%}
+          <div class="empty-state">
+            <p class="empty-state__t">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
+            <a href="{{ routes.all_products_collection_url }}" class="btn btn--ghost" style="margin-top:22px">
+              {{ 'collections.general.view_all' | t }}
+            </a>
+          </div>
+        {%- endif -%}
+      {%- endpaginate -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Résultats de recherche", "tag": "section" }
+{% endschema %}

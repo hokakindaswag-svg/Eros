@@ -1,0 +1,22 @@
+<article>
+  {%- if article.image -%}
+    <div class="media media--wide gloss">
+      <img src="{{ article.image | image_url: width: 2000 }}" alt="{{ article.title | escape }}" fetchpriority="high" width="{{ article.image.width }}" height="{{ article.image.height }}">
+    </div>
+  {%- endif -%}
+  <section class="page-hero">
+    <div class="page-width page-width--narrow">
+      <p class="t-eyebrow">{{ article.published_at | date: '%d.%m.%Y' }}</p>
+      <h1 class="page-hero__title" style="margin-top:10px">{{ article.title }}</h1>
+    </div>
+  </section>
+  <section class="page-body">
+    <div class="page-width page-width--narrow rte">{{ article.content }}</div>
+    <div class="page-width page-width--narrow" style="margin-top:34px">
+      <a href="{{ blog.url }}" class="link-underline">{{ 'blogs.article.back_to_blog' | t }}</a>
+    </div>
+  </section>
+</article>
+{% schema %}
+{ "name": "Article", "tag": "article" }
+{% endschema %}

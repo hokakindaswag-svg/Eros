@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": { "type": "title", "settings": {} },
+        "price": { "type": "price", "settings": { "note": "TAXES INCLUSES" } },
+        "variants": { "type": "variants", "settings": { "size_guide_label": "GUIDE DES TAILLES" } },
+        "buy": {
+          "type": "buy",
+          "settings": {
+            "show_quantity": true,
+            "show_dynamic_checkout": true,
+            "show_stock": true,
+            "promise_field": false,
+            "promise_field_label": "Promesse pour",
+            "promise_field_placeholder": "POUR QUI ? (OPTIONNEL)"
+          }
+        },
+        "promise": { "type": "promise", "settings": {} },
+        "accordions": {
+          "type": "accordions",
+          "settings": {
+            "show_description": true,
+            "description_title": "DESCRIPTION",
+            "show_specs": true,
+            "specs_title": "CARACTÉRISTIQUES",
+            "title_1": "MATÉRIAU",
+            "title_2": "ENTRETIEN",
+            "title_3": "LIVRAISON",
+            "title_4": "RETOURS"
+          }
+        }
+      },
+      "block_order": ["title", "price", "variants", "buy", "promise", "accordions"],
+      "settings": {
+        "gallery_columns": 2,
+        "first_image_full": true,
+        "sticky_atc": true,
+        "update_url": true
+      }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
+      "settings": { "enable": true, "title": "VOUS AIMEREZ AUSSI", "count": 4 }
+    }
+  },
+  "order": ["main", "recommendations"]
+}

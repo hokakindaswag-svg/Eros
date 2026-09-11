@@ -1,0 +1,42 @@
+{%- if section.blocks.size > 0 -%}
+<div class="announcement{% if section.settings.marquee %} announcement--marquee{% endif %}">
+  <div class="announcement__track"{% if section.settings.marquee %} data-marquee{% endif %}>
+    {%- for block in section.blocks -%}
+      <div class="announcement__item" {{ block.shopify_attributes }}>
+        {%- if block.settings.link != blank -%}
+          <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+        {%- else -%}
+          {{ block.settings.text }}
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Barre d'annonce",
+  "settings": [
+    { "type": "checkbox", "id": "marquee", "label": "Défilement continu", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texte", "default": "LIVRAISON OFFERTE DÈS 100 €" },
+        { "type": "url", "id": "link", "label": "Lien" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "message", "settings": { "text": "LIVRAISON OFFERTE DÈS 100 €" } },
+      { "type": "message", "settings": { "text": "PAIEMENT EN 3X" } },
+      { "type": "message", "settings": { "text": "RETOURS 30 JOURS" } }
+    ]
+  },
+  "enabled_on": { "groups": ["header"] }
+}
+{% endschema %}

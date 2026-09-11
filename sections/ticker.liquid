@@ -1,0 +1,23 @@
+<div class="ticker{% if section.settings.chrome %} ticker--chrome{% endif %}">
+  <div class="ticker__track" data-marquee style="--ticker-speed:{{ section.settings.speed }}s">
+    {%- assign words = section.settings.text | split: ',' -%}
+    <div class="ticker__item">
+      {%- for word in words -%}
+        {{ word | strip }}<span>&mdash;</span>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Bandeau défilant",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Mots (séparés par des virgules)", "default": "EROS PARIS, POUR SOI, LA PROMESSE, DUO" },
+    { "type": "checkbox", "id": "chrome", "label": "Effet chrome", "default": true },
+    { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 2, "unit": "s", "label": "Durée d'un cycle", "default": 26 }
+  ],
+  "presets": [{ "name": "Bandeau défilant" }]
+}
+{% endschema %}

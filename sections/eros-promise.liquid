@@ -1,0 +1,118 @@
+{%- comment -%}
+  EROS PARIS — LA PROMESSE
+  Concept signature. Le texte est entièrement configurable :
+  n'annoncez ici que ce qui existe réellement.
+{%- endcomment -%}
+
+{%- assign s = section.settings -%}
+
+<section class="split{% if s.reverse %} split--reverse{% endif %}">
+  <div class="split__media">
+    {%- if s.video != blank -%}
+      <video autoplay muted loop playsinline data-autoplay {% if s.image %}poster="{{ s.image | image_url: width: 1200 }}"{% endif %}>
+        <source src="{{ s.video }}" type="video/mp4">
+      </video>
+    {%- elsif s.image != blank -%}
+      <img
+        src="{{ s.image | image_url: width: 1600 }}"
+        srcset="{{ s.image | image_url: width: 800 }} 800w, {{ s.image | image_url: width: 1600 }} 1600w"
+        sizes="(min-width: 990px) 50vw, 100vw"
+        alt="{{ s.image.alt | escape | default: s.title }}"
+        loading="lazy"
+        width="{{ s.image.width }}" height="{{ s.image.height }}"
+      >
+    {%- else -%}
+      <div class="media__placeholder">{{ 'lifestyle-2' | placeholder_svg_tag }}</div>
+    {%- endif -%}
+    {%- if s.image_overlay > 0 -%}
+      <span style="position:absolute;inset:0;background:rgba(0,0,0,{{ s.image_overlay | divided_by: 100.0 }})"></span>
+    {%- endif -%}
+  </div>
+
+  <div class="split__body">
+    {%- if s.eyebrow != blank -%}<p class="t-eyebrow reveal">{{ s.eyebrow }}</p>{%- endif -%}
+    <h2 class="split__title reveal{% if s.chrome_title %} chrome-text{% endif %}" style="--reveal-delay:50ms;margin-top:14px">
+      {{ s.title }}
+    </h2>
+    {%- if s.lede != blank -%}
+      <p class="split__lede reveal" style="--reveal-delay:90ms">{{ s.lede }}</p>
+    {%- endif -%}
+    {%- if s.text != blank -%}
+      <div class="split__text t-body rte reveal" style="--reveal-delay:120ms">{{ s.text }}</div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="steps reveal" style="--reveal-delay:160ms">
+        {%- for block in section.blocks -%}
+          <div class="step" {{ block.shopify_attributes }}>
+            <span class="step__n">0{{ forloop.index }}</span>
+            <div>
+              <p class="step__t">{{ block.settings.title }}</p>
+              {%- if block.settings.text != blank -%}
+                <p class="step__d">{{ block.settings.text }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if s.cta_label != blank -%}
+      <div class="reveal" style="--reveal-delay:200ms;margin-top:28px;display:flex;flex-wrap:wrap;gap:10px">
+        <a href="{{ s.cta_url | default: routes.all_products_collection_url }}" class="btn btn--primary btn--lg">{{ s.cta_label }}</a>
+        {%- if s.cta2_label != blank -%}
+          <a href="{{ s.cta2_url }}" class="btn btn--ghost btn--lg">{{ s.cta2_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if s.note != blank -%}
+      <p class="split__note reveal">{{ s.note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "LA PROMESSE",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "url", "id": "video", "label": "Vidéo (MP4)" },
+    { "type": "range", "id": "image_overlay", "min": 0, "max": 70, "step": 5, "unit": "%", "label": "Assombrissement de l'image", "default": 15 },
+    { "type": "checkbox", "id": "reverse", "label": "Inverser image / texte", "default": false },
+    { "type": "header", "content": "Texte" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "SIGNATURE EROS PARIS" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "LA PROMESSE" },
+    { "type": "checkbox", "id": "chrome_title", "label": "Titre effet chrome", "default": true },
+    { "type": "text", "id": "lede", "label": "Phrase d'accroche", "default": "Un bijou acheté pour une personne précise." },
+    { "type": "richtext", "id": "text", "label": "Texte" },
+    { "type": "text", "id": "cta_label", "label": "Bouton 1", "default": "DÉCOUVRIR" },
+    { "type": "url", "id": "cta_url", "label": "Lien bouton 1" },
+    { "type": "text", "id": "cta2_label", "label": "Bouton 2" },
+    { "type": "url", "id": "cta2_url", "label": "Lien bouton 2" },
+    { "type": "text", "id": "note", "label": "Mention en bas" }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "limit": 5,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre" },
+        { "type": "text", "id": "text", "label": "Texte" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LA PROMESSE",
+      "blocks": [
+        { "type": "point", "settings": { "title": "UNE INTENTION", "text": "Vous choisissez la pièce en pensant à une personne précise." } },
+        { "type": "point", "settings": { "title": "UN DESTINATAIRE", "text": "Le bijou est offert à cette personne, et à personne d'autre." } },
+        { "type": "point", "settings": { "title": "UNE VALEUR", "text": "Ce qui est porté vaut plus que ce qui est acheté." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

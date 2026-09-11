@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64 }}">
+    {%- endif -%}
+
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+
+    {%- liquid
+      assign body_font = settings.type_body_font
+      assign heading_font = settings.type_heading_font
+      assign body_bold = body_font | font_modify: 'weight', '600'
+      assign heading_heavy = heading_font | font_modify: 'weight', '700'
+    -%}
+    {{ body_font | font_face: font_display: 'swap' }}
+    {{ body_bold | font_face: font_display: 'swap' }}
+    {{ heading_font | font_face: font_display: 'swap' }}
+    {{ heading_heavy | font_face: font_display: 'swap' }}
+
+    <style>
+      :root{
+        --eros-font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+        --eros-font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+        --eros-heading-weight: {{ settings.heading_weight | default: 700 }};
+        --page-max: {{ settings.page_width | default: 1680 }}px;
+      }
+      {%- if settings.heading_letter_spacing != blank -%}
+      .t-display,.section-title,.hero-title,.door__title,.split__title,.campaign__title,.pdp__title,.coll-hero__title{
+        letter-spacing: {{ settings.heading_letter_spacing | divided_by: 100.0 }}em;
+      }
+      {%- endif -%}
+    </style>
+
+    {{ 'eros-base.css' | asset_url | stylesheet_tag }}
+    {{ 'eros-components.css' | asset_url | stylesheet_tag }}
+    {{ 'eros-templates.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.classList.remove('no-js');
+      window.EROS = {
+        moneyFormat: {{ shop.money_format | json }},
+        routes: {
+          root: {{ routes.root_url | json }},
+          cart: {{ routes.cart_url | json }},
+          cartAdd: "{{ routes.cart_add_url }}.js",
+          cartChange: "{{ routes.cart_change_url }}.js",
+          predictive: {{ routes.predictive_search_url | json }},
+          search: {{ routes.search_url | json }}
+        },
+        strings: {
+          addToCart: {{ 'products.product.add_to_cart' | t | json }},
+          soldOut: {{ 'products.product.sold_out' | t | json }},
+          added: {{ 'products.product.added' | t | json }}
+        }
+      };
+    </script>
+    <script src="{{ 'eros-theme.js' | asset_url }}" defer></script>
+  </head>
+
+  <body class="template--{{ template.name | handle }} {% if template.suffix %}template-suffix--{{ template.suffix | handle }}{% endif %}">
+    <a class="skip-to-content" href="#MainContent">{{ 'accessibility.skip_to_text' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    {% render 'cart-drawer' %}
+    {% render 'search-drawer' %}
+
+    <ul hidden>
+      <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
+    </ul>
+  </body>
+</html>

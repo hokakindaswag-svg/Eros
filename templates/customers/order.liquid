@@ -1,0 +1,36 @@
+<section class="page-hero">
+  <div class="page-width">
+    <h1 class="page-hero__title">{{ order.name }}</h1>
+    <p class="t-body" style="margin-top:10px">{{ order.created_at | date: '%d.%m.%Y' }}</p>
+  </div>
+</section>
+<section class="account">
+  <div class="page-width">
+    <div class="table-wrap">
+      <table class="order-table">
+        <thead>
+          <tr><th>Produit</th><th>Qté</th><th>Prix</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+          {%- for line in order.line_items -%}
+            <tr>
+              <td>{{ line.title }}</td>
+              <td>{{ line.quantity }}</td>
+              <td>{{ line.price | money }}</td>
+              <td>{{ line.line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+    <div class="cart-summary" style="margin-top:28px;max-width:420px;margin-left:auto">
+      <div class="cart-summary__row"><span class="cart-total__label">Sous-total</span><span>{{ order.subtotal_price | money }}</span></div>
+      {%- for shipping in order.shipping_methods -%}
+        <div class="cart-summary__row"><span class="cart-total__label">{{ shipping.title }}</span><span>{{ shipping.price | money }}</span></div>
+      {%- endfor -%}
+      <div class="cart-summary__row"><span class="cart-total__label">Taxes</span><span>{{ order.tax_price | money }}</span></div>
+      <div class="cart-summary__row"><span class="cart-total__label">Total</span><span class="cart-summary__total">{{ order.total_price | money }}</span></div>
+    </div>
+    <p style="margin-top:26px"><a href="{{ routes.account_url }}" class="link-underline">{{ 'customer.account.return' | t }}</a></p>
+  </div>
+</section>

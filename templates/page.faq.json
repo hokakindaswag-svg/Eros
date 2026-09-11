@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": { "type": "main-page", "settings": {} },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "question": "QUELS SONT LES DÉLAIS DE LIVRAISON ?" } },
+        "q2": { "type": "qa", "settings": { "question": "COMMENT RETOURNER UNE PIÈCE ?" } },
+        "q3": { "type": "qa", "settings": { "question": "COMMENT ENTRETENIR MON BIJOU ?" } },
+        "q4": { "type": "qa", "settings": { "question": "COMMENT CHOISIR MA TAILLE ?" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"],
+      "settings": { "title": "FAQ" }
+    }
+  },
+  "order": ["main", "faq"]
+}

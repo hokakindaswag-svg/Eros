@@ -1,0 +1,26 @@
+{%- comment -%}
+  Prix. Params : product | variant, show_from (bool)
+{%- endcomment -%}
+{%- liquid
+  if variant
+    assign compare = variant.compare_at_price
+    assign price = variant.price
+  else
+    assign compare = product.compare_at_price
+    assign price = product.price
+  endif
+  assign on_sale = false
+  if compare > price
+    assign on_sale = true
+  endif
+-%}
+<span class="price{% if on_sale %} price--sale{% endif %}">
+  {%- if show_from and product.price_varies -%}
+    <span class="price__amount">{{ 'products.product.price_from' | t }} {{ price | money }}</span>
+  {%- else -%}
+    <span class="price__amount">{{ price | money }}</span>
+  {%- endif -%}
+  {%- if on_sale -%}
+    <s class="price__compare">{{ compare | money }}</s>
+  {%- endif -%}
+</span>

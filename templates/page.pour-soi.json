@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "EROS PARIS",
+        "title": "POUR SOI",
+        "subtitle": "JE L'AI VU. JE L'AIME. JE LE VEUX.",
+        "cta_label": "SHOPPER LA COLLECTION",
+        "align": "left",
+        "vertical": "flex-end",
+        "height_mobile": 70,
+        "height_desktop": 78,
+        "overlay_top": 40,
+        "overlay_bottom": 62,
+        "show_scroll": false
+      }
+    },
+    "products": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "LES PIÈCES",
+        "count": 12,
+        "layout": "grid",
+        "cols_mobile": 2,
+        "cols_desktop": 4,
+        "ratio": "3/4",
+        "show_view_all": true,
+        "show_cta": true,
+        "cta_label": "TOUT VOIR"
+      }
+    },
+    "campaign": {
+      "type": "lifestyle-campaign",
+      "settings": {
+        "title": "TOUS LES JOURS",
+        "chrome_title": false,
+        "cta_label": "DÉCOUVRIR",
+        "align": "left",
+        "vertical": "flex-end",
+        "height_mobile": 68,
+        "height_desktop": 80,
+        "overlay_top": 25,
+        "overlay_bottom": 60
+      }
+    },
+    "statement": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "STATEMENT",
+        "title": "LES PIÈCES QUI SE REMARQUENT",
+        "count": 8,
+        "layout": "rail",
+        "ratio": "3/4",
+        "show_view_all": true,
+        "show_cta": false
+      }
+    }
+  },
+  "order": ["hero", "products", "campaign", "statement"]
+}

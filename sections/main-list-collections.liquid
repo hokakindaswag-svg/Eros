@@ -1,0 +1,34 @@
+<section class="page-hero">
+  <div class="page-width">
+    <h1 class="page-hero__title">{{ section.settings.title | default: 'COLLECTIONS' }}</h1>
+  </div>
+</section>
+<section class="section">
+  <div class="page-width">
+    <div class="cats" style="--cats-cols:3">
+      {%- for collection in collections -%}
+        <a href="{{ collection.url }}" class="cat reveal" style="--cat-ratio:4/5;--reveal-delay:{{ forloop.index0 | times: 40 }}ms">
+          <div class="cat__media flash">
+            {%- if collection.featured_image -%}
+              <img src="{{ collection.featured_image | image_url: width: 900 }}" alt="{{ collection.title | escape }}" loading="lazy" width="{{ collection.featured_image.width }}" height="{{ collection.featured_image.height }}">
+            {%- else -%}
+              <div class="media__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
+            {%- endif -%}
+            <span class="cat__veil"></span>
+          </div>
+          <div class="cat__body">
+            <h2 class="cat__title">{{ collection.title }}</h2>
+            <span class="cat__arrow">{% render 'icon', name: 'arrow' %}</span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Liste des collections",
+  "tag": "section",
+  "settings": [{ "type": "text", "id": "title", "label": "Titre", "default": "COLLECTIONS" }]
+}
+{% endschema %}

@@ -1,0 +1,46 @@
+<section class="section" style="background:{{ section.settings.background }}">
+  <div class="page-width{% if section.settings.narrow %} page-width--narrow{% endif %}" style="text-align:{{ section.settings.align }}">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="t-eyebrow reveal">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h2 class="section-title reveal{% if section.settings.chrome %} chrome-text{% endif %}" style="margin-top:12px">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="rte reveal" style="margin-top:16px;{% if section.settings.align == 'center' %}margin-inline:auto;{% endif %}max-width:62ch">
+        {{ section.settings.text }}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank -%}
+      <div class="reveal" style="margin-top:26px">
+        <a href="{{ section.settings.cta_url }}" class="btn btn--ghost btn--lg">{{ section.settings.cta_label }}</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Texte",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre" },
+    { "type": "text", "id": "title", "label": "Titre" },
+    { "type": "checkbox", "id": "chrome", "label": "Titre effet chrome", "default": false },
+    { "type": "richtext", "id": "text", "label": "Texte" },
+    { "type": "text", "id": "cta_label", "label": "Bouton" },
+    { "type": "url", "id": "cta_url", "label": "Lien du bouton" },
+    { "type": "checkbox", "id": "narrow", "label": "Largeur réduite", "default": true },
+    {
+      "type": "select", "id": "align", "label": "Alignement",
+      "options": [
+        { "value": "left", "label": "Gauche" },
+        { "value": "center", "label": "Centre" }
+      ],
+      "default": "left"
+    },
+    { "type": "color", "id": "background", "label": "Fond", "default": "#000000" }
+  ],
+  "presets": [{ "name": "Texte" }]
+}
+{% endschema %}

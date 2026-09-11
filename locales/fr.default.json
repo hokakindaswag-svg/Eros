@@ -1,0 +1,226 @@
+{
+  "general": {
+    "meta": { "tags": "Étiquetés « {{ tags }} »", "page": "Page {{ page }}" },
+    "search": {
+      "search": "Rechercher",
+      "placeholder": "Rechercher un bijou",
+      "results_with_count": { "one": "{{ count }} résultat", "other": "{{ count }} résultats" },
+      "no_results": "Aucun résultat pour « {{ terms }} ».",
+      "suggestions": "Suggestions",
+      "products": "Produits",
+      "collections": "Collections",
+      "view_all": "VOIR TOUS LES RÉSULTATS"
+    },
+    "pagination": { "previous": "Précédent", "next": "Suivant", "page": "Page {{ number }}" },
+    "newsletter_form": {
+      "newsletter_email": "E-mail",
+      "email_placeholder": "VOTRE E-MAIL",
+      "submit": "S'INSCRIRE",
+      "confirmation": "Inscription confirmée.",
+      "success": "Merci. Vous êtes inscrit(e)."
+    },
+    "share": { "share": "Partager", "copied": "Lien copié" },
+    "404": {
+      "title": "PAGE INTROUVABLE",
+      "subtext": "Cette page n'existe pas ou n'existe plus.",
+      "link": "RETOUR À L'ACCUEIL"
+    },
+    "password_page": {
+      "login_form_heading": "Accès boutique",
+      "login_password_button": "ENTRER",
+      "login_form_password_label": "Mot de passe",
+      "login_form_password_placeholder": "MOT DE PASSE",
+      "login_form_error": "Mot de passe incorrect",
+      "login_form_submit": "ENTRER",
+      "admin_link_html": "Vous êtes propriétaire de la boutique ? <a href=\"/admin\" class=\"link-underline\">Connectez-vous ici</a>",
+      "powered_by_shopify_html": "Boutique propulsée par {{ shopify }}"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Aller au contenu",
+    "close": "Fermer",
+    "menu": "Menu",
+    "cart": "Panier",
+    "search": "Recherche",
+    "account": "Compte",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "link_messages": { "new_window": "S'ouvre dans une nouvelle fenêtre." }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "AJOUTER AU PANIER",
+      "added": "AJOUTÉ AU PANIER",
+      "sold_out": "ÉPUISÉ",
+      "unavailable": "INDISPONIBLE",
+      "quantity": "Quantité",
+      "increase": "Augmenter la quantité",
+      "decrease": "Diminuer la quantité",
+      "in_stock": "EN STOCK",
+      "out_of_stock": "RUPTURE",
+      "view": "DÉCOUVRIR",
+      "quick_add": "AJOUT RAPIDE",
+      "vendor": "Marque",
+      "sale": "PROMO",
+      "new": "NOUVEAUTÉ",
+      "price_from": "À partir de",
+      "choose_options": "CHOISIR",
+      "taxes_note": "Taxes incluses. Livraison calculée au paiement.",
+      "sku": "Référence",
+      "media_zoom": "Agrandir l'image",
+      "recommendations": "VOUS AIMEREZ AUSSI"
+    },
+    "facets": {
+      "sort_by_label": "Trier par",
+      "filter": "Filtrer",
+      "all": "TOUT",
+      "clear": "EFFACER"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "Aucun produit dans cette collection.",
+      "items_with_count": { "one": "{{ count }} pièce", "other": "{{ count }} pièces" },
+      "view_all": "TOUT VOIR"
+    },
+    "sorting": {
+      "featured": "Sélection",
+      "best_selling": "Meilleures ventes",
+      "az": "A → Z",
+      "za": "Z → A",
+      "price_ascending": "Prix croissant",
+      "price_descending": "Prix décroissant",
+      "date_descending": "Nouveautés",
+      "date_ascending": "Les plus anciens"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "PANIER",
+      "empty": "VOTRE PANIER EST VIDE",
+      "empty_subtext": "Les pièces ajoutées apparaîtront ici.",
+      "continue_shopping": "CONTINUER MES ACHATS",
+      "subtotal": "Sous-total",
+      "total": "Total",
+      "checkout": "COMMANDER",
+      "view_cart": "VOIR LE PANIER",
+      "remove": "Retirer",
+      "product": "Produit",
+      "quantity": "Quantité",
+      "price": "Prix",
+      "note": "Instructions de commande",
+      "update": "Mettre à jour",
+      "taxes_and_shipping": "Taxes incluses. Livraison calculée au paiement.",
+      "item_count": { "one": "{{ count }} article", "other": "{{ count }} articles" }
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "MON COMPTE",
+      "details": "Coordonnées",
+      "view_addresses": "Mes adresses",
+      "return": "Retour au compte",
+      "orders": "Mes commandes",
+      "no_orders": "Aucune commande pour le moment."
+    },
+    "orders": {
+      "order_number": "Commande",
+      "date": "Date",
+      "payment_status": "Paiement",
+      "fulfillment_status": "Expédition",
+      "total": "Total"
+    },
+    "login": {
+      "title": "CONNEXION",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "forgot_password": "Mot de passe oublié ?",
+      "sign_in": "SE CONNECTER",
+      "guest_title": "Continuer en invité",
+      "guest_continue": "CONTINUER",
+      "create_account": "CRÉER UN COMPTE",
+      "no_account": "Pas encore de compte ?"
+    },
+    "recover_password": {
+      "title": "RÉINITIALISER",
+      "subtext": "Nous vous enverrons un e-mail de réinitialisation.",
+      "submit": "ENVOYER",
+      "cancel": "Annuler",
+      "success": "E-mail envoyé."
+    },
+    "register": {
+      "title": "CRÉER UN COMPTE",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "submit": "CRÉER LE COMPTE",
+      "has_account": "Déjà un compte ?",
+      "sign_in": "SE CONNECTER"
+    },
+    "activate_account": {
+      "title": "ACTIVER LE COMPTE",
+      "subtext": "Créez votre mot de passe pour activer votre compte.",
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer le mot de passe",
+      "submit": "ACTIVER",
+      "cancel": "Refuser l'invitation"
+    },
+    "reset_password": {
+      "title": "NOUVEAU MOT DE PASSE",
+      "subtext": "Choisissez un nouveau mot de passe.",
+      "password": "Mot de passe",
+      "password_confirm": "Confirmer",
+      "submit": "VALIDER"
+    },
+    "addresses": {
+      "title": "MES ADRESSES",
+      "add_new": "AJOUTER UNE ADRESSE",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "delete_confirm": "Supprimer cette adresse ?",
+      "first_name": "Prénom",
+      "last_name": "Nom",
+      "company": "Société",
+      "address1": "Adresse",
+      "address2": "Complément",
+      "city": "Ville",
+      "country": "Pays",
+      "province": "Région",
+      "zip": "Code postal",
+      "phone": "Téléphone",
+      "set_default": "Définir comme adresse par défaut",
+      "add": "ENREGISTRER",
+      "update": "METTRE À JOUR",
+      "cancel": "Annuler"
+    }
+  },
+  "blogs": {
+    "article": { "read_more": "LIRE", "back_to_blog": "RETOUR" },
+    "comments": {
+      "title": "Commentaires",
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Message",
+      "post": "PUBLIER",
+      "moderated": "Les commentaires sont modérés.",
+      "success": "Commentaire publié.",
+      "success_moderated": "Commentaire envoyé, en attente de modération."
+    }
+  },
+  "contact": {
+    "form": {
+      "title": "CONTACT",
+      "name": "Nom",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "message": "Message",
+      "send": "ENVOYER",
+      "post_success": "Message envoyé. Nous revenons vers vous rapidement.",
+      "error_heading": "Merci de corriger les champs suivants :"
+    }
+  },
+  "shopify": {
+    "links": { "cart": "Panier" }
+  }
+}

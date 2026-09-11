@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "show_description": true,
+        "show_count": true,
+        "show_bar": true,
+        "show_sort": true,
+        "per_page": 24,
+        "cols_mobile": 2,
+        "cols_desktop": 4,
+        "ratio": "3/4"
+      }
+    }
+  },
+  "order": ["main"]
+}

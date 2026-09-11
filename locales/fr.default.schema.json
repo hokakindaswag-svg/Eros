@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "all": {
+      "padding": { "label": "Espacement" },
+      "colors": { "label": "Couleurs" }
+    }
+  }
+}

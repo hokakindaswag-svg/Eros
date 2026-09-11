@@ -1,0 +1,64 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "SIGNATURE EROS PARIS",
+        "title": "LA PROMESSE",
+        "chrome_title": true,
+        "subtitle": "UN BIJOU ACHETÉ POUR UNE PERSONNE PRÉCISE",
+        "cta_label": "DÉCOUVRIR",
+        "align": "left",
+        "vertical": "flex-end",
+        "height_mobile": 76,
+        "height_desktop": 86,
+        "overlay_top": 45,
+        "overlay_bottom": 65,
+        "show_scroll": false
+      }
+    },
+    "concept": {
+      "type": "eros-promise",
+      "blocks": {
+        "p1": { "type": "point", "settings": { "title": "UNE INTENTION", "text": "Vous choisissez la pièce en pensant à une personne précise." } },
+        "p2": { "type": "point", "settings": { "title": "UN DESTINATAIRE", "text": "Le bijou est offert à cette personne, et à personne d'autre." } },
+        "p3": { "type": "point", "settings": { "title": "UNE VALEUR", "text": "Ce qui est porté vaut plus que ce qui est acheté." } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "eyebrow": "LE PRINCIPE",
+        "title": "CE QUE C'EST",
+        "lede": "Pas un cadeau. Une intention qui prend une forme.",
+        "reverse": false,
+        "image_overlay": 20,
+        "cta_label": "CHOISIR UNE PIÈCE"
+      }
+    },
+    "page": { "type": "main-page", "settings": {} },
+    "selection": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "SÉLECTION",
+        "title": "LES PIÈCES DE LA PROMESSE",
+        "count": 8,
+        "layout": "grid",
+        "cols_mobile": 2,
+        "cols_desktop": 4,
+        "ratio": "3/4",
+        "show_view_all": true,
+        "show_cta": false
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "question": "COMMENT FAIRE UNE PROMESSE ?" } },
+        "q2": { "type": "qa", "settings": { "question": "QUELLES PIÈCES SONT CONCERNÉES ?" } },
+        "q3": { "type": "qa", "settings": { "question": "PEUT-ON L'OFFRIR À N'IMPORTE QUI ?" } }
+      },
+      "block_order": ["q1", "q2", "q3"],
+      "settings": { "title": "QUESTIONS" }
+    }
+  },
+  "order": ["hero", "concept", "page", "selection", "faq"]
+}

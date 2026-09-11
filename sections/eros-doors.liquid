@@ -1,0 +1,116 @@
+{%- comment -%}
+  EROS PARIS — LES TROIS PORTES D'ENTRÉE
+  POUR SOI · LA PROMESSE · DUO
+  Architecture de marque, pas une simple liste de catégories.
+{%- endcomment -%}
+
+<section class="section" style="--section-pt:0;--section-pb:0;--section-pt-d:0;--section-pb-d:0">
+  {%- if section.settings.title != blank or section.settings.intro != blank -%}
+    <div class="page-width" style="padding-block:44px 26px">
+      {%- if section.settings.title != blank -%}
+        <h2 class="section-title reveal">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.intro != blank -%}
+        <p class="t-body reveal" style="margin-top:12px;max-width:46ch">{{ section.settings.intro }}</p>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="doors" style="--door-h-m:{{ section.settings.height_mobile }}svh;--door-h-d:{{ section.settings.height_desktop }}svh">
+    {%- for block in section.blocks -%}
+      {%- assign b = block.settings -%}
+      <a
+        href="{{ b.url | default: routes.all_products_collection_url }}"
+        class="door reveal"
+        style="--reveal-delay:{{ forloop.index0 | times: 80 }}ms"
+        {{ block.shopify_attributes }}
+      >
+        <div class="door__media">
+          {%- if b.image != blank -%}
+            <img
+              src="{{ b.image | image_url: width: 1200 }}"
+              srcset="{{ b.image | image_url: width: 600 }} 600w,
+                      {{ b.image | image_url: width: 1000 }} 1000w,
+                      {{ b.image | image_url: width: 1600 }} 1600w"
+              sizes="(min-width: 750px) 33vw, 100vw"
+              alt="{{ b.image.alt | escape | default: b.title }}"
+              loading="lazy"
+              width="{{ b.image.width }}" height="{{ b.image.height }}"
+            >
+          {%- else -%}
+            <div class="media__placeholder">{{ 'lifestyle-2' | placeholder_svg_tag }}</div>
+          {%- endif -%}
+        </div>
+        <div class="door__veil"></div>
+
+        <div class="door__inner">
+          <span class="door__index">0{{ forloop.index }}</span>
+          <h3 class="door__title">{{ b.title }}</h3>
+          {%- if b.text != blank -%}
+            <p class="door__text">{{ b.text }}</p>
+          {%- endif -%}
+          <span class="link-underline door__cta">{{ b.cta | default: 'DÉCOUVRIR' }}</span>
+        </div>
+        <span class="door__line"></span>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Les 3 portes",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Titre", "default": "TROIS FAÇONS DE PORTER EROS" },
+    { "type": "text", "id": "intro", "label": "Introduction" },
+    { "type": "range", "id": "height_mobile", "min": 40, "max": 90, "step": 2, "unit": "%", "label": "Hauteur mobile", "default": 58 },
+    { "type": "range", "id": "height_desktop", "min": 50, "max": 95, "step": 5, "unit": "%", "label": "Hauteur desktop", "default": 78 }
+  ],
+  "blocks": [
+    {
+      "type": "door",
+      "name": "Porte",
+      "limit": 3,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Titre", "default": "POUR SOI" },
+        { "type": "text", "id": "text", "label": "Texte court" },
+        { "type": "text", "id": "cta", "label": "Libellé du lien", "default": "DÉCOUVRIR" },
+        { "type": "url", "id": "url", "label": "Lien" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Les 3 portes",
+      "blocks": [
+        {
+          "type": "door",
+          "settings": {
+            "title": "POUR SOI",
+            "text": "Je l'ai vu. Je l'aime. Je le veux.",
+            "cta": "DÉCOUVRIR"
+          }
+        },
+        {
+          "type": "door",
+          "settings": {
+            "title": "LA PROMESSE",
+            "text": "Un bijou acheté pour une personne précise.",
+            "cta": "DÉCOUVRIR"
+          }
+        },
+        {
+          "type": "door",
+          "settings": {
+            "title": "DUO",
+            "text": "Deux pièces pensées pour aller ensemble.",
+            "cta": "DÉCOUVRIR"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

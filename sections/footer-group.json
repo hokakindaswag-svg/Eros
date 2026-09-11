@@ -1,0 +1,31 @@
+{
+  "type": "footer",
+  "name": "Pied de page",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "shop": { "type": "menu", "settings": { "title": "BOUTIQUE", "menu": "footer" } },
+        "help": {
+          "type": "links",
+          "settings": {
+            "title": "AIDE",
+            "label_1": "LIVRAISON",
+            "label_2": "RETOURS",
+            "label_3": "ENTRETIEN",
+            "label_4": "FAQ",
+            "label_5": "CONTACT"
+          }
+        },
+        "news": { "type": "newsletter", "settings": { "title": "NEWSLETTER", "text": "Nouveautés et accès prioritaires." } }
+      },
+      "block_order": ["shop", "help", "news"],
+      "settings": {
+        "tagline": "Bijoux EROS PARIS. Portés le jour, remarqués la nuit.",
+        "show_payment_icons": true,
+        "show_wordmark": true
+      }
+    }
+  },
+  "order": ["footer"]
+}

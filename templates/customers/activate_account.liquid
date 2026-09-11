@@ -1,0 +1,13 @@
+<div class="auth page-width">
+  <h1 class="auth__title">{{ 'customer.activate_account.title' | t }}</h1>
+  <p class="t-body" style="text-align:center;margin-top:12px">{{ 'customer.activate_account.subtext' | t }}</p>
+  {% form 'activate_customer_password' %}
+    {{ form.errors | default_errors }}
+    <div style="margin-top:24px">
+      <div class="field"><input class="input" type="password" name="customer[password]" placeholder="{{ 'customer.activate_account.password' | t }}"></div>
+      <div class="field"><input class="input" type="password" name="customer[password_confirmation]" placeholder="{{ 'customer.activate_account.password_confirm' | t }}"></div>
+      <button type="submit" class="btn btn--primary btn--full btn--lg" style="margin-top:14px">{{ 'customer.activate_account.submit' | t }}</button>
+      <button type="submit" name="decline" class="btn btn--ghost btn--full" style="margin-top:8px">{{ 'customer.activate_account.cancel' | t }}</button>
+    </div>
+  {% endform %}
+</div>
