@@ -1,6 +1,8 @@
 {%- comment -%}
   EROS PARIS — DUO
-  Deux pièces pensées pour aller ensemble. Pas « bijoux de couple ».
+  Une OFFRE : deux bijoux achetés ensemble, un pour soi et un pour
+  la personne de son choix. Les deux pièces n'ont pas à être identiques.
+  Ce n'est pas une collection « bijoux de couple ».
 {%- endcomment -%}
 
 {%- assign s = section.settings -%}
@@ -31,7 +33,23 @@
       {%- if s.lede != blank -%}<p class="split__lede reveal" style="--reveal-delay:90ms">{{ s.lede }}</p>{%- endif -%}
       {%- if s.text != blank -%}<div class="split__text t-body rte reveal" style="--reveal-delay:120ms">{{ s.text }}</div>{%- endif -%}
 
-      {%- comment -%} La paire : deux produits réels du catalogue {%- endcomment -%}
+      {%- if section.blocks.size > 0 -%}
+        <div class="steps reveal" style="--reveal-delay:140ms">
+          {%- for block in section.blocks -%}
+            <div class="step" {{ block.shopify_attributes }}>
+              <span class="step__n">0{{ forloop.index }}</span>
+              <div>
+                <p class="step__t">{{ block.settings.title }}</p>
+                {%- if block.settings.text != blank -%}
+                  <p class="step__d">{{ block.settings.text }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Les deux pièces de l'offre, illustrées {%- endcomment -%}
       {%- assign pa = s.product_a -%}
       {%- assign pb = s.product_b -%}
       {%- if pa != blank or pb != blank -%}
@@ -114,25 +132,45 @@
     { "type": "range", "id": "image_overlay", "min": 0, "max": 70, "step": 5, "unit": "%", "label": "Assombrissement de l'image", "default": 10 },
     { "type": "checkbox", "id": "reverse", "label": "Inverser image / texte", "default": true },
     { "type": "header", "content": "Texte" },
-    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "DEUX PIÈCES, UNE MÊME IDENTITÉ" },
-    { "type": "text", "id": "title", "label": "Titre", "default": "DUO" },
-    { "type": "text", "id": "lede", "label": "Phrase d'accroche", "default": "Deux bijoux pensés pour être portés ensemble." },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "default": "L'OFFRE DUO" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "POUR VOUS DEUX" },
+    { "type": "text", "id": "lede", "label": "Phrase d'accroche", "default": "Deux bijoux : un pour vous, un pour la personne de votre choix." },
     { "type": "richtext", "id": "text", "label": "Texte" },
     { "type": "text", "id": "note", "label": "Mention en bas" },
     { "type": "header", "content": "La paire" },
     { "type": "product", "id": "product_a", "label": "Pièce A" },
-    { "type": "text", "id": "label_a", "label": "Étiquette A", "default": "PIÈCE A" },
+    { "type": "text", "id": "label_a", "label": "Étiquette A", "default": "L'UNE POUR VOUS" },
     { "type": "product", "id": "product_b", "label": "Pièce B" },
-    { "type": "text", "id": "label_b", "label": "Étiquette B", "default": "PIÈCE B" },
+    { "type": "text", "id": "label_b", "label": "Étiquette B", "default": "L'AUTRE POUR QUI VOUS VOULEZ" },
     { "type": "checkbox", "id": "show_chip", "label": "Afficher le symbole entre les deux pièces", "default": true },
-    { "type": "text", "id": "cta_label", "label": "Bouton", "default": "DÉCOUVRIR LES DUOS" },
+    { "type": "text", "id": "cta_label", "label": "Bouton", "default": "COMPOSER MON DUO" },
     { "type": "url", "id": "cta_url", "label": "Lien du bouton" },
     { "type": "header", "content": "Collection DUO" },
     { "type": "checkbox", "id": "show_collection", "label": "Afficher une grille sous la section", "default": false },
     { "type": "collection", "id": "collection", "label": "Collection" },
     { "type": "text", "id": "collection_title", "label": "Titre de la grille" },
-    { "type": "range", "id": "collection_count", "min": 2, "max": 12, "step": 1, "label": "Nombre de produits", "default": 4 }
+    { "type": "range", "id": "collection_count", "min": 2, "max": 12, "step": 1, "label": "Nombre de produits", "default": 8 }
   ],
-  "presets": [{ "name": "DUO" }]
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre" },
+        { "type": "text", "id": "text", "label": "Texte" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "DUO",
+      "blocks": [
+        { "type": "step", "settings": { "title": "CHOISISSEZ DEUX PIÈCES", "text": "Dans la sélection DUO. Identiques ou non, c'est vous qui voyez." } },
+        { "type": "step", "settings": { "title": "UNE POUR VOUS", "text": "Celle que vous garderez." } },
+        { "type": "step", "settings": { "title": "UNE POUR QUI VOUS VOULEZ", "text": "Partenaire, ami, frère, sœur. La personne de votre choix." } }
+      ]
+    }
+  ]
 }
 {% endschema %}

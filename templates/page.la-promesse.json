@@ -55,7 +55,8 @@
         "reverse": false,
         "image_overlay": 20,
         "cta_label": "CHOISIR UNE PIÈCE",
-        "cta_url": "shopify://collections/la-promesse"
+        "cta_url": "shopify://collections/la-promesse",
+        "show_collection": false
       }
     },
     "page": {
@@ -65,9 +66,9 @@
     "selection": {
       "type": "featured-collection",
       "settings": {
-        "eyebrow": "SÉLECTION",
-        "title": "LES PIÈCES DE LA PROMESSE",
-        "count": 8,
+        "eyebrow": "À OFFRIR",
+        "title": "CHOISIR UNE PIÈCE POUR QUELQU'UN",
+        "count": 16,
         "layout": "grid",
         "cols_mobile": "2",
         "cols_desktop": 4,

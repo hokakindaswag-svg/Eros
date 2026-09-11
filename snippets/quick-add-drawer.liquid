@@ -1,0 +1,12 @@
+<div class="drawer" id="eros-quick-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="{{ 'products.product.choose_options' | t }}">
+  <div class="drawer__overlay" data-drawer-close></div>
+  <div class="drawer__panel">
+    <div class="drawer__head">
+      <span class="drawer__title">{{ 'products.product.choose_options' | t }}</span>
+      <button type="button" class="drawer__close" data-drawer-close aria-label="{{ 'accessibility.close' | t }}" data-drawer-focus>
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+    <div class="drawer__body" data-quick-target></div>
+  </div>
+</div>

@@ -57,7 +57,7 @@
           "type": "door",
           "settings": {
             "title": "DUO",
-            "text": "Deux pièces pensées pour aller ensemble.",
+            "text": "Deux bijoux : un pour vous, un pour qui vous voulez.",
             "cta": "DÉCOUVRIR",
             "url": "shopify://pages/duo"
           }
@@ -181,28 +181,63 @@
         "cta_label": "DÉCOUVRIR",
         "reverse": false,
         "image_overlay": 15,
-        "cta_url": "shopify://pages/la-promesse"
+        "cta_url": "shopify://pages/la-promesse",
+        "show_collection": true,
+        "collection": "la-promesse",
+        "collection_eyebrow": "À OFFRIR",
+        "collection_title": "CHOISIR UNE PIÈCE POUR QUELQU'UN",
+        "collection_count": 8
       }
     },
     "duo": {
       "type": "eros-duo",
       "settings": {
-        "eyebrow": "DEUX PIÈCES, UNE MÊME IDENTITÉ",
-        "title": "DUO",
-        "lede": "Deux bijoux pensés pour être portés ensemble.",
-        "label_a": "LE COLLIER",
-        "label_b": "LE BRACELET",
+        "eyebrow": "L'OFFRE DUO",
+        "title": "POUR VOUS DEUX",
+        "lede": "Deux bijoux : un pour vous, un pour la personne de votre choix.",
+        "label_a": "L'UNE POUR VOUS",
+        "label_b": "L'AUTRE POUR QUI VOUS VOULEZ",
         "show_chip": true,
-        "cta_label": "DÉCOUVRIR LES DUOS",
+        "cta_label": "COMPOSER MON DUO",
         "reverse": true,
         "image_overlay": 10,
-        "show_collection": false,
-        "collection_count": 4,
+        "show_collection": true,
+        "collection_count": 8,
         "collection": "duo",
         "cta_url": "shopify://pages/duo",
         "product_a": "collier-riviera",
-        "product_b": "bracelet-riviera"
-      }
+        "product_b": "bracelet-riviera",
+        "text": "<p>Choisissez deux pièces dans la sélection DUO. L'une reste chez vous, l'autre part chez la personne que vous voulez. Elles n'ont pas besoin d'être identiques.</p>",
+        "collection_title": "LA SÉLECTION DUO"
+      },
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "CHOISISSEZ DEUX PIÈCES",
+            "text": "Dans la sélection DUO. Identiques ou non, c'est vous qui voyez."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "UNE POUR VOUS",
+            "text": "Celle que vous garderez."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "UNE POUR QUI VOUS VOULEZ",
+            "text": "Partenaire, ami, frère, sœur. La personne de votre choix."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
     },
     "collection-focus": {
       "type": "featured-collection",

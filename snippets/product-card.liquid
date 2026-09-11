@@ -87,24 +87,12 @@
 
     <a class="card__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}"></a>
 
-    {%- if quick and product.available -%}
-      <div class="card__quick">
-        {%- if product.variants.size == 1 -%}
-          <form method="post" action="{{ routes.cart_add_url }}" data-quick-add>
-            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-            <input type="hidden" name="quantity" value="1">
-            <button type="submit" class="btn">{{ 'products.product.quick_add' | t }}</button>
-          </form>
-        {%- else -%}
-          <a href="{{ product.url }}" class="btn">{{ 'products.product.choose_options' | t }}</a>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
   </div>
 
   <div class="card__body">
-    <h3 class="card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
-    <div class="card__price">{% render 'price', product: product, show_from: true %}</div>
+    <div class="card__info">
+      <h3 class="card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+      <div class="card__price">{% render 'price', product: product, show_from: true %}</div>
 
     {%- for option in product.options_with_values -%}
       {%- assign oname = option.name | downcase -%}
@@ -134,5 +122,35 @@
         {%- break -%}
       {%- endif -%}
     {%- endfor -%}
+    </div>
+
+    {%- comment -%}
+      Ajout rapide, discret et compact. Une seule variante : ajout direct.
+      Plusieurs variantes : ouverture de la sélection sans quitter la page.
+    {%- endcomment -%}
+    {%- if quick and product.available -%}
+      <div class="card__action">
+        {%- if product.variants.size == 1 -%}
+          <form method="post" action="{{ routes.cart_add_url }}" data-quick-add>
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="1">
+            <button
+              type="submit"
+              class="card-add"
+              aria-label="{{ 'products.product.add_to_cart' | t }} — {{ product.title | escape }}"
+              title="{{ 'products.product.add_to_cart' | t }}"
+            >{% render 'icon', name: 'plus' %}</button>
+          </form>
+        {%- else -%}
+          <button
+            type="button"
+            class="card-add"
+            data-quick-open="{{ product.url }}"
+            aria-label="{{ 'products.product.choose_options' | t }} — {{ product.title | escape }}"
+            title="{{ 'products.product.choose_options' | t }}"
+          >{% render 'icon', name: 'plus' %}</button>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
   </div>
 </article>

@@ -1,0 +1,86 @@
+{%- comment -%}
+  Sélection rapide des variantes, chargée en AJAX depuis une carte produit.
+  Reprend la logique de la fiche produit, en version compacte.
+{%- endcomment -%}
+
+{%- assign current = product.selected_or_first_available_variant -%}
+
+<div class="qadd" data-quick-form data-product-url="{{ product.url }}">
+  <script type="application/json" data-qadd-variants>
+    [
+      {%- for v in product.variants -%}
+        {
+          "id": {{ v.id }},
+          "options": {{ v.options | json }},
+          "price": {{ v.price }},
+          "compare_at_price": {{ v.compare_at_price | default: 0 }},
+          "available": {{ v.available }}
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  </script>
+
+  <div class="qadd__head">
+    <a class="qadd__media surface surface--{{ settings.card_surface | default: 'light' }}" href="{{ product.url }}">
+      {%- if product.featured_media -%}
+        <img
+          src="{{ product.featured_media | image_url: width: 400 }}"
+          alt="{{ product.title | escape }}"
+          width="200" height="200" loading="lazy"
+        >
+      {%- endif -%}
+    </a>
+    <div class="qadd__id">
+      <a href="{{ product.url }}" class="qadd__title">{{ product.title }}</a>
+      <div class="qadd__price" data-qadd-price>
+        {% render 'price', product: product, variant: current %}
+      </div>
+    </div>
+  </div>
+
+  <form method="post" action="{{ routes.cart_add_url }}" data-qadd-form>
+    <input type="hidden" name="id" value="{{ current.id }}" data-qadd-id>
+    <input type="hidden" name="quantity" value="1">
+
+    {%- for option in product.options_with_values -%}
+      <div class="qadd__opt" data-qadd-option="{{ forloop.index0 }}">
+        <div class="variant__head">
+          <span class="variant__name">{{ option.name }}</span>
+          <span class="variant__value" data-qadd-value>{{ option.selected_value }}</span>
+        </div>
+        <div class="variant__opts">
+          {%- for value in option.values -%}
+            {%- assign iid = 'qa-' | append: product.id | append: '-' | append: forloop.parentloop.index0 | append: '-' | append: forloop.index0 -%}
+            <input
+              type="radio"
+              id="{{ iid }}"
+              name="qa-{{ product.id }}-{{ forloop.parentloop.index0 }}"
+              value="{{ value | escape }}"
+              {% if option.selected_value == value %}checked{% endif %}
+            >
+            <label class="variant__opt" for="{{ iid }}">{{ value }}</label>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+
+    <button
+      type="submit"
+      class="btn btn--primary btn--full btn--lg qadd__submit"
+      data-qadd-submit
+      data-label-add="{{ 'products.product.add_to_cart' | t }}"
+      data-label-sold="{{ 'products.product.sold_out' | t }}"
+      {% unless current.available %}aria-disabled="true"{% endunless %}
+    >
+      <span class="btn__label">
+        {%- if current.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}
+      </span>
+    </button>
+  </form>
+
+  <a href="{{ product.url }}" class="link-underline qadd__more">VOIR LA FICHE COMPLÈTE</a>
+</div>
+
+{% schema %}
+{ "name": "Sélection rapide" }
+{% endschema %}

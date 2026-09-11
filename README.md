@@ -123,25 +123,20 @@ Les quatre collections de curation ont été remplies en taguant les produits.
 Seuls des tags ont été ajoutés — aucun prix, SKU, stock ou description touché.
 Pour faire entrer ou sortir une pièce, ajoutez ou retirez le tag sur le produit.
 
-**DUO — 4 vraies paires (8 pièces).** Chaque paire partage une construction
-mais change de proportion et d'emplacement, conformément au concept :
+**DUO est une offre, pas une collection de paires.** Le client achète deux
+bijoux : il en garde un, l'autre part chez la personne de son choix —
+partenaire, ami, famille. Les deux pièces n'ont pas besoin d'être identiques.
 
-| Paire | Pièce A | Pièce B | Ce qu'elles partagent |
-|---|---|---|---|
-| Riviera | Collier 249 € | Bracelet 129 € | moissanite, serti quatre griffes |
-| Atlanta | Chaîne 89 € | Bracelet 69 € | maille cubaine pavée |
-| Croisette | Collier 89 € | Bracelet 79 € | ligne tennis |
-| Karma | Bracelet 99 € | Boucles 109 € | motif trèfle marquise |
+Huit pièces composent la sélection DUO : les deux Riviera, les deux Atlanta,
+les deux Croisette, le Bracelet Karma et les Boucles Karma.
 
-La paire **Karma** illustre le mieux le principe « pas identiques,
-complémentaires » : deux objets très différents, un même motif. C'est elle
-qui est mise en avant sur la page DUO. La paire **Riviera**, la plus forte en
-valeur, est celle de la page d'accueil.
+**LA PROMESSE — 14 pièces**, orientées vers le fait d'offrir un bijou à
+quelqu'un : les trois bagues (Victoria, Antoinette, Nicki), trois colliers
+(Riviera, Croisette, Capri), cinq bracelets (Riviera, Million, Eden,
+Aphrodite, Croisette) et trois paires de boucles (Manhattan, Ange, Karma).
 
-**LA PROMESSE — 8 pièces**, triées du plus fort au plus accessible : les deux
-Riviera, Bracelet Fortune, Boucles et Bracelet Karma, puis les trois bagues
-(Antoinette, Nicki, Victoria). L'anneau porte l'idée d'engagement sans tomber
-dans le registre fiançailles.
+Volontairement exclus : Bracelet Atlanta, Bracelet Karma, Bracelet Nova et
+Chaîne Atlanta, trop statement pour une pièce que l'on offre.
 
 **BEST-SELLERS — 9 pièces** couvrant toutes les catégories et toute la gamme
 de prix (59 € à 249 €). Aucune vente n'ayant encore eu lieu, c'est une
@@ -159,7 +154,19 @@ aucune pièce n'apparaîtra « ÉPUISÉ ».
 
 ---
 
-## 4. Présentation des visuels produit
+## 4. Cartes produit
+
+L'image reste nue : aucun bouton ne la recouvre. Sous la photo, le nom et le
+prix à gauche, un bouton d'ajout compact à droite.
+
+- Produit à variante unique : ajout direct au panier
+- Produit à plusieurs variantes : ouverture d'un panneau de sélection, sans
+  quitter la page ni perdre le fil de navigation
+
+Le panneau est rendu par `sections/quick-add.liquid`, chargé en AJAX, et
+reprend la logique de variantes de la fiche produit en version compacte.
+
+## 5. Présentation des visuels produit
 
 Les bijoux ne sont **jamais recadrés**. Chaque packshot s'inscrit en entier
 dans un cadre carré, avec de l'air autour.
@@ -203,7 +210,7 @@ ou quasi carrées (1312 × 1199, 1230 × 1278) n'ont rien à changer.
 
 ---
 
-## 5. Ce qu'il reste à faire : les visuels de campagne
+## 6. Ce qu'il reste à faire : les visuels de campagne
 
 C'est le seul vrai manque. Les sections suivantes affichent un visuel
 d'attente tant que vous n'avez pas chargé vos images de campagne dans
@@ -220,7 +227,7 @@ Direction artistique : flash photography, chrome, nuit, hôtels, voitures,
 bijoux très visibles. Les voiles sombres sont réglables section par section
 (*Assombrissement haut / bas*) pour que le bijou reste le sujet.
 
-## 6. Performance et mobile
+## 7. Performance et mobile
 
 - Aucune librairie externe, aucun framework. ~25 ko de JS non minifié au total.
 - Images en `srcset` + `sizes`, `loading="lazy"` partout sauf le hero.
@@ -232,7 +239,7 @@ bijoux très visibles. Les voiles sombres sont réglables section par section
 
 ---
 
-## 7. Historique des thèmes
+## 8. Historique des thèmes
 
 | Thème | Rôle | Note |
 |---|---|---|

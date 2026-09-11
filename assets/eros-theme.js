@@ -314,6 +314,132 @@
   });
 
   /* ----------------------------------------------------------
+     SÉLECTION RAPIDE
+     Le bouton d'une carte à plusieurs variantes ouvre un panneau
+     de choix, sans quitter la page.
+     ---------------------------------------------------------- */
+  (function quickAdd() {
+    var drawer = document.getElementById('eros-quick-drawer');
+    if (!drawer) return;
+    var target = drawer.querySelector('[data-quick-target]');
+    var controller;
+
+    function money(cents) { return window.ErosMoney ? window.ErosMoney(cents) : (cents / 100) + ' €'; }
+
+    /* Rejoue la sélection : libellés, disponibilité, prix, variante active. */
+    function sync(root) {
+      var dataEl = root.querySelector('[data-qadd-variants]');
+      if (!dataEl) return;
+      var variants;
+      try { variants = JSON.parse(dataEl.textContent); } catch (e) { return; }
+
+      var groups = $$('[data-qadd-option]', root);
+      var chosen = groups.map(function (g) {
+        var c = g.querySelector('input:checked');
+        return c ? c.value : null;
+      });
+
+      groups.forEach(function (g) {
+        var label = g.querySelector('[data-qadd-value]');
+        var checked = g.querySelector('input:checked');
+        if (label && checked) label.textContent = checked.value;
+
+        var idx = parseInt(g.getAttribute('data-qadd-option'), 10);
+        $$('input', g).forEach(function (input) {
+          var test = chosen.slice();
+          test[idx] = input.value;
+          var match = variants.find(function (v) {
+            return test.every(function (o, i) { return !o || v.options[i] === o; });
+          });
+          var lab = input.nextElementSibling;
+          if (!lab) return;
+          lab.classList.toggle('variant__opt--off', !match || !match.available);
+          input.disabled = !match;
+        });
+      });
+
+      var variant = variants.find(function (v) {
+        return chosen.every(function (o, i) { return !o || v.options[i] === o; });
+      });
+
+      var idInput = root.querySelector('[data-qadd-id]');
+      var priceEl = root.querySelector('[data-qadd-price]');
+      var submit = root.querySelector('[data-qadd-submit]');
+      var label = submit && submit.querySelector('.btn__label');
+
+      if (!variant) {
+        if (submit) submit.setAttribute('aria-disabled', 'true');
+        if (label) label.textContent = 'COMBINAISON INDISPONIBLE';
+        return;
+      }
+      if (idInput) idInput.value = variant.id;
+      if (priceEl) {
+        var html = '<span class="price__amount">' + money(variant.price) + '</span>';
+        if (variant.compare_at_price && variant.compare_at_price > variant.price) {
+          html += '<s class="price__compare">' + money(variant.compare_at_price) + '</s>';
+        }
+        priceEl.innerHTML = '<span class="price">' + html + '</span>';
+      }
+      if (submit && label) {
+        if (variant.available) {
+          submit.removeAttribute('aria-disabled');
+          label.textContent = submit.getAttribute('data-label-add');
+        } else {
+          submit.setAttribute('aria-disabled', 'true');
+          label.textContent = submit.getAttribute('data-label-sold');
+        }
+      }
+    }
+
+    function load(url) {
+      target.innerHTML = '<div class="qadd__loading">…</div>';
+      drawerOpen('eros-quick-drawer');
+      if (controller) controller.abort();
+      controller = new AbortController();
+      var sep = url.indexOf('?') === -1 ? '?' : '&';
+      fetch(url + sep + 'section_id=quick-add', { signal: controller.signal })
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          var fresh = doc.querySelector('[data-quick-form]');
+          if (!fresh) { window.location.href = url; return; }
+          target.innerHTML = '';
+          target.appendChild(fresh);
+          sync(fresh);
+        })
+        .catch(function (e) { if (e.name !== 'AbortError') window.location.href = url; });
+    }
+
+    document.addEventListener('click', function (e) {
+      var opener = e.target.closest('[data-quick-open]');
+      if (!opener) return;
+      e.preventDefault();
+      load(opener.getAttribute('data-quick-open'));
+    });
+
+    /* Changement d'option dans le panneau */
+    drawer.addEventListener('change', function (e) {
+      var root = e.target.closest('[data-quick-form]');
+      if (root && e.target.matches('[data-qadd-option] input')) sync(root);
+    });
+
+    /* Ajout au panier depuis le panneau */
+    drawer.addEventListener('submit', function (e) {
+      var form = e.target.closest('[data-qadd-form]');
+      if (!form) return;
+      e.preventDefault();
+      var submit = form.querySelector('[data-qadd-submit]');
+      if (submit && submit.getAttribute('aria-disabled') === 'true') return;
+      var id = form.querySelector('[data-qadd-id]');
+      if (!id || !id.value) return;
+      if (submit) submit.classList.add('is-loading');
+      addToCart({ items: [{ id: Number(id.value), quantity: 1 }] })
+        .catch(function () {})
+        .then(function () { if (submit) submit.classList.remove('is-loading'); });
+    });
+  })();
+
+  /* ----------------------------------------------------------
      Recherche : suggestions live (predictive search)
      ---------------------------------------------------------- */
   (function predictive() {

@@ -286,7 +286,13 @@
   border-color:rgba(255,255,255,.35);
 }
 .card__link{position:absolute;inset:0;z-index:2;}
-.card__body{padding-top:12px;display:flex;flex-direction:column;gap:5px;}
+/* Nom et prix à gauche, ajout rapide à droite. L'image reste intacte. */
+.card__body{
+  padding-top:12px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+}
+.card__info{min-width:0;flex:1 1 auto;display:flex;flex-direction:column;gap:5px;}
+.card__action{flex:0 0 auto;padding-top:1px;}
 .card__title{
   font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.09em;
   font-weight:700;line-height:1.25;
@@ -297,23 +303,26 @@
   width:11px;height:11px;border-radius:999px;border:1px solid rgba(255,255,255,.35);
   display:inline-block;
 }
-/* Ajout rapide */
-.card__quick{
-  position:absolute;left:8px;right:8px;bottom:8px;z-index:3;
-  opacity:0;transform:translateY(8px);
-  transition:opacity var(--t) var(--ease),transform var(--t) var(--ease-out);
+/* Ajout rapide : discret, compact, hors de l'image */
+.card-add{
+  width:34px;height:34px;flex:0 0 auto;
+  display:grid;place-items:center;
+  border:1px solid var(--eros-line);
+  color:var(--eros-white);background:transparent;
+  transition:background-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease),
+             border-color var(--t-fast) var(--ease),transform var(--t-fast) var(--ease);
 }
-.card:hover .card__quick,.card:focus-within .card__quick{opacity:1;transform:none;}
-.card__quick .btn{
-  min-height:42px;width:100%;font-size:var(--fs-nano);
-  background:var(--surface-ink,#fff);color:var(--surface-bg,#000);border-color:transparent;
-  backdrop-filter:blur(8px);
+.card-add svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6;}
+.card-add:hover{background:var(--eros-white);color:#000;border-color:var(--eros-white);}
+.card-add:active{transform:scale(.94);}
+.card-add[aria-disabled="true"]{opacity:.4;pointer-events:none;}
+.card-add.is-loading{color:transparent;position:relative;}
+.card-add.is-loading::after{
+  content:"";position:absolute;width:13px;height:13px;border-radius:999px;
+  border:1.5px solid rgba(255,255,255,.3);border-top-color:#fff;
+  animation:spin .7s linear infinite;
 }
-.card__quick .btn:hover{opacity:.88;}
-@media (hover:none){
-  .card__quick{opacity:1;transform:none;}
-  .card:hover .card__img{transform:none;}
-}
+@media (hover:none){ .card:hover .card__img{transform:none;} }
 
 /* Grilles produits */
 .product-grid{
@@ -678,3 +687,30 @@
 .password__brand img{
   width:min(78vw,520px);height:auto;margin-inline:auto;
 }
+
+
+/* ------------------------------------------------------------
+   SÉLECTION RAPIDE (panneau)
+   ------------------------------------------------------------ */
+.qadd{padding:20px var(--gutter) 32px;}
+.qadd__loading{padding:60px 0;text-align:center;color:var(--eros-mute);}
+.qadd__head{display:grid;grid-template-columns:82px 1fr;gap:14px;align-items:center;margin-bottom:22px;}
+.qadd__media{aspect-ratio:1/1;overflow:hidden;background:var(--surface-bg,var(--eros-surface));}
+.qadd__media img{width:100%;height:100%;object-fit:contain;padding:var(--media-pad-sm);}
+.qadd__title{
+  font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.09em;
+  font-weight:700;line-height:1.25;display:block;
+}
+.qadd__price{margin-top:6px;font-size:var(--fs-sm);font-weight:600;}
+.qadd__opt+.qadd__opt{margin-top:18px;}
+.qadd__opt{margin-bottom:4px;}
+.qadd__submit{margin-top:24px;}
+.qadd__submit.is-loading{color:transparent;position:relative;}
+.qadd__submit.is-loading::after{
+  content:"";position:absolute;width:16px;height:16px;border-radius:999px;
+  border:1.6px solid rgba(0,0,0,.28);border-top-color:#000;
+  animation:spin .7s linear infinite;
+}
+.qadd__more{display:inline-block;margin-top:18px;color:var(--eros-mute);}
+.qadd__more:hover{color:#fff;}
+@keyframes spin{to{transform:rotate(360deg);}}

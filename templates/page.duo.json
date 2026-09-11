@@ -3,10 +3,10 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "eyebrow": "DEUX PIÈCES, UNE MÊME IDENTITÉ",
-        "title": "DUO",
-        "subtitle": "PENSÉES POUR ÊTRE PORTÉES ENSEMBLE",
-        "cta_label": "DÉCOUVRIR",
+        "eyebrow": "L'OFFRE DUO",
+        "title": "POUR VOUS DEUX",
+        "subtitle": "UN POUR VOUS, UN POUR QUI VOUS VOULEZ",
+        "cta_label": "COMPOSER MON DUO",
         "align": "left",
         "vertical": "flex-end",
         "height_mobile": 74,
@@ -20,22 +20,52 @@
     "concept": {
       "type": "eros-duo",
       "settings": {
-        "eyebrow": "LE PRINCIPE",
-        "title": "PAS IDENTIQUES. COMPLÉMENTAIRES.",
-        "lede": "Une forme, un détail, une pierre, une finition en commun.",
-        "label_a": "LE BRACELET",
-        "label_b": "LES BOUCLES",
+        "eyebrow": "COMMENT ÇA MARCHE",
+        "title": "DEUX BIJOUX, DEUX POIGNETS.",
+        "lede": "Vous en gardez un. L'autre part chez la personne de votre choix.",
+        "label_a": "L'UNE POUR VOUS",
+        "label_b": "L'AUTRE POUR QUI VOUS VOULEZ",
         "show_chip": true,
         "reverse": false,
         "image_overlay": 10,
         "show_collection": true,
-        "collection_title": "LES DUOS",
+        "collection_title": "LA SÉLECTION DUO",
         "collection_count": 8,
         "collection": "duo",
         "cta_url": "shopify://collections/duo",
         "product_a": "marais-bracelet-maillons-trefle-poire",
-        "product_b": "eclat-puces-trefle-marquise-1"
-      }
+        "product_b": "eclat-puces-trefle-marquise-1",
+        "text": "<p>Partenaire, ami, frère, sœur, ou quelqu'un à qui vous n'avez jamais rien offert. Les deux pièces n'ont pas besoin d'être identiques : elles se choisissent ensemble, c'est tout.</p>",
+        "cta_label": "COMPOSER MON DUO"
+      },
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "CHOISISSEZ DEUX PIÈCES",
+            "text": "Dans la sélection ci-dessous. Identiques ou non."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "UNE POUR VOUS",
+            "text": "Celle que vous porterez."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "UNE POUR QUI VOUS VOULEZ",
+            "text": "Vous décidez à qui elle revient."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ]
     },
     "page": {
       "type": "main-page",
@@ -44,7 +74,7 @@
     "campaign": {
       "type": "lifestyle-campaign",
       "settings": {
-        "title": "À DEUX",
+        "title": "PORTÉ À DEUX",
         "chrome_title": true,
         "cta_label": "SHOPPER LA COLLECTION",
         "align": "left",

@@ -72,6 +72,33 @@
   </div>
 </section>
 
+{%- comment -%}
+  Sélection de pièces à offrir. Le concept ne vit que si l'on voit
+  tout de suite quoi choisir pour quelqu'un.
+{%- endcomment -%}
+{%- if s.show_collection and s.collection != blank -%}
+  <section class="section">
+    <div class="page-width">
+      <div class="section-head">
+        <div>
+          {%- if s.collection_eyebrow != blank -%}
+            <p class="t-eyebrow reveal" style="margin-bottom:10px">{{ s.collection_eyebrow }}</p>
+          {%- endif -%}
+          <h3 class="section-title reveal" style="font-size:clamp(20px,4.5vw,38px)">
+            {{ s.collection_title | default: s.collection.title }}
+          </h3>
+        </div>
+        <a href="{{ s.collection.url }}" class="section-head__link reveal">{{ 'collections.general.view_all' | t }}</a>
+      </div>
+      <div class="product-grid" style="--cols-m:2;--cols-d:4">
+        {%- for product in s.collection.products limit: s.collection_count -%}
+          {% render 'product-card', product: product, index: forloop.index0 %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "LA PROMESSE",
@@ -91,7 +118,13 @@
     { "type": "url", "id": "cta_url", "label": "Lien bouton 1" },
     { "type": "text", "id": "cta2_label", "label": "Bouton 2" },
     { "type": "url", "id": "cta2_url", "label": "Lien bouton 2" },
-    { "type": "text", "id": "note", "label": "Mention en bas" }
+    { "type": "text", "id": "note", "label": "Mention en bas" },
+    { "type": "header", "content": "Sélection de pièces" },
+    { "type": "checkbox", "id": "show_collection", "label": "Afficher une sélection sous la section", "default": true },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "collection_eyebrow", "label": "Sur-titre de la sélection", "default": "À OFFRIR" },
+    { "type": "text", "id": "collection_title", "label": "Titre de la sélection", "default": "CHOISIR UNE PIÈCE POUR QUELQU'UN" },
+    { "type": "range", "id": "collection_count", "min": 2, "max": 16, "step": 2, "label": "Nombre de produits", "default": 8 }
   ],
   "blocks": [
     {
