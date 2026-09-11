@@ -37,6 +37,13 @@
   --ls-wider:.28em;
   --ls-tight:-.02em;
 
+  /* --- Surfaces produit (packshots) ---
+     Les bijoux sont affichés entiers : object-fit contain + respiration.
+     Le fond est piloté par une classe .surface--light/soft/dark posée
+     sur chaque conteneur média, pour que badges et boutons s'adaptent. */
+  --media-pad:8%;
+  --media-pad-sm:6%;
+
   /* --- Layout --- */
   --page-max:1680px;
   --gutter:16px;
@@ -205,6 +212,25 @@ table{border-collapse:collapse;width:100%;}
 .media--contain img{object-fit:contain;}
 .media__placeholder{position:absolute;inset:0;width:100%;height:100%;background:var(--eros-surface-2);}
 .media__placeholder svg{width:100%;height:100%;fill:rgba(255,255,255,.08);}
+
+/* ============================================================
+   SURFACES PRODUIT
+   Un packshot ne se recadre jamais : il s'inscrit en entier dans
+   son cadre, avec de l'air autour. Chaque surface définit son fond
+   et son encre, pour que badges et boutons restent lisibles.
+   ============================================================ */
+.surface{ background:var(--surface-bg); }
+.surface--light{ --surface-bg:#FFFFFF; --surface-ink:#000000; --surface-veil:rgba(0,0,0,.55); }
+.surface--soft { --surface-bg:#F2F2F3; --surface-ink:#000000; --surface-veil:rgba(0,0,0,.55); }
+.surface--dark { --surface-bg:#0B0B0C; --surface-ink:#FFFFFF; --surface-veil:rgba(0,0,0,.65); }
+
+/* Le produit occupe la content-box : le padding crée la respiration,
+   object-fit contain garantit qu'aucune extrémité n'est coupée. */
+.fit-contain{
+  object-fit:contain !important;
+  object-position:center;
+  padding:var(--media-pad);
+}
 
 /* Voile glossy + vignette pour les visuels editoriaux */
 .gloss::after{

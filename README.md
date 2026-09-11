@@ -159,7 +159,51 @@ aucune pièce n'apparaîtra « ÉPUISÉ ».
 
 ---
 
-## 4. Ce qu'il reste à faire : les visuels
+## 4. Présentation des visuels produit
+
+Les bijoux ne sont **jamais recadrés**. Chaque packshot s'inscrit en entier
+dans un cadre carré, avec de l'air autour.
+
+| Réglage | Où | Défaut |
+|---|---|---|
+| Format des visuels produit | Réglages → Produits | Carré 1:1 |
+| Fond des visuels produit | Réglages → Produits | Blanc |
+| Air autour du bijou | Réglages → Produits | 8 % |
+
+`object-fit: contain` est appliqué partout où un produit est montré :
+cartes produit, galerie de la fiche produit, paire DUO, panier, pastilles
+de campagne. `cover` reste réservé aux visuels éditoriaux — hero, campagne
+lifestyle, mur social — où le cadrage plein est voulu.
+
+**Le fond doit être accordé à vos photos.** Un packshot sur fond blanc placé
+sur une surface noire produit un carré blanc disgracieux, et inversement.
+Regardez une vignette après publication : si le fond de vos photos se fond
+dans le cadre, le réglage est bon. Sinon, basculez entre Blanc et Noir.
+
+Les tuiles de la section Catégories suivent la même règle. Chaque tuile
+dispose d'une case **Image éditoriale** : décochée pour un packshot affiché
+en entier, cochée pour une photo lifestyle qui remplit le cadre.
+
+### Images sources à recadrer
+
+Le CSS ne peut pas récupérer ce qui manque dans une image. Quatre images du
+catalogue sont en paysage marqué : affichées dans un cadre carré, elles
+laissent des bandes vides en haut et en bas.
+
+| Produit | Source | Vide en carré |
+|---|---|---|
+| Bracelet Milano | 1536 × 1024 | 33 % |
+| Boucles d'oreilles Karma | 1536 × 1024 | 33 % |
+| Boucles d'oreilles Ange | 1404 × 1120 | 20 % |
+| Boucles d'oreilles Manhattan | 1391 × 1131 | 19 % |
+
+Recadrez-les en carré autour du bijou, avec une marge régulière, pour qu'elles
+s'alignent sur les seize autres. Les quinze images déjà carrées (1254 × 1254)
+ou quasi carrées (1312 × 1199, 1230 × 1278) n'ont rien à changer.
+
+---
+
+## 5. Ce qu'il reste à faire : les visuels de campagne
 
 C'est le seul vrai manque. Les sections suivantes affichent un visuel
 d'attente tant que vous n'avez pas chargé vos images de campagne dans
@@ -176,7 +220,7 @@ Direction artistique : flash photography, chrome, nuit, hôtels, voitures,
 bijoux très visibles. Les voiles sombres sont réglables section par section
 (*Assombrissement haut / bas*) pour que le bijou reste le sujet.
 
-## 5. Performance et mobile
+## 6. Performance et mobile
 
 - Aucune librairie externe, aucun framework. ~25 ko de JS non minifié au total.
 - Images en `srcset` + `sizes`, `loading="lazy"` partout sauf le hero.
@@ -188,7 +232,7 @@ bijoux très visibles. Les voiles sombres sont réglables section par section
 
 ---
 
-## 6. Historique des thèmes
+## 7. Historique des thèmes
 
 | Thème | Rôle | Note |
 |---|---|---|

@@ -15,7 +15,7 @@
     <div class="cart-items">
       {%- for item in cart.items -%}
         <div class="cart-line">
-          <a class="cart-line__media" href="{{ item.url }}">
+          <a class="cart-line__media surface surface--{{ settings.card_surface | default: 'light' }}" href="{{ item.url }}">
             {%- if item.image -%}
               <img src="{{ item.image | image_url: width: 220 }}" alt="{{ item.title | escape }}" loading="lazy" width="110" height="147">
             {%- endif -%}

@@ -35,7 +35,10 @@
       {%- assign pa = s.product_a -%}
       {%- assign pb = s.product_b -%}
       {%- if pa != blank or pb != blank -%}
-        <div class="duo-pair duo-link reveal" style="margin-top:30px;--reveal-delay:160ms">
+        <div
+          class="duo-pair duo-link reveal surface surface--{{ settings.card_surface | default: 'light' }}"
+          style="margin-top:30px;--reveal-delay:160ms;--media-pad:{{ settings.card_padding | default: 8 }}%;background:transparent"
+        >
           {%- if s.show_chip -%}<span class="duo-link__chip">+</span>{%- endif -%}
           {%- if pa != blank -%}
             <div class="duo-pair__item">

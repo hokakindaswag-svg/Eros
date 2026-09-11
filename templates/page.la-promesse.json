@@ -71,7 +71,7 @@
         "layout": "grid",
         "cols_mobile": "2",
         "cols_desktop": 4,
-        "ratio": "3/4",
+        "ratio": "1/1",
         "show_view_all": true,
         "show_cta": false,
         "collection": "la-promesse"

@@ -144,11 +144,11 @@
       {
         "type": "select",
         "id": "card_ratio",
-        "label": "Format des images produit",
+        "label": "Format des visuels produit",
         "options": [
           {
             "value": "1/1",
-            "label": "Carré"
+            "label": "Carré (recommandé)"
           },
           {
             "value": "4/5",
@@ -159,11 +159,44 @@
             "label": "Portrait"
           },
           {
-            "value": "2/3",
-            "label": "Portrait haut"
+            "value": "4/3",
+            "label": "Paysage"
           }
         ],
-        "default": "3/4"
+        "default": "1/1",
+        "info": "Le carré convient à la quasi-totalité des packshots. Les bijoux ne sont jamais recadrés : ils s'inscrivent en entier dans le cadre."
+      },
+      {
+        "type": "select",
+        "id": "card_surface",
+        "label": "Fond des visuels produit",
+        "info": "À accorder au fond de vos photos. Packshots sur fond blanc : choisissez Blanc. Bijoux détourés ou photographiés sur fond sombre : choisissez Noir.",
+        "options": [
+          {
+            "value": "light",
+            "label": "Blanc"
+          },
+          {
+            "value": "soft",
+            "label": "Gris très clair"
+          },
+          {
+            "value": "dark",
+            "label": "Noir profond"
+          }
+        ],
+        "default": "light"
+      },
+      {
+        "type": "range",
+        "id": "card_padding",
+        "min": 0,
+        "max": 16,
+        "step": 2,
+        "unit": "%",
+        "label": "Air autour du bijou",
+        "info": "Empêche la pièce de toucher les bords du cadre.",
+        "default": 8
       },
       {
         "type": "checkbox",

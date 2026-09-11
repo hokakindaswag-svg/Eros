@@ -9,7 +9,9 @@
 {%- endcomment -%}
 
 {%- liquid
-  assign card_ratio = ratio | default: settings.card_ratio | default: '3/4'
+  assign card_ratio = ratio | default: settings.card_ratio | default: '1/1'
+  assign surface = settings.card_surface | default: 'light'
+  assign pad = settings.card_padding | default: 8
   assign quick = show_quick_add
   if quick == nil
     assign quick = settings.card_quick_add
@@ -40,9 +42,9 @@
 
 <article
   class="card{% if alt_image == null %} card--no-alt{% endif %}{% if reveal != false %} reveal{% endif %}"
-  style="--card-ratio:{{ card_ratio }};--reveal-delay:{{ delay }}ms"
+  style="--card-ratio:{{ card_ratio }};--media-pad:{{ pad }}%;--reveal-delay:{{ delay }}ms"
 >
-  <div class="card__media flash">
+  <div class="card__media flash surface surface--{{ surface }}">
     {%- if product.featured_media -%}
       <img
         src="{{ product.featured_media | image_url: width: 800 }}"
@@ -70,7 +72,7 @@
         >
       {%- endif -%}
     {%- else -%}
-      <div class="media__placeholder">{{ 'product-1' | placeholder_svg_tag }}</div>
+      <div class="media__placeholder" style="background:var(--surface-bg)">{{ 'product-1' | placeholder_svg_tag }}</div>
     {%- endif -%}
 
     <div class="card__badges">

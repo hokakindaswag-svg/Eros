@@ -20,11 +20,11 @@
         -%}
         <a
           href="{{ url | default: routes.all_products_collection_url }}"
-          class="cat reveal"
+          class="cat reveal{% if b.editorial %} cat--editorial{% endif %}"
           style="--reveal-delay:{{ forloop.index0 | times: 50 }}ms;--cat-ratio:{{ section.settings.ratio }}"
           {{ block.shopify_attributes }}
         >
-          <div class="cat__media flash">
+          <div class="cat__media flash surface surface--{{ section.settings.surface }}">
             {%- if img != blank -%}
               <img
                 src="{{ img | image_url: width: 900 }}"
@@ -66,7 +66,17 @@
         { "value": "3/4", "label": "Portrait" },
         { "value": "2/3", "label": "Portrait haut" }
       ],
-      "default": "4/5"
+      "default": "1/1"
+    },
+    {
+      "type": "select", "id": "surface", "label": "Fond des tuiles",
+      "info": "À accorder au fond de vos images.",
+      "options": [
+        { "value": "light", "label": "Blanc" },
+        { "value": "soft", "label": "Gris très clair" },
+        { "value": "dark", "label": "Noir profond" }
+      ],
+      "default": "light"
     }
   ],
   "blocks": [
@@ -77,7 +87,8 @@
         { "type": "collection", "id": "collection", "label": "Collection" },
         { "type": "image_picker", "id": "image", "label": "Image (remplace celle de la collection)" },
         { "type": "text", "id": "title", "label": "Titre affiché" },
-        { "type": "url", "id": "url", "label": "Lien personnalisé", "info": "Utile pour cibler une recherche par tag si la collection n'existe pas encore." }
+        { "type": "url", "id": "url", "label": "Lien personnalisé", "info": "Utile pour cibler une recherche par tag si la collection n'existe pas encore." },
+        { "type": "checkbox", "id": "editorial", "label": "Image éditoriale (remplit le cadre)", "default": false, "info": "À cocher pour une photo lifestyle. Laissez décoché pour un packshot, qui sera alors affiché en entier." }
       ]
     }
   ],

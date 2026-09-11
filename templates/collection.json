@@ -10,9 +10,11 @@
         "per_page": 24,
         "cols_mobile": "2",
         "cols_desktop": 4,
-        "ratio": "3/4"
+        "ratio": "1/1"
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

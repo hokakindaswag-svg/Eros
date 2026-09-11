@@ -8,7 +8,7 @@
     "heading_letter_spacing": -2,
     "page_width": 1680,
     "animations_enabled": true,
-    "card_ratio": "3/4",
+    "card_ratio": "1/1",
     "card_hover_image": true,
     "card_quick_add": true,
     "show_vendor": false,
@@ -22,6 +22,8 @@
     "social_handle": "@erosparis",
     "logo_source": "theme",
     "logo": "shopify://shop_images/eros-paris-logo.png",
-    "promise_link": "shopify://pages/la-promesse"
+    "promise_link": "shopify://pages/la-promesse",
+    "card_surface": "light",
+    "card_padding": 8
   }
 }

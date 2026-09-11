@@ -27,7 +27,11 @@
   <div class="pdp__grid">
 
     {%- comment -%} ---------- GALERIE ---------- {%- endcomment -%}
-    <div class="gallery{% if media_count < 2 %} gallery--single{% endif %}" data-gallery>
+    <div
+      class="gallery surface surface--{{ settings.card_surface | default: 'light' }}{% if media_count < 2 %} gallery--single{% endif %}"
+      style="--media-pad:{{ settings.card_padding | default: 8 }}%"
+      data-gallery
+    >
       <div class="gallery__scroller" style="--gal-cols:{{ s.gallery_columns }}">
         {%- if media_count > 0 -%}
           {%- for media in product.media -%}
