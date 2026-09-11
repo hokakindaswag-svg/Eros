@@ -13,7 +13,8 @@
         "height_desktop": 78,
         "overlay_top": 40,
         "overlay_bottom": 62,
-        "show_scroll": false
+        "show_scroll": false,
+        "cta_url": "shopify://collections/pour-soi"
       }
     },
     "products": {
@@ -27,7 +28,8 @@
         "ratio": "3/4",
         "show_view_all": true,
         "show_cta": true,
-        "cta_label": "TOUT VOIR"
+        "cta_label": "TOUT VOIR",
+        "collection": "pour-soi"
       }
     },
     "campaign": {
@@ -41,7 +43,8 @@
         "height_mobile": 68,
         "height_desktop": 80,
         "overlay_top": 25,
-        "overlay_bottom": 60
+        "overlay_bottom": 60,
+        "cta_url": "shopify://collections/pour-soi"
       }
     },
     "statement": {
@@ -53,9 +56,15 @@
         "layout": "rail",
         "ratio": "3/4",
         "show_view_all": true,
-        "show_cta": false
+        "show_cta": false,
+        "collection": "pour-soi"
       }
     }
   },
-  "order": ["hero", "products", "campaign", "statement"]
+  "order": [
+    "hero",
+    "products",
+    "campaign",
+    "statement"
+  ]
 }

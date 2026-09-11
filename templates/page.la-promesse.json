@@ -14,27 +14,54 @@
         "height_desktop": 86,
         "overlay_top": 45,
         "overlay_bottom": 65,
-        "show_scroll": false
+        "show_scroll": false,
+        "cta_url": "shopify://collections/la-promesse"
       }
     },
     "concept": {
       "type": "eros-promise",
       "blocks": {
-        "p1": { "type": "point", "settings": { "title": "UNE INTENTION", "text": "Vous choisissez la pièce en pensant à une personne précise." } },
-        "p2": { "type": "point", "settings": { "title": "UN DESTINATAIRE", "text": "Le bijou est offert à cette personne, et à personne d'autre." } },
-        "p3": { "type": "point", "settings": { "title": "UNE VALEUR", "text": "Ce qui est porté vaut plus que ce qui est acheté." } }
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "UNE INTENTION",
+            "text": "Vous choisissez la pièce en pensant à une personne précise."
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "UN DESTINATAIRE",
+            "text": "Le bijou est offert à cette personne, et à personne d'autre."
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "UNE VALEUR",
+            "text": "Ce qui est porté vaut plus que ce qui est acheté."
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
       "settings": {
         "eyebrow": "LE PRINCIPE",
         "title": "CE QUE C'EST",
         "lede": "Pas un cadeau. Une intention qui prend une forme.",
         "reverse": false,
         "image_overlay": 20,
-        "cta_label": "CHOISIR UNE PIÈCE"
+        "cta_label": "CHOISIR UNE PIÈCE",
+        "cta_url": "shopify://collections/la-promesse"
       }
     },
-    "page": { "type": "main-page", "settings": {} },
+    "page": {
+      "type": "main-page",
+      "settings": {}
+    },
     "selection": {
       "type": "featured-collection",
       "settings": {
@@ -46,19 +73,47 @@
         "cols_desktop": 4,
         "ratio": "3/4",
         "show_view_all": true,
-        "show_cta": false
+        "show_cta": false,
+        "collection": "la-promesse"
       }
     },
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "qa", "settings": { "question": "COMMENT FAIRE UNE PROMESSE ?" } },
-        "q2": { "type": "qa", "settings": { "question": "QUELLES PIÈCES SONT CONCERNÉES ?" } },
-        "q3": { "type": "qa", "settings": { "question": "PEUT-ON L'OFFRIR À N'IMPORTE QUI ?" } }
+        "q1": {
+          "type": "qa",
+          "settings": {
+            "question": "COMMENT FAIRE UNE PROMESSE ?"
+          }
+        },
+        "q2": {
+          "type": "qa",
+          "settings": {
+            "question": "QUELLES PIÈCES SONT CONCERNÉES ?"
+          }
+        },
+        "q3": {
+          "type": "qa",
+          "settings": {
+            "question": "PEUT-ON L'OFFRIR À N'IMPORTE QUI ?"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3"],
-      "settings": { "title": "QUESTIONS" }
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
+      "settings": {
+        "title": "QUESTIONS"
+      }
     }
   },
-  "order": ["hero", "concept", "page", "selection", "faq"]
+  "order": [
+    "hero",
+    "concept",
+    "page",
+    "selection",
+    "faq"
+  ]
 }

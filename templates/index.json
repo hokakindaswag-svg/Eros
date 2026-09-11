@@ -13,7 +13,8 @@
         "height_desktop": 94,
         "overlay_top": 45,
         "overlay_bottom": 60,
-        "show_scroll": true
+        "show_scroll": true,
+        "cta_url": "shopify://collections/nouveautes"
       }
     },
     "bestsellers": {
@@ -27,7 +28,8 @@
         "ratio": "3/4",
         "show_view_all": true,
         "view_all_label": "TOUT VOIR",
-        "show_cta": false
+        "show_cta": false,
+        "collection": "best-sellers"
       }
     },
     "doors": {
@@ -38,7 +40,8 @@
           "settings": {
             "title": "POUR SOI",
             "text": "Je l'ai vu. Je l'aime. Je le veux.",
-            "cta": "DÉCOUVRIR"
+            "cta": "DÉCOUVRIR",
+            "url": "shopify://collections/pour-soi"
           }
         },
         "d2": {
@@ -46,7 +49,8 @@
           "settings": {
             "title": "LA PROMESSE",
             "text": "Un bijou acheté pour une personne précise.",
-            "cta": "DÉCOUVRIR"
+            "cta": "DÉCOUVRIR",
+            "url": "shopify://pages/la-promesse"
           }
         },
         "d3": {
@@ -54,11 +58,16 @@
           "settings": {
             "title": "DUO",
             "text": "Deux pièces pensées pour aller ensemble.",
-            "cta": "DÉCOUVRIR"
+            "cta": "DÉCOUVRIR",
+            "url": "shopify://pages/duo"
           }
         }
       },
-      "block_order": ["d1", "d2", "d3"],
+      "block_order": [
+        "d1",
+        "d2",
+        "d3"
+      ],
       "settings": {
         "title": "TROIS FAÇONS DE PORTER EROS",
         "height_mobile": 58,
@@ -68,14 +77,55 @@
     "categories": {
       "type": "category-grid",
       "blocks": {
-        "c1": { "type": "category", "settings": { "title": "BRACELETS" } },
-        "c2": { "type": "category", "settings": { "title": "CHAÎNES" } },
-        "c3": { "type": "category", "settings": { "title": "COLLIERS" } },
-        "c4": { "type": "category", "settings": { "title": "BAGUES" } },
-        "c5": { "type": "category", "settings": { "title": "BOUCLES D’OREILLES" } }
+        "c1": {
+          "type": "category",
+          "settings": {
+            "title": "BRACELETS",
+            "collection": "bracelets"
+          }
+        },
+        "c2": {
+          "type": "category",
+          "settings": {
+            "title": "CHAÎNES",
+            "collection": "chaines"
+          }
+        },
+        "c3": {
+          "type": "category",
+          "settings": {
+            "title": "COLLIERS",
+            "collection": "colliers"
+          }
+        },
+        "c4": {
+          "type": "category",
+          "settings": {
+            "title": "BAGUES",
+            "collection": "bagues"
+          }
+        },
+        "c5": {
+          "type": "category",
+          "settings": {
+            "title": "BOUCLES D’OREILLES",
+            "collection": "boucles-d-oreilles"
+          }
+        }
       },
-      "block_order": ["c1", "c2", "c3", "c4", "c5"],
-      "settings": { "title": "CATÉGORIES", "link_label": "TOUT VOIR", "ratio": "4/5" }
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
+      ],
+      "settings": {
+        "title": "CATÉGORIES",
+        "link_label": "TOUT VOIR",
+        "ratio": "4/5",
+        "link_url": "shopify://collections"
+      }
     },
     "campaign": {
       "type": "lifestyle-campaign",
@@ -88,17 +138,40 @@
         "height_mobile": 74,
         "height_desktop": 88,
         "overlay_top": 30,
-        "overlay_bottom": 65
+        "overlay_bottom": 65,
+        "cta_url": "shopify://collections/pour-soi"
       }
     },
     "promise": {
       "type": "eros-promise",
       "blocks": {
-        "p1": { "type": "point", "settings": { "title": "UNE INTENTION", "text": "Vous choisissez la pièce en pensant à une personne précise." } },
-        "p2": { "type": "point", "settings": { "title": "UN DESTINATAIRE", "text": "Le bijou est offert à cette personne, et à personne d'autre." } },
-        "p3": { "type": "point", "settings": { "title": "UNE VALEUR", "text": "Ce qui est porté vaut plus que ce qui est acheté." } }
+        "p1": {
+          "type": "point",
+          "settings": {
+            "title": "UNE INTENTION",
+            "text": "Vous choisissez la pièce en pensant à une personne précise."
+          }
+        },
+        "p2": {
+          "type": "point",
+          "settings": {
+            "title": "UN DESTINATAIRE",
+            "text": "Le bijou est offert à cette personne, et à personne d'autre."
+          }
+        },
+        "p3": {
+          "type": "point",
+          "settings": {
+            "title": "UNE VALEUR",
+            "text": "Ce qui est porté vaut plus que ce qui est acheté."
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
       "settings": {
         "eyebrow": "SIGNATURE EROS PARIS",
         "title": "LA PROMESSE",
@@ -106,7 +179,8 @@
         "lede": "Un bijou acheté pour une personne précise.",
         "cta_label": "DÉCOUVRIR",
         "reverse": false,
-        "image_overlay": 15
+        "image_overlay": 15,
+        "cta_url": "shopify://pages/la-promesse"
       }
     },
     "duo": {
@@ -122,7 +196,9 @@
         "reverse": true,
         "image_overlay": 10,
         "show_collection": false,
-        "collection_count": 4
+        "collection_count": 4,
+        "collection": "duo",
+        "cta_url": "shopify://pages/duo"
       }
     },
     "collection-focus": {
@@ -137,29 +213,79 @@
         "ratio": "3/4",
         "show_view_all": true,
         "show_cta": true,
-        "cta_label": "SHOPPER LA COLLECTION"
+        "cta_label": "SHOPPER LA COLLECTION",
+        "collection": "nouveautes"
       }
     },
     "ticker": {
       "type": "ticker",
-      "settings": { "text": "EROS PARIS, POUR SOI, LA PROMESSE, DUO", "chrome": true, "speed": 26 }
+      "settings": {
+        "text": "EROS PARIS, POUR SOI, LA PROMESSE, DUO",
+        "chrome": true,
+        "speed": 26
+      }
     },
     "social": {
       "type": "social-editorial",
       "blocks": {
-        "s1": { "type": "post", "settings": { "size": "tall" } },
-        "s2": { "type": "post", "settings": { "size": "b" } },
-        "s3": { "type": "post", "settings": { "size": "b" } },
-        "s4": { "type": "post", "settings": { "size": "a" } },
-        "s5": { "type": "post", "settings": { "size": "wide" } },
-        "s6": { "type": "post", "settings": { "size": "a" } }
+        "s1": {
+          "type": "post",
+          "settings": {
+            "size": "tall"
+          }
+        },
+        "s2": {
+          "type": "post",
+          "settings": {
+            "size": "b"
+          }
+        },
+        "s3": {
+          "type": "post",
+          "settings": {
+            "size": "b"
+          }
+        },
+        "s4": {
+          "type": "post",
+          "settings": {
+            "size": "a"
+          }
+        },
+        "s5": {
+          "type": "post",
+          "settings": {
+            "size": "wide"
+          }
+        },
+        "s6": {
+          "type": "post",
+          "settings": {
+            "size": "a"
+          }
+        }
       },
-      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"],
-      "settings": { "eyebrow": "COMMUNAUTÉ", "title": "PORTÉ PAR VOUS", "link_label": "@EROSPARIS", "full_width": true }
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4",
+        "s5",
+        "s6"
+      ],
+      "settings": {
+        "eyebrow": "COMMUNAUTÉ",
+        "title": "PORTÉ PAR VOUS",
+        "link_label": "@EROSPARIS",
+        "full_width": true
+      }
     },
     "newsletter": {
       "type": "newsletter",
-      "settings": { "title": "RESTEZ DANS LA BOUCLE", "background": "#060606" }
+      "settings": {
+        "title": "RESTEZ DANS LA BOUCLE",
+        "background": "#060606"
+      }
     }
   },
   "order": [

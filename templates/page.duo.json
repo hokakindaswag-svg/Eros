@@ -13,7 +13,8 @@
         "height_desktop": 84,
         "overlay_top": 40,
         "overlay_bottom": 62,
-        "show_scroll": false
+        "show_scroll": false,
+        "cta_url": "shopify://collections/duo"
       }
     },
     "concept": {
@@ -29,10 +30,15 @@
         "image_overlay": 12,
         "show_collection": true,
         "collection_title": "LES DUOS",
-        "collection_count": 8
+        "collection_count": 8,
+        "collection": "duo",
+        "cta_url": "shopify://collections/duo"
       }
     },
-    "page": { "type": "main-page", "settings": {} },
+    "page": {
+      "type": "main-page",
+      "settings": {}
+    },
     "campaign": {
       "type": "lifestyle-campaign",
       "settings": {
@@ -44,9 +50,15 @@
         "height_mobile": 70,
         "height_desktop": 84,
         "overlay_top": 25,
-        "overlay_bottom": 62
+        "overlay_bottom": 62,
+        "cta_url": "shopify://collections/duo"
       }
     }
   },
-  "order": ["hero", "concept", "page", "campaign"]
+  "order": [
+    "hero",
+    "concept",
+    "page",
+    "campaign"
+  ]
 }

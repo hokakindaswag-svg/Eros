@@ -89,16 +89,31 @@ Les pages LIVRAISON, RETOURS et ENTRETIEN peuvent être réutilisées telles que
 les accordéons de la fiche produit (bloc Informations → *Ou page Shopify*).
 
 ### c) Collections
-Le catalogue actuel est organisé par **tags** (`bracelet`, `collier`, `bague`,
-`boucles-oreilles`, `cuban`, `tennis`, `chaine-de-main`). Deux options :
+Créées automatiquement sur la boutique (collections **automatiques par tag**, additives :
+aucun produit, prix, SKU ni stock n'a été modifié).
 
-1. Créer des collections automatiques par tag (recommandé) et les sélectionner dans
-   la section **Catégories**.
-2. En attendant, chaque bloc Catégorie accepte un **lien personnalisé** :
-   `/search?q=bracelet` par exemple.
+| Collection | Handle | Règle | Produits |
+|---|---|---|---|
+| BRACELETS | `bracelets` | tag `bracelet` ou `chaine-de-main` | 10 |
+| CHAÎNES | `chaines` | titre contient « Chaîne » | 1 |
+| COLLIERS | `colliers` | tag `collier` | 3 |
+| BAGUES | `bagues` | tag `bague` | 3 |
+| BOUCLES D'OREILLES | `boucles-d-oreilles` | tag `boucles-oreilles` | 3 |
+| POUR SOI | `pour-soi` | tout le catalogue | 20 |
+| NOUVEAUTÉS | `nouveautes` | tag `nouveaute` | 0 |
+| BEST-SELLERS | `best-sellers` | tag `best-seller` | 0 |
+| DUO | `duo` | tag `duo` | 0 |
+| LA PROMESSE | `la-promesse` | tag `promesse` | 0 |
 
-Collections utiles : NOUVEAUTÉS, BEST-SELLERS, BRACELETS, CHAÎNES, COLLIERS, BAGUES,
-BOUCLES D'OREILLES, DUO, POUR SOI.
+Les quatre dernières sont des **bacs de curation** : elles se remplissent dès que vous
+taguez les produits concernés (`nouveaute`, `best-seller`, `duo`, `promesse`).
+Le tag `nouveaute` déclenche aussi le badge NOUVEAUTÉ sur les cartes produit.
+
+CHAÎNES se base sur le titre, car le tag `cuban` est partagé avec les bracelets.
+Pour élargir la collection, taguez les chaînes `chaine` et ajoutez la règle correspondante.
+
+Ensuite, dans l'éditeur de thème : sélectionnez ces collections dans les sections
+**Catégories**, **Produits en avant** et **DUO**, et ajoutez-leur une image forte.
 
 ### d) Visuels
 Chargez les images dans Contenu → Fichiers, puis sélectionnez-les dans l'éditeur.
