@@ -189,8 +189,8 @@
         "eyebrow": "DEUX PIÈCES, UNE MÊME IDENTITÉ",
         "title": "DUO",
         "lede": "Deux bijoux pensés pour être portés ensemble.",
-        "label_a": "PIÈCE A",
-        "label_b": "PIÈCE B",
+        "label_a": "LE COLLIER",
+        "label_b": "LE BRACELET",
         "show_chip": true,
         "cta_label": "DÉCOUVRIR LES DUOS",
         "reverse": true,
@@ -198,7 +198,9 @@
         "show_collection": false,
         "collection_count": 4,
         "collection": "duo",
-        "cta_url": "shopify://pages/duo"
+        "cta_url": "shopify://pages/duo",
+        "product_a": "collier-riviera",
+        "product_b": "bracelet-riviera"
       }
     },
     "collection-focus": {

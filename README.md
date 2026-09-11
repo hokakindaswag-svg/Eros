@@ -109,17 +109,48 @@ n'a été modifié).
 | BAGUES | `bagues` | tag `bague` | 3 | ✓ |
 | BOUCLES D'OREILLES | `boucles-d-oreilles` | tag `boucles-oreilles` | 3 | ✓ |
 | POUR SOI | `pour-soi` | tout le catalogue | 20 | — |
-| NOUVEAUTÉS | `nouveautes` | tag `nouveaute` | 0 | — |
-| BEST-SELLERS | `best-sellers` | tag `best-seller` | 0 | — |
-| DUO | `duo` | tag `duo` | 0 | — |
-| LA PROMESSE | `la-promesse` | tag `promesse` | 0 | — |
-
-Les quatre dernières sont des **bacs de curation** : taguez vos produits
-`nouveaute`, `best-seller`, `duo` ou `promesse` et elles se remplissent seules.
-Le tag `nouveaute` allume aussi le badge NOUVEAUTÉ sur les cartes produit.
+| NOUVEAUTÉS | `nouveautes` | tag `nouveaute` | 8 | ✓ |
+| BEST-SELLERS | `best-sellers` | tag `best-seller` | 9 | ✓ |
+| DUO | `duo` | tag `duo` | 8 | ✓ |
+| LA PROMESSE | `la-promesse` | tag `promesse` | 8 | ✓ |
 
 CHAÎNES se base sur le titre car le tag `cuban` est partagé avec les bracelets.
 Pour élargir, taguez vos chaînes `chaine` et ajoutez la règle correspondante.
+
+### Curation : quelles pièces dans quelle collection
+
+Les quatre collections de curation ont été remplies en taguant les produits.
+Seuls des tags ont été ajoutés — aucun prix, SKU, stock ou description touché.
+Pour faire entrer ou sortir une pièce, ajoutez ou retirez le tag sur le produit.
+
+**DUO — 4 vraies paires (8 pièces).** Chaque paire partage une construction
+mais change de proportion et d'emplacement, conformément au concept :
+
+| Paire | Pièce A | Pièce B | Ce qu'elles partagent |
+|---|---|---|---|
+| Riviera | Collier 249 € | Bracelet 129 € | moissanite, serti quatre griffes |
+| Atlanta | Chaîne 89 € | Bracelet 69 € | maille cubaine pavée |
+| Croisette | Collier 89 € | Bracelet 79 € | ligne tennis |
+| Karma | Bracelet 99 € | Boucles 109 € | motif trèfle marquise |
+
+La paire **Karma** illustre le mieux le principe « pas identiques,
+complémentaires » : deux objets très différents, un même motif. C'est elle
+qui est mise en avant sur la page DUO. La paire **Riviera**, la plus forte en
+valeur, est celle de la page d'accueil.
+
+**LA PROMESSE — 8 pièces**, triées du plus fort au plus accessible : les deux
+Riviera, Bracelet Fortune, Boucles et Bracelet Karma, puis les trois bagues
+(Antoinette, Nicki, Victoria). L'anneau porte l'idée d'engagement sans tomber
+dans le registre fiançailles.
+
+**BEST-SELLERS — 9 pièces** couvrant toutes les catégories et toute la gamme
+de prix (59 € à 249 €). Aucune vente n'ayant encore eu lieu, c'est une
+sélection éditoriale : remplacez-la par vos vrais best-sellers dès que vous
+aurez des données.
+
+**NOUVEAUTÉS — 8 pièces**, les plus récemment ajoutées, triées par date de
+création décroissante. Le tag `nouveaute` allume aussi le badge NOUVEAUTÉ sur
+les cartes produit.
 
 ### Produits
 Les 20 produits sont **actifs**. Le suivi d'inventaire est désactivé
@@ -161,8 +192,9 @@ bijoux très visibles. Les voiles sombres sont réglables section par section
 
 | Thème | Rôle | Note |
 |---|---|---|
-| EROS PARIS (réparé) | **en ligne** | version publiée |
-| EROS PARIS v2 — menus & pages | non publié | menus, pages et réglages reliés — à prévisualiser puis publier |
+| EROS PARIS v2 — menus & pages | **en ligne** | version publiée |
+| EROS PARIS v3 — paires DUO | non publié | paires DUO reliées — à prévisualiser puis publier |
+| EROS PARIS (réparé) | non publié | version précédente |
 | eros-paris-theme | non publié | import initial incomplet, conservé par sécurité |
 | Horizon | non publié | thème Shopify par défaut |
 

@@ -23,8 +23,8 @@
         "eyebrow": "LE PRINCIPE",
         "title": "PAS IDENTIQUES. COMPLÉMENTAIRES.",
         "lede": "Une forme, un détail, une pierre, une finition en commun.",
-        "label_a": "PIÈCE A",
-        "label_b": "PIÈCE B",
+        "label_a": "LE BRACELET",
+        "label_b": "LES BOUCLES",
         "show_chip": true,
         "reverse": false,
         "image_overlay": 10,
@@ -32,7 +32,9 @@
         "collection_title": "LES DUOS",
         "collection_count": 8,
         "collection": "duo",
-        "cta_url": "shopify://collections/duo"
+        "cta_url": "shopify://collections/duo",
+        "product_a": "marais-bracelet-maillons-trefle-poire",
+        "product_b": "eclat-puces-trefle-marquise-1"
       }
     },
     "page": {
