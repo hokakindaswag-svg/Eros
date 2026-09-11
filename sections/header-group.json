@@ -39,7 +39,7 @@
         "menu": "main-menu",
         "transparent_on_home": true,
         "transparent_on_collection": false,
-        "show_doors_in_menu": true,
+        "show_doors_in_menu": false,
         "door_self_label": "POUR SOI",
         "door_promise_label": "LA PROMESSE",
         "door_duo_label": "DUO"
