@@ -53,16 +53,7 @@
         <div class="header__logo">
       {%- endif -%}
         <a href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
-          {%- if settings.logo -%}
-            <img
-              src="{{ settings.logo | image_url: width: 600 }}"
-              alt="{{ shop.name | escape }}"
-              style="--logo-h:{{ settings.logo_height }}px"
-              width="{{ settings.logo.width }}" height="{{ settings.logo.height }}"
-            >
-          {%- else -%}
-            {{ settings.brand_name | default: shop.name }}
-          {%- endif -%}
+          {% render 'brand-logo' %}
         </a>
       {%- if request.page_type == 'index' -%}</h1>{%- else -%}</div>{%- endif -%}
 
@@ -115,7 +106,7 @@
   <div class="drawer__overlay" data-drawer-close></div>
   <div class="drawer__panel">
     <div class="drawer__head">
-      <span class="drawer__title">{{ settings.brand_name | default: shop.name }}</span>
+      <span class="drawer__title">{% render 'brand-logo', height: 20 %}</span>
       <button type="button" class="drawer__close" data-drawer-close aria-label="{{ 'accessibility.close' | t }}" data-drawer-focus>
         {% render 'icon', name: 'close' %}
       </button>

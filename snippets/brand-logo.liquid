@@ -1,0 +1,33 @@
+{%- comment -%}
+  Logo EROS PARIS.
+  Params : height (px, optionnel), class (optionnel)
+  Source pilotée par Réglages > Identité > Affichage du logo.
+{%- endcomment -%}
+{%- liquid
+  assign h = height | default: settings.logo_height | default: 40
+  assign source = settings.logo_source | default: 'theme'
+  if source == 'custom' and settings.logo == blank
+    assign source = 'theme'
+  endif
+-%}
+{%- case source -%}
+  {%- when 'custom' -%}
+    <img
+      src="{{ settings.logo | image_url: width: 800 }}"
+      srcset="{{ settings.logo | image_url: width: 400 }} 400w, {{ settings.logo | image_url: width: 800 }} 800w"
+      alt="{{ settings.brand_name | default: shop.name | escape }}"
+      width="{{ settings.logo.width }}" height="{{ settings.logo.height }}"
+      style="--logo-h:{{ h }}px"
+      class="{{ class }}"
+    >
+  {%- when 'text' -%}
+    {{ settings.brand_name | default: shop.name }}
+  {%- else -%}
+    <img
+      src="{{ 'eros-logo.png' | asset_url }}"
+      alt="{{ settings.brand_name | default: shop.name | escape }}"
+      width="985" height="295"
+      style="--logo-h:{{ h }}px"
+      class="{{ class }}"
+    >
+{%- endcase -%}

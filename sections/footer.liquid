@@ -3,7 +3,7 @@
     <div class="footer__top">
 
       <div>
-        <p class="footer__brand">{{ settings.brand_name | default: shop.name }}</p>
+        <p class="footer__brand">{% render 'brand-logo', height: 40 %}</p>
         {%- if section.settings.tagline != blank -%}
           <p class="footer__tag">{{ section.settings.tagline }}</p>
         {%- endif -%}
@@ -104,7 +104,13 @@
     </div>
 
     {%- if section.settings.show_wordmark -%}
-      <div class="footer__wordmark" aria-hidden="true">{{ settings.brand_name | default: shop.name }}</div>
+      <div class="footer__wordmark" aria-hidden="true">
+        {%- if settings.logo_source == 'text' -%}
+          {{ settings.brand_name | default: shop.name }}
+        {%- else -%}
+          {% render 'brand-logo', height: 200, class: 'footer__wordmark-img' %}
+        {%- endif -%}
+      </div>
     {%- endif -%}
   </div>
 </footer>

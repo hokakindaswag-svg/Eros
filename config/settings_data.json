@@ -1,7 +1,7 @@
 {
   "current": {
     "brand_name": "EROS PARIS",
-    "logo_height": 28,
+    "logo_height": 40,
     "type_body_font": "assistant_n4",
     "type_heading_font": "archivo_n7",
     "heading_weight": "800",
@@ -19,6 +19,8 @@
     "promise_title": "LA PROMESSE",
     "promise_text": "<p>Ce bijou peut être acheté comme une promesse faite à une personne précise.</p>",
     "promise_link_label": "EN SAVOIR PLUS",
-    "social_handle": "@erosparis"
+    "social_handle": "@erosparis",
+    "logo_source": "theme",
+    "logo": "shopify://shop_images/eros-paris-logo.png"
   }
 }

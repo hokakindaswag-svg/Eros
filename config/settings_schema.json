@@ -17,19 +17,40 @@
         "default": "EROS PARIS"
       },
       {
+        "type": "select",
+        "id": "logo_source",
+        "label": "Affichage du logo",
+        "options": [
+          {
+            "value": "theme",
+            "label": "Logo EROS fourni avec le thème"
+          },
+          {
+            "value": "custom",
+            "label": "Image téléversée (réglage ci-dessous)"
+          },
+          {
+            "value": "text",
+            "label": "Texte (wordmark)"
+          }
+        ],
+        "default": "theme"
+      },
+      {
         "type": "image_picker",
         "id": "logo",
-        "label": "Logo (optionnel — remplace le wordmark)"
+        "label": "Logo personnalisé",
+        "info": "Utilisé si « Image téléversée » est sélectionné."
       },
       {
         "type": "range",
         "id": "logo_height",
         "min": 14,
-        "max": 60,
+        "max": 70,
         "step": 2,
         "unit": "px",
         "label": "Hauteur du logo",
-        "default": 28
+        "default": 40
       },
       {
         "type": "image_picker",
