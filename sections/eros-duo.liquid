@@ -49,57 +49,51 @@
         </div>
       {%- endif -%}
 
-      {%- comment -%} Les deux pièces de l'offre, illustrées {%- endcomment -%}
+      {%- comment -%}
+        Composition éditoriale : les bijoux sur une rangée, leurs légendes
+        sur la suivante. Le signe se centre ainsi exactement sur les pièces.
+      {%- endcomment -%}
       {%- assign pa = s.product_a -%}
       {%- assign pb = s.product_b -%}
-      {%- if pa != blank or pb != blank -%}
-        <div
-          class="duo-pair duo-link reveal surface surface--{{ settings.card_surface | default: 'light' }}"
-          style="margin-top:30px;--reveal-delay:160ms;--media-pad:{{ settings.card_padding | default: 8 }}%;background:transparent"
-        >
-          {%- if s.show_chip -%}<span class="duo-link__chip">+</span>{%- endif -%}
-          {%- if pa != blank -%}
-            <div class="duo-pair__item">
-              <a href="{{ pa.url }}">
-                <div class="duo-pair__media flash">
-                  {%- if s.label_a != blank -%}<span class="duo-pair__tag">{{ s.label_a }}</span>{%- endif -%}
-                  {%- if pa.featured_media -%}
-                    <img src="{{ pa.featured_media | image_url: width: 800 }}" alt="{{ pa.title | escape }}" loading="lazy" width="{{ pa.featured_media.preview_image.width }}" height="{{ pa.featured_media.preview_image.height }}">
-                  {%- else -%}
-                    <div class="media__placeholder">{{ 'product-2' | placeholder_svg_tag }}</div>
-                  {%- endif -%}
-                </div>
-                <div class="duo-pair__body">
-                  <p class="card__title">{{ pa.title }}</p>
-                  <p class="card__price">{% render 'price', product: pa, show_from: true %}</p>
-                </div>
-              </a>
-            </div>
+      {%- assign has_pair = false -%}
+      {%- if pa != blank and pb != blank -%}{%- assign has_pair = true -%}{%- endif -%}
+
+      {%- if has_pair -%}
+        <div class="duo-compo" style="--media-pad:{{ settings.card_padding | default: 8 }}%">
+          {% render 'duo-media', product: pa, pos: 'a', delay: 160 %}
+
+          {%- if s.show_chip -%}
+            <span class="duo-join reveal" aria-hidden="true" style="--reveal-delay:240ms">
+              <span class="duo-join__line"></span>
+              <span class="duo-join__mark">+</span>
+              <span class="duo-join__line"></span>
+            </span>
+          {%- else -%}
+            <span class="duo-join" aria-hidden="true"></span>
           {%- endif -%}
-          {%- if pb != blank -%}
-            <div class="duo-pair__item">
-              <a href="{{ pb.url }}">
-                <div class="duo-pair__media flash">
-                  {%- if s.label_b != blank -%}<span class="duo-pair__tag">{{ s.label_b }}</span>{%- endif -%}
-                  {%- if pb.featured_media -%}
-                    <img src="{{ pb.featured_media | image_url: width: 800 }}" alt="{{ pb.title | escape }}" loading="lazy" width="{{ pb.featured_media.preview_image.width }}" height="{{ pb.featured_media.preview_image.height }}">
-                  {%- else -%}
-                    <div class="media__placeholder">{{ 'product-3' | placeholder_svg_tag }}</div>
-                  {%- endif -%}
-                </div>
-                <div class="duo-pair__body">
-                  <p class="card__title">{{ pb.title }}</p>
-                  <p class="card__price">{% render 'price', product: pb, show_from: true %}</p>
-                </div>
-              </a>
-            </div>
-          {%- endif -%}
+
+          {% render 'duo-media', product: pb, pos: 'b', delay: 320 %}
+
+          {% render 'duo-caption', product: pa, role: s.label_a, pos: 'a', delay: 200 %}
+          <span class="duo-spacer" aria-hidden="true"></span>
+          {% render 'duo-caption', product: pb, role: s.label_b, pos: 'b', delay: 360 %}
+        </div>
+
+      {%- elsif pa != blank or pb != blank -%}
+        {%- assign solo = pa | default: pb -%}
+        {%- assign solo_role = s.label_a | default: s.label_b -%}
+        <div class="duo-compo duo-compo--solo" style="--media-pad:{{ settings.card_padding | default: 8 }}%">
+          {% render 'duo-media', product: solo, pos: 'a', delay: 160 %}
+          {% render 'duo-caption', product: solo, role: solo_role, pos: 'a', delay: 200 %}
         </div>
       {%- endif -%}
 
       {%- if s.cta_label != blank -%}
-        <div class="reveal" style="margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;--reveal-delay:200ms">
-          <a href="{{ s.cta_url | default: routes.all_products_collection_url }}" class="btn btn--primary btn--lg">{{ s.cta_label }}</a>
+        <div class="reveal" style="--reveal-delay:340ms">
+          <a href="{{ s.cta_url | default: routes.all_products_collection_url }}" class="duo-cta">
+            <span class="duo-cta__label">{{ s.cta_label }}</span>
+            <span class="duo-cta__arrow">{% render 'icon', name: 'arrow' %}</span>
+          </a>
         </div>
       {%- endif -%}
 

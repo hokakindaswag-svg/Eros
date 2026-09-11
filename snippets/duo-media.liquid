@@ -1,0 +1,28 @@
+{%- comment -%}
+  Le bijou seul. Rien ne vient par-dessus.
+  Params : product, pos ('a' ou 'b'), delay
+{%- endcomment -%}
+<a
+  class="duo-media duo-media--{{ pos }} reveal"
+  href="{{ product.url }}"
+  style="--reveal-delay:{{ delay | default: 0 }}ms"
+  tabindex="-1"
+  aria-hidden="true"
+>
+  <span class="duo-media__surface surface surface--{{ settings.card_surface | default: 'light' }}">
+    {%- if product.featured_media -%}
+      <img
+        src="{{ product.featured_media | image_url: width: 900 }}"
+        srcset="{{ product.featured_media | image_url: width: 450 }} 450w,
+                {{ product.featured_media | image_url: width: 900 }} 900w"
+        sizes="(min-width: 990px) 22vw, 42vw"
+        alt=""
+        loading="lazy"
+        width="{{ product.featured_media.preview_image.width }}"
+        height="{{ product.featured_media.preview_image.height }}"
+      >
+    {%- else -%}
+      <span class="media__placeholder">{{ 'product-2' | placeholder_svg_tag }}</span>
+    {%- endif -%}
+  </span>
+</a>

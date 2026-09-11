@@ -1,0 +1,15 @@
+{%- comment -%}
+  Le texte d'une pièce, sous le bijou. C'est le rôle qui porte l'intention.
+  Params : product, role, pos ('a' ou 'b'), delay
+{%- endcomment -%}
+<a
+  class="duo-cap duo-cap--{{ pos }} reveal"
+  href="{{ product.url }}"
+  style="--reveal-delay:{{ delay | default: 0 }}ms"
+>
+  {%- if role != blank -%}
+    <span class="duo-cap__role">{{ role }}</span>
+  {%- endif -%}
+  <span class="duo-cap__name">{{ product.title }}</span>
+  <span class="duo-cap__price">{% render 'price', product: product, show_from: true %}</span>
+</a>
