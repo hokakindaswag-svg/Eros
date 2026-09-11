@@ -83,19 +83,22 @@
         "q1": {
           "type": "qa",
           "settings": {
-            "question": "COMMENT FAIRE UNE PROMESSE ?"
+            "question": "COMMENT FAIRE UNE PROMESSE ?",
+            "answer": "<p>Vous choisissez une pièce en pensant à une personne précise, et vous la lui offrez. La Promesse n'est pas une option à cocher : c'est l'intention derrière l'achat.</p>"
           }
         },
         "q2": {
           "type": "qa",
           "settings": {
-            "question": "QUELLES PIÈCES SONT CONCERNÉES ?"
+            "question": "QUELLES PIÈCES SONT CONCERNÉES ?",
+            "answer": "<p>Toutes. Chaque pièce EROS PARIS peut devenir une Promesse. Certaines sont réunies dans une sélection dédiée pour vous aider à choisir.</p>"
           }
         },
         "q3": {
           "type": "qa",
           "settings": {
-            "question": "PEUT-ON L'OFFRIR À N'IMPORTE QUI ?"
+            "question": "PEUT-ON L'OFFRIR À N'IMPORTE QUI ?",
+            "answer": "<p>Oui. Une Promesse n'est pas réservée aux couples : elle peut être faite à un proche, un ami, ou à soi-même.</p>"
           }
         }
       },

@@ -1,17 +1,54 @@
 {
   "sections": {
-    "main": { "type": "main-page", "settings": {} },
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
     "faq": {
       "type": "faq",
       "blocks": {
-        "q1": { "type": "qa", "settings": { "question": "QUELS SONT LES DÉLAIS DE LIVRAISON ?" } },
-        "q2": { "type": "qa", "settings": { "question": "COMMENT RETOURNER UNE PIÈCE ?" } },
-        "q3": { "type": "qa", "settings": { "question": "COMMENT ENTRETENIR MON BIJOU ?" } },
-        "q4": { "type": "qa", "settings": { "question": "COMMENT CHOISIR MA TAILLE ?" } }
+        "q1": {
+          "type": "qa",
+          "settings": {
+            "question": "QUELS SONT LES DÉLAIS DE LIVRAISON ?",
+            "answer": "<p>Préparation sous 1 à 2 jours ouvrés, puis 2 à 4 jours en France métropolitaine, 4 à 7 jours dans l'Union européenne. Livraison offerte dès 100 € d'achat.</p>"
+          }
+        },
+        "q2": {
+          "type": "qa",
+          "settings": {
+            "question": "COMMENT RETOURNER UNE PIÈCE ?",
+            "answer": "<p>Vous avez 30 jours après réception. La pièce doit être non portée, dans son emballage d'origine. Écrivez-nous avec votre numéro de commande et nous vous envoyons la marche à suivre sous 48 heures.</p>"
+          }
+        },
+        "q3": {
+          "type": "qa",
+          "settings": {
+            "question": "COMMENT ENTRETENIR MON BIJOU ?",
+            "answer": "<p>Mettez vos bijoux en dernier, après le parfum et la crème. Retirez-les avant la douche, la piscine et le sport. Essuyez-les avec un chiffon doux après chaque port et rangez chaque pièce séparément.</p>"
+          }
+        },
+        "q4": {
+          "type": "qa",
+          "settings": {
+            "question": "COMMENT CHOISIR MA TAILLE ?",
+            "answer": "<p>Les tailles disponibles sont indiquées sur chaque fiche produit. Pour les bagues, mesurez le tour de doigt avec un fil puis reportez la longueur sur une règle. Pour les chaînes et bracelets, mesurez une pièce que vous portez déjà.</p>"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4"],
-      "settings": { "title": "FAQ" }
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "title": "FAQ"
+      }
     }
   },
-  "order": ["main", "faq"]
+  "order": [
+    "main",
+    "faq"
+  ]
 }

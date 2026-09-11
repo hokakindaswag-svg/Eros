@@ -21,6 +21,7 @@
     "promise_link_label": "EN SAVOIR PLUS",
     "social_handle": "@erosparis",
     "logo_source": "theme",
-    "logo": "shopify://shop_images/eros-paris-logo.png"
+    "logo": "shopify://shop_images/eros-paris-logo.png",
+    "promise_link": "shopify://pages/la-promesse"
   }
 }

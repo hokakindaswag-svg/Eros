@@ -64,72 +64,88 @@ Quand le système évoluera, ce champ est le point d'accroche naturel.
 
 ---
 
-## 3. Mise en route
+## 3. Configuration de la boutique (déjà faite)
 
-### a) Menus (Boutique en ligne → Navigation)
-Menu principal suggéré :
-```
-NOUVEAUTÉS · BEST-SELLERS · BRACELETS · CHAÎNES · COLLIERS · BAGUES · BOUCLES D'OREILLES
-POUR SOI · LA PROMESSE · DUO
-```
-Menu `footer` pour la colonne BOUTIQUE, et un menu « Légal » pour mentions légales / CGV / confidentialité
-(à relier dans Pied de page → *Menu légal*).
+Tout ce qui suit a été créé directement sur la boutique. Rien n'est à refaire.
 
-### b) Pages à créer (Boutique en ligne → Pages)
-| Page | Handle attendu | Template |
+### Menus (Boutique en ligne → Navigation)
+| Menu | Handle | Contenu |
+|---|---|---|
+| Menu principal | `main-menu` | NOUVEAUTÉS · BEST-SELLERS · BIJOUX (sous-menu des 5 catégories) · POUR SOI · LA PROMESSE · DUO |
+| Pied de page | `footer` | NOUVEAUTÉS + les 5 catégories + DUO |
+| Légal | `legal` | MENTIONS LÉGALES · CGV · CONFIDENTIALITÉ |
+
+### Pages
+| Page | Handle | Template |
 |---|---|---|
 | POUR SOI | `pour-soi` | `page.pour-soi` |
 | LA PROMESSE | `la-promesse` | `page.la-promesse` |
 | DUO | `duo` | `page.duo` |
-| FAQ | `faq` | `page.faq` |
+| FAQ | `faq` | `page.faq` (4 questions-réponses remplies) |
 | Contact | `contact` | `page.contact` |
-| Livraison / Retours / Entretien / CGV / Mentions légales / Confidentialité | libre | `page` |
+| LIVRAISON | `livraison` | `page` |
+| RETOURS | `retours` | `page` |
+| ENTRETIEN | `entretien` | `page` |
+| MENTIONS LÉGALES | `mentions-legales` | `page` |
+| CGV | `cgv` | `page` |
+| POLITIQUE DE CONFIDENTIALITÉ | `politique-de-confidentialite` | `page` |
 
-Les pages LIVRAISON, RETOURS et ENTRETIEN peuvent être réutilisées telles quelles dans
-les accordéons de la fiche produit (bloc Informations → *Ou page Shopify*).
+**⚠ Les 3 pages légales sont des trames.** Les champs `[À COMPLÉTER]`
+(raison sociale, SIRET, RCS, TVA, médiateur) doivent être remplis, et les CGV
+relues par un juriste, avant l'ouverture réelle de la boutique.
 
-### c) Collections
-Créées automatiquement sur la boutique (collections **automatiques par tag**, additives :
-aucun produit, prix, SKU ni stock n'a été modifié).
+Les pages LIVRAISON, RETOURS et ENTRETIEN alimentent automatiquement les
+accordéons de chaque fiche produit : un seul endroit à modifier.
 
-| Collection | Handle | Règle | Produits |
-|---|---|---|---|
-| BRACELETS | `bracelets` | tag `bracelet` ou `chaine-de-main` | 10 |
-| CHAÎNES | `chaines` | titre contient « Chaîne » | 1 |
-| COLLIERS | `colliers` | tag `collier` | 3 |
-| BAGUES | `bagues` | tag `bague` | 3 |
-| BOUCLES D'OREILLES | `boucles-d-oreilles` | tag `boucles-oreilles` | 3 |
-| POUR SOI | `pour-soi` | tout le catalogue | 20 |
-| NOUVEAUTÉS | `nouveautes` | tag `nouveaute` | 0 |
-| BEST-SELLERS | `best-sellers` | tag `best-seller` | 0 |
-| DUO | `duo` | tag `duo` | 0 |
-| LA PROMESSE | `la-promesse` | tag `promesse` | 0 |
+### Collections
+Créées automatiquement par tag (additives : aucun produit, prix, SKU ni stock
+n'a été modifié).
 
-Les quatre dernières sont des **bacs de curation** : elles se remplissent dès que vous
-taguez les produits concernés (`nouveaute`, `best-seller`, `duo`, `promesse`).
-Le tag `nouveaute` déclenche aussi le badge NOUVEAUTÉ sur les cartes produit.
+| Collection | Handle | Règle | Produits | Image |
+|---|---|---|---|---|
+| BRACELETS | `bracelets` | tag `bracelet` ou `chaine-de-main` | 10 | ✓ |
+| CHAÎNES | `chaines` | titre contient « Chaîne » | 1 | ✓ |
+| COLLIERS | `colliers` | tag `collier` | 3 | ✓ |
+| BAGUES | `bagues` | tag `bague` | 3 | ✓ |
+| BOUCLES D'OREILLES | `boucles-d-oreilles` | tag `boucles-oreilles` | 3 | ✓ |
+| POUR SOI | `pour-soi` | tout le catalogue | 20 | — |
+| NOUVEAUTÉS | `nouveautes` | tag `nouveaute` | 0 | — |
+| BEST-SELLERS | `best-sellers` | tag `best-seller` | 0 | — |
+| DUO | `duo` | tag `duo` | 0 | — |
+| LA PROMESSE | `la-promesse` | tag `promesse` | 0 | — |
 
-CHAÎNES se base sur le titre, car le tag `cuban` est partagé avec les bracelets.
-Pour élargir la collection, taguez les chaînes `chaine` et ajoutez la règle correspondante.
+Les quatre dernières sont des **bacs de curation** : taguez vos produits
+`nouveaute`, `best-seller`, `duo` ou `promesse` et elles se remplissent seules.
+Le tag `nouveaute` allume aussi le badge NOUVEAUTÉ sur les cartes produit.
 
-Ensuite, dans l'éditeur de thème : sélectionnez ces collections dans les sections
-**Catégories**, **Produits en avant** et **DUO**, et ajoutez-leur une image forte.
+CHAÎNES se base sur le titre car le tag `cuban` est partagé avec les bracelets.
+Pour élargir, taguez vos chaînes `chaine` et ajoutez la règle correspondante.
 
-### d) Visuels
-Chargez les images dans Contenu → Fichiers, puis sélectionnez-les dans l'éditeur.
-Hero et Campagne acceptent une image **desktop** et une image **mobile** distinctes,
-ou une vidéo MP4 (collez l'URL du fichier).
-
-Direction artistique : flash photography, chrome, nuit, hôtels, voitures, bijoux très visibles.
-Les bijoux doivent rester le sujet : les voiles sombres des sections sont réglables
-(*Assombrissement haut / bas*).
-
-### e) Badge NOUVEAUTÉ
-Réglages → Produits → *Tag affichant le badge*. Par défaut `nouveaute` : taguez les produits concernés.
+### Produits
+Les 20 produits sont **actifs**. Le suivi d'inventaire est désactivé
+(`tracked: false`), donc tous restent achetables malgré un stock affiché à 0 :
+aucune pièce n'apparaîtra « ÉPUISÉ ».
 
 ---
 
-## 4. Performance et mobile
+## 4. Ce qu'il reste à faire : les visuels
+
+C'est le seul vrai manque. Les sections suivantes affichent un visuel
+d'attente tant que vous n'avez pas chargé vos images de campagne dans
+Contenu → Fichiers, puis sélectionné dans l'éditeur de thème :
+
+- **Hero de la page d'accueil** — image desktop + image mobile séparées, ou vidéo MP4
+- **Les 3 portes** — une image par porte (POUR SOI, LA PROMESSE, DUO)
+- **Campagne lifestyle** — image desktop + mobile
+- **LA PROMESSE** et **DUO** — l'image de la colonne éditoriale
+- **Social / UGC** — 6 contenus
+- **Section DUO** — les deux produits de la paire à sélectionner
+
+Direction artistique : flash photography, chrome, nuit, hôtels, voitures,
+bijoux très visibles. Les voiles sombres sont réglables section par section
+(*Assombrissement haut / bas*) pour que le bijou reste le sujet.
+
+## 5. Performance et mobile
 
 - Aucune librairie externe, aucun framework. ~25 ko de JS non minifié au total.
 - Images en `srcset` + `sizes`, `loading="lazy"` partout sauf le hero.
@@ -141,16 +157,15 @@ Réglages → Produits → *Tag affichant le badge*. Par défaut `nouveaute` : t
 
 ---
 
-## 5. Installation comme thème non publié
+## 6. Historique des thèmes
 
-Le thème n'écrase rien tant que vous ne le publiez pas.
+| Thème | Rôle | Note |
+|---|---|---|
+| EROS PARIS (réparé) | **en ligne** | version publiée |
+| EROS PARIS v2 — menus & pages | non publié | menus, pages et réglages reliés — à prévisualiser puis publier |
+| eros-paris-theme | non publié | import initial incomplet, conservé par sécurité |
+| Horizon | non publié | thème Shopify par défaut |
 
-**Option A — ZIP**
-Boutique en ligne → Thèmes → Ajouter un thème → Importer un fichier ZIP.
-Il apparaît dans « Thèmes de la bibliothèque » : cliquez sur **Aperçu**.
-
-**Option B — GitHub**
-Boutique en ligne → Thèmes → Ajouter un thème → Connecter depuis GitHub,
-puis sélectionnez ce dépôt et la branche `claude/eros-paris-shopify-theme-636g3h`.
-
-Dans les deux cas, publiez seulement après validation de l'aperçu.
+Un thème publié ne peut pas être modifié directement par l'API : chaque série
+de changements est appliquée à une copie non publiée, que vous prévisualisez
+puis publiez depuis Boutique en ligne → Thèmes.

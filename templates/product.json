@@ -3,9 +3,22 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "title": { "type": "title", "settings": {} },
-        "price": { "type": "price", "settings": { "note": "TAXES INCLUSES" } },
-        "variants": { "type": "variants", "settings": { "size_guide_label": "GUIDE DES TAILLES" } },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "note": "TAXES INCLUSES"
+          }
+        },
+        "variants": {
+          "type": "variants",
+          "settings": {
+            "size_guide_label": "GUIDE DES TAILLES"
+          }
+        },
         "buy": {
           "type": "buy",
           "settings": {
@@ -17,7 +30,10 @@
             "promise_field_placeholder": "POUR QUI ? (OPTIONNEL)"
           }
         },
-        "promise": { "type": "promise", "settings": {} },
+        "promise": {
+          "type": "promise",
+          "settings": {}
+        },
         "accordions": {
           "type": "accordions",
           "settings": {
@@ -28,11 +44,21 @@
             "title_1": "MATÉRIAU",
             "title_2": "ENTRETIEN",
             "title_3": "LIVRAISON",
-            "title_4": "RETOURS"
+            "title_4": "RETOURS",
+            "page_2": "entretien",
+            "page_3": "livraison",
+            "page_4": "retours"
           }
         }
       },
-      "block_order": ["title", "price", "variants", "buy", "promise", "accordions"],
+      "block_order": [
+        "title",
+        "price",
+        "variants",
+        "buy",
+        "promise",
+        "accordions"
+      ],
       "settings": {
         "gallery_columns": "2",
         "first_image_full": true,
@@ -42,8 +68,15 @@
     },
     "recommendations": {
       "type": "product-recommendations",
-      "settings": { "enable": true, "title": "VOUS AIMEREZ AUSSI", "count": 4 }
+      "settings": {
+        "enable": true,
+        "title": "VOUS AIMEREZ AUSSI",
+        "count": 4
+      }
     }
   },
-  "order": ["main", "recommendations"]
+  "order": [
+    "main",
+    "recommendations"
+  ]
 }
