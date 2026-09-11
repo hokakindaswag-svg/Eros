@@ -6,6 +6,7 @@
     <div class="faq">
       <div class="acc">
         {%- for block in section.blocks -%}
+          {%- if block.settings.question != blank and block.settings.answer != blank -%}
           <div class="acc__item" {{ block.shopify_attributes }}>
             <button type="button" class="acc__btn" data-acc aria-expanded="false" aria-controls="faq-{{ block.id }}">
               {{ block.settings.question }}
@@ -15,6 +16,7 @@
               <div class="acc__inner rte">{{ block.settings.answer }}</div>
             </div>
           </div>
+          {%- endif -%}
         {%- endfor -%}
       </div>
     </div>

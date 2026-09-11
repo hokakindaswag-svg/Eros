@@ -232,6 +232,14 @@
       });
   }
 
+  /* Le compteur est relu depuis le panier : fiable même sans panneau. */
+  function syncCartCount() {
+    return fetch((routes.cart || '/cart') + '.js', { headers: { 'Accept': 'application/json' } })
+      .then(function (r) { return r.json(); })
+      .then(function (cart) { setCartCount(cart.item_count); return cart; })
+      .catch(function () { return null; });
+  }
+
   function addToCart(payload, opts) {
     opts = opts || {};
     return fetch(routes.cartAdd || '/cart/add.js', {
@@ -245,9 +253,12 @@
           toast(res.data.description || res.data.message || 'Indisponible');
           throw new Error(res.data.description || 'add error');
         }
-        return refreshCartDrawer().then(function () {
-          if (opts.silent) { toast('Ajouté au panier'); }
-          else { drawerOpen('eros-cart-drawer'); }
+        return Promise.all([refreshCartDrawer(), syncCartCount()]).then(function () {
+          if (opts.silent) {
+            toast((window.EROS && window.EROS.strings && window.EROS.strings.added) || 'AJOUTÉ AU PANIER');
+          } else {
+            drawerOpen('eros-cart-drawer');
+          }
           return res.data;
         });
       });
@@ -273,7 +284,16 @@
 
   window.ErosCart = { add: addToCart, change: changeLine, refresh: refreshCartDrawer, toast: toast };
 
-  /* Ajout rapide depuis les cartes produit */
+  /* Ajout rapide depuis les cartes produit.
+     On reste sur la grille : une coche confirme, le panier n'est pas ouvert. */
+  function confirmAdd(btn) {
+    if (!btn) return;
+    btn.classList.remove('is-loading');
+    btn.classList.add('is-added');
+    clearTimeout(btn._addedTimer);
+    btn._addedTimer = setTimeout(function () { btn.classList.remove('is-added'); }, 1600);
+  }
+
   document.addEventListener('submit', function (e) {
     var form = e.target.closest('[data-quick-add]');
     if (!form) return;
@@ -281,10 +301,10 @@
     var btn = form.querySelector('button[type="submit"]');
     var id = form.querySelector('[name="id"]');
     if (!id || !id.value) return;
-    if (btn) { btn.setAttribute('aria-disabled', 'true'); }
-    addToCart({ items: [{ id: Number(id.value), quantity: 1 }] })
-      .catch(function () {})
-      .then(function () { if (btn) btn.removeAttribute('aria-disabled'); });
+    if (btn) btn.classList.add('is-loading');
+    addToCart({ items: [{ id: Number(id.value), quantity: 1 }] }, { silent: true })
+      .then(function () { confirmAdd(btn); })
+      .catch(function () { if (btn) btn.classList.remove('is-loading'); });
   });
 
   /* Quantités (drawer + page panier) */
@@ -438,6 +458,9 @@
         .then(function () { if (submit) submit.classList.remove('is-loading'); });
     });
   })();
+
+  /* Panier restauré depuis le cache du navigateur : on resynchronise. */
+  window.addEventListener('pageshow', function (e) { if (e.persisted) syncCartCount(); });
 
   /* ----------------------------------------------------------
      Recherche : suggestions live (predictive search)

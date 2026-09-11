@@ -10,8 +10,8 @@
         "q1": {
           "type": "qa",
           "settings": {
-            "question": "QUELS SONT LES DÉLAIS DE LIVRAISON ?",
-            "answer": "<p>Préparation sous 1 à 2 jours ouvrés, puis 2 à 4 jours en France métropolitaine, 4 à 7 jours dans l'Union européenne. Livraison offerte dès 100 € d'achat.</p>"
+            "question": "LA LIVRAISON EST-ELLE GRATUITE ?",
+            "answer": "<p>Oui. La livraison est gratuite sur toutes les commandes EROS PARIS, sans montant minimum.</p>"
           }
         },
         "q2": {

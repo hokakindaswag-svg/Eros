@@ -147,6 +147,15 @@ aurez des données.
 création décroissante. Le tag `nouveaute` allume aussi le badge NOUVEAUTÉ sur
 les cartes produit.
 
+### Livraison
+
+La livraison est annoncée **gratuite, sans montant minimum**, sur la page
+Livraison, dans la barre d'annonce, au panier et dans les CGV.
+
+Aucun délai n'est affiché : le profil de livraison de la boutique ne
+contenait aucune zone ni aucun tarif au moment de la rédaction, donc aucun
+délai n'était vérifiable. N'en publiez que lorsqu'ils seront réels.
+
 ### Produits
 Les 20 produits sont **actifs**. Le suivi d'inventaire est désactivé
 (`tracked: false`), donc tous restent achetables malgré un stock affiché à 0 :
@@ -157,14 +166,21 @@ aucune pièce n'apparaîtra « ÉPUISÉ ».
 ## 4. Cartes produit
 
 L'image reste nue : aucun bouton ne la recouvre. Sous la photo, le nom et le
-prix à gauche, un bouton d'ajout compact à droite.
+prix à gauche, une petite pochette au contour fin à droite.
 
-- Produit à variante unique : ajout direct au panier
-- Produit à plusieurs variantes : ouverture d'un panneau de sélection, sans
-  quitter la page ni perdre le fil de navigation
+- Produit à variante unique : ajout direct au panier, sans quitter la grille.
+  Le sac cède la place à une coche pendant 1,6 s et le compteur s'incrémente.
+- Produit à plusieurs variantes : ouverture d'un panneau de sélection chargé
+  en AJAX (`sections/quick-add.liquid`), avec combinaisons indisponibles
+  grisées et prix recalculé. Le panier s'ouvre après l'ajout.
 
-Le panneau est rendu par `sections/quick-add.liquid`, chargé en AJAX, et
-reprend la logique de variantes de la fiche produit en version compacte.
+Le bouton mesure 34 px mais sa zone tactile est étendue à 44 px par un
+pseudo-élément, pour rester confortable au doigt.
+
+Le parcours d'ajout est couvert par un banc de test qui rejoue les routes
+Shopify (`/cart/add.js`, `/cart.js`, rafraîchissement du panneau panier) et
+vérifie, en desktop et en mobile, que la requête part avec la bonne variante,
+que le compteur suit et que la confirmation s'affiche.
 
 ## 5. Présentation des visuels produit
 

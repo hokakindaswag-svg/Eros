@@ -248,7 +248,7 @@
         "type": "richtext",
         "id": "cart_note",
         "label": "Mention sous le bouton de commande",
-        "default": "<p>Taxes incluses. Livraison calculée au paiement.</p>"
+        "default": "<p>Livraison gratuite. Taxes incluses.</p>"
       }
     ]
   },

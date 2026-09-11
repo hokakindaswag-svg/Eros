@@ -261,27 +261,52 @@
                 {%- assign content = block.settings[ckey] -%}
                 {%- assign page_ref = block.settings[pkey] -%}
                 {%- liquid
-                  assign has_body = false
-                  if content != blank or page_ref != blank
-                    assign has_body = true
+                  comment
+                    Un accordéon ne s'affiche que s'il a réellement quelque chose
+                    à montrer : une page renseignée, ou un texte saisi.
+                  endcomment
+                  assign body_html = ''
+                  if page_ref != blank and page_ref.content != blank
+                    assign body_html = page_ref.content
+                  elsif content != blank
+                    assign body_html = content
                   endif
                 -%}
-                {%- if title != blank and has_body -%}
+                {%- if title != blank and body_html != blank -%}
                   <div class="acc__item">
                     <button type="button" class="acc__btn" data-acc aria-expanded="false" aria-controls="acc-{{ i }}-{{ section.id }}">
                       {{ title }}
                       <span class="acc__icon"></span>
                     </button>
                     <div class="acc__panel" id="acc-{{ i }}-{{ section.id }}">
-                      <div class="acc__inner rte">
-                        {%- if page_ref != blank -%}{{ page_ref.content }}{%- else -%}{{ content }}{%- endif -%}
-                      </div>
+                      <div class="acc__inner rte">{{ body_html }}</div>
                     </div>
                   </div>
                 {%- endif -%}
               {%- endfor -%}
 
-              {%- if block.settings.show_specs -%}
+              {%- liquid
+                comment
+                  On compte les lignes réellement disponibles avant d'afficher
+                  le bloc : pas de titre qui ouvre sur du vide.
+                endcomment
+                assign spec_rows = 0
+                if settings.show_vendor and product.vendor != blank
+                  assign spec_rows = spec_rows | plus: 1
+                endif
+                if product.type != blank
+                  assign spec_rows = spec_rows | plus: 1
+                endif
+                if current.sku != blank
+                  assign spec_rows = spec_rows | plus: 1
+                endif
+                for field in product.metafields.custom
+                  if field[1] != blank and field[1].type == 'single_line_text_field'
+                    assign spec_rows = spec_rows | plus: 1
+                  endif
+                endfor
+              -%}
+              {%- if block.settings.show_specs and spec_rows > 0 -%}
                 <div class="acc__item">
                   <button type="button" class="acc__btn" data-acc aria-expanded="false" aria-controls="acc-specs-{{ section.id }}">
                     {{ block.settings.specs_title }}
@@ -290,7 +315,7 @@
                   <div class="acc__panel" id="acc-specs-{{ section.id }}">
                     <div class="acc__inner">
                       <dl class="spec">
-                        {%- if product.vendor != blank -%}
+                        {%- if settings.show_vendor and product.vendor != blank -%}
                           <dt>{{ 'products.product.vendor' | t }}</dt><dd>{{ product.vendor }}</dd>
                         {%- endif -%}
                         {%- if product.type != blank -%}

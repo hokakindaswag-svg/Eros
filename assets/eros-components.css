@@ -303,8 +303,10 @@
   width:11px;height:11px;border-radius:999px;border:1px solid rgba(255,255,255,.35);
   display:inline-block;
 }
-/* Ajout rapide : discret, compact, hors de l'image */
+/* Ajout rapide : petit sac au contour fin, hors de l'image.
+   La zone tactile est étendue à 44px sans grossir le bouton. */
 .card-add{
+  position:relative;
   width:34px;height:34px;flex:0 0 auto;
   display:grid;place-items:center;
   border:1px solid var(--eros-line);
@@ -312,16 +314,47 @@
   transition:background-color var(--t-fast) var(--ease),color var(--t-fast) var(--ease),
              border-color var(--t-fast) var(--ease),transform var(--t-fast) var(--ease);
 }
-.card-add svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6;}
+.card-add::before{
+  content:"";position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  width:44px;height:44px;
+}
+.card-add svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.25;}
+.card-add__icon,.card-add__done{
+  grid-area:1/1;display:grid;place-items:center;
+  transition:opacity var(--t-fast) var(--ease),transform var(--t) var(--ease-out);
+}
+.card-add__done{opacity:0;transform:scale(.6);}
 .card-add:hover{background:var(--eros-white);color:#000;border-color:var(--eros-white);}
 .card-add:active{transform:scale(.94);}
 .card-add[aria-disabled="true"]{opacity:.4;pointer-events:none;}
-.card-add.is-loading{color:transparent;position:relative;}
+
+/* Chargement */
+.card-add.is-loading{pointer-events:none;}
+.card-add.is-loading .card-add__icon{opacity:0;}
 .card-add.is-loading::after{
-  content:"";position:absolute;width:13px;height:13px;border-radius:999px;
-  border:1.5px solid rgba(255,255,255,.3);border-top-color:#fff;
+  content:"";position:absolute;width:14px;height:14px;border-radius:999px;
+  border:1.4px solid rgba(255,255,255,.28);border-top-color:currentColor;
   animation:spin .7s linear infinite;
 }
+
+/* Confirmation : le sac cède la place à une coche */
+.card-add.is-added{
+  background:var(--eros-white);color:#000;border-color:var(--eros-white);
+  animation:add-pop .38s var(--ease-out);
+}
+.card-add.is-added .card-add__icon{opacity:0;transform:scale(.6);}
+.card-add.is-added .card-add__done{opacity:1;transform:none;}
+@keyframes add-pop{
+  0%{transform:scale(1);}
+  38%{transform:scale(1.14);}
+  100%{transform:scale(1);}
+}
+@media (prefers-reduced-motion:reduce){
+  .card-add.is-added{animation:none;}
+  .card-add__icon,.card-add__done{transition:opacity var(--t-fast) var(--ease);}
+}
+
 @media (hover:none){ .card:hover .card__img{transform:none;} }
 
 /* Grilles produits */

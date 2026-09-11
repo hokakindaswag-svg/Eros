@@ -263,61 +263,6 @@
         "speed": 26
       }
     },
-    "social": {
-      "type": "social-editorial",
-      "blocks": {
-        "s1": {
-          "type": "post",
-          "settings": {
-            "size": "tall"
-          }
-        },
-        "s2": {
-          "type": "post",
-          "settings": {
-            "size": "b"
-          }
-        },
-        "s3": {
-          "type": "post",
-          "settings": {
-            "size": "b"
-          }
-        },
-        "s4": {
-          "type": "post",
-          "settings": {
-            "size": "a"
-          }
-        },
-        "s5": {
-          "type": "post",
-          "settings": {
-            "size": "wide"
-          }
-        },
-        "s6": {
-          "type": "post",
-          "settings": {
-            "size": "a"
-          }
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3",
-        "s4",
-        "s5",
-        "s6"
-      ],
-      "settings": {
-        "eyebrow": "COMMUNAUTÉ",
-        "title": "PORTÉ PAR VOUS",
-        "link_label": "@EROSPARIS",
-        "full_width": true
-      }
-    },
     "newsletter": {
       "type": "newsletter",
       "settings": {
@@ -336,7 +281,6 @@
     "duo",
     "collection-focus",
     "ticker",
-    "social",
     "newsletter"
   ]
 }

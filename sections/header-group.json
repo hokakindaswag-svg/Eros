@@ -5,12 +5,33 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "a1": { "type": "message", "settings": { "text": "LIVRAISON OFFERTE DÈS 100 €" } },
-        "a2": { "type": "message", "settings": { "text": "PAIEMENT EN 3X" } },
-        "a3": { "type": "message", "settings": { "text": "RETOURS 30 JOURS" } }
+        "a1": {
+          "type": "message",
+          "settings": {
+            "text": "LIVRAISON GRATUITE"
+          }
+        },
+        "a2": {
+          "type": "message",
+          "settings": {
+            "text": "PAIEMENT EN 3X"
+          }
+        },
+        "a3": {
+          "type": "message",
+          "settings": {
+            "text": "RETOURS 30 JOURS"
+          }
+        }
       },
-      "block_order": ["a1", "a2", "a3"],
-      "settings": { "marquee": false }
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {
+        "marquee": false
+      }
     },
     "header": {
       "type": "header",
@@ -25,5 +46,8 @@
       }
     }
   },
-  "order": ["announcement-bar", "header"]
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
 }

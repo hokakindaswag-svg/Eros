@@ -139,7 +139,10 @@
               class="card-add"
               aria-label="{{ 'products.product.add_to_cart' | t }} — {{ product.title | escape }}"
               title="{{ 'products.product.add_to_cart' | t }}"
-            >{% render 'icon', name: 'plus' %}</button>
+            >
+              <span class="card-add__icon">{% render 'icon', name: 'bag' %}</span>
+              <span class="card-add__done">{% render 'icon', name: 'check' %}</span>
+            </button>
           </form>
         {%- else -%}
           <button
@@ -148,7 +151,10 @@
             data-quick-open="{{ product.url }}"
             aria-label="{{ 'products.product.choose_options' | t }} — {{ product.title | escape }}"
             title="{{ 'products.product.choose_options' | t }}"
-          >{% render 'icon', name: 'plus' %}</button>
+          >
+            <span class="card-add__icon">{% render 'icon', name: 'bag' %}</span>
+            <span class="card-add__done">{% render 'icon', name: 'check' %}</span>
+          </button>
         {%- endif -%}
       </div>
     {%- endif -%}
