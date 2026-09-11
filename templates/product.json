@@ -34,7 +34,7 @@
       },
       "block_order": ["title", "price", "variants", "buy", "promise", "accordions"],
       "settings": {
-        "gallery_columns": 2,
+        "gallery_columns": "2",
         "first_image_full": true,
         "sticky_atc": true,
         "update_url": true

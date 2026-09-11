@@ -60,7 +60,14 @@
       ],
       "default": "grid"
     },
-    { "type": "range", "id": "cols_mobile", "min": 1, "max": 2, "step": 1, "label": "Colonnes mobile", "default": 2 },
+    {
+      "type": "select", "id": "cols_mobile", "label": "Colonnes mobile",
+      "options": [
+        { "value": "1", "label": "1 colonne" },
+        { "value": "2", "label": "2 colonnes" }
+      ],
+      "default": "2"
+    },
     { "type": "range", "id": "cols_desktop", "min": 2, "max": 6, "step": 1, "label": "Colonnes desktop", "default": 4 },
     {
       "type": "select", "id": "ratio", "label": "Format des images",

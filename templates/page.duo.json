@@ -12,7 +12,7 @@
         "height_mobile": 74,
         "height_desktop": 84,
         "overlay_top": 40,
-        "overlay_bottom": 62,
+        "overlay_bottom": 60,
         "show_scroll": false,
         "cta_url": "shopify://collections/duo"
       }
@@ -27,7 +27,7 @@
         "label_b": "PIÈCE B",
         "show_chip": true,
         "reverse": false,
-        "image_overlay": 12,
+        "image_overlay": 10,
         "show_collection": true,
         "collection_title": "LES DUOS",
         "collection_count": 8,
@@ -48,9 +48,9 @@
         "align": "left",
         "vertical": "flex-end",
         "height_mobile": 70,
-        "height_desktop": 84,
+        "height_desktop": 85,
         "overlay_top": 25,
-        "overlay_bottom": 62,
+        "overlay_bottom": 60,
         "cta_url": "shopify://collections/duo"
       }
     }

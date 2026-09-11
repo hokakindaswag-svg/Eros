@@ -23,7 +23,7 @@
         "title": "BEST-SELLERS",
         "count": 8,
         "layout": "grid",
-        "cols_mobile": 2,
+        "cols_mobile": "2",
         "cols_desktop": 4,
         "ratio": "3/4",
         "show_view_all": true,
@@ -71,7 +71,7 @@
       "settings": {
         "title": "TROIS FAÇONS DE PORTER EROS",
         "height_mobile": 58,
-        "height_desktop": 78
+        "height_desktop": 80
       }
     },
     "categories": {
@@ -136,7 +136,7 @@
         "align": "left",
         "vertical": "flex-end",
         "height_mobile": 74,
-        "height_desktop": 88,
+        "height_desktop": 90,
         "overlay_top": 30,
         "overlay_bottom": 65,
         "cta_url": "shopify://collections/pour-soi"
@@ -208,7 +208,7 @@
         "title": "NOUVEAUTÉS",
         "count": 8,
         "layout": "rail",
-        "cols_mobile": 2,
+        "cols_mobile": "2",
         "cols_desktop": 4,
         "ratio": "3/4",
         "show_view_all": true,

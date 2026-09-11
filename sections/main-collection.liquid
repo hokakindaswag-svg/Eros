@@ -103,7 +103,14 @@
     { "type": "checkbox", "id": "show_bar", "label": "Afficher la barre de navigation", "default": true },
     { "type": "checkbox", "id": "show_sort", "label": "Afficher le tri", "default": true },
     { "type": "range", "id": "per_page", "min": 8, "max": 48, "step": 4, "label": "Produits par page", "default": 24 },
-    { "type": "range", "id": "cols_mobile", "min": 1, "max": 2, "step": 1, "label": "Colonnes mobile", "default": 2 },
+    {
+      "type": "select", "id": "cols_mobile", "label": "Colonnes mobile",
+      "options": [
+        { "value": "1", "label": "1 colonne" },
+        { "value": "2", "label": "2 colonnes" }
+      ],
+      "default": "2"
+    },
     { "type": "range", "id": "cols_desktop", "min": 2, "max": 6, "step": 1, "label": "Colonnes desktop", "default": 4 },
     {
       "type": "select", "id": "ratio", "label": "Format des images",

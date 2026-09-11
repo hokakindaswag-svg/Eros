@@ -32,7 +32,7 @@
         {%- if media_count > 0 -%}
           {%- for media in product.media -%}
             {%- assign is_full = false -%}
-            {%- if s.gallery_columns == 2 and forloop.first and s.first_image_full -%}
+            {%- if s.gallery_columns == '2' and forloop.first and s.first_image_full -%}
               {%- assign is_full = true -%}
             {%- endif -%}
             <div
@@ -347,7 +347,14 @@
   "tag": "section",
   "settings": [
     { "type": "header", "content": "Galerie" },
-    { "type": "range", "id": "gallery_columns", "min": 1, "max": 2, "step": 1, "label": "Colonnes (desktop)", "default": 2 },
+    {
+      "type": "select", "id": "gallery_columns", "label": "Colonnes (desktop)",
+      "options": [
+        { "value": "1", "label": "1 colonne" },
+        { "value": "2", "label": "2 colonnes" }
+      ],
+      "default": "2"
+    },
     { "type": "checkbox", "id": "first_image_full", "label": "Première image en pleine largeur", "default": true },
     { "type": "header", "content": "Options" },
     { "type": "checkbox", "id": "sticky_atc", "label": "Bouton d'achat fixe sur mobile", "default": true },

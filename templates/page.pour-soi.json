@@ -12,7 +12,7 @@
         "height_mobile": 70,
         "height_desktop": 78,
         "overlay_top": 40,
-        "overlay_bottom": 62,
+        "overlay_bottom": 60,
         "show_scroll": false,
         "cta_url": "shopify://collections/pour-soi"
       }
@@ -23,7 +23,7 @@
         "title": "LES PIÈCES",
         "count": 12,
         "layout": "grid",
-        "cols_mobile": 2,
+        "cols_mobile": "2",
         "cols_desktop": 4,
         "ratio": "3/4",
         "show_view_all": true,
