@@ -371,10 +371,10 @@ select.input option{background:#0B0B0C;color:#fff;}
 /* ============================================================
    REVEAL AU SCROLL (rapide, discret)
    ============================================================ */
-.reveal{opacity:0;transform:translateY(12px);}
+.reveal{opacity:0;transform:translateY(8px);}
 .reveal.is-in{
   opacity:1;transform:none;
-  transition:opacity .34s var(--ease-out),transform .4s var(--ease-out);
+  transition:opacity .55s var(--ease-out),transform .6s var(--ease-out);
   transition-delay:var(--reveal-delay,0ms);
 }
 .no-js .reveal,.reveal--off{opacity:1!important;transform:none!important;}

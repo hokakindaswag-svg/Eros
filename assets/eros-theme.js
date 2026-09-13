@@ -171,13 +171,46 @@
       items.forEach(function (el) { el.classList.add('is-in'); });
       return;
     }
+
+    // Un bloc dont l'image n'est pas encore arrivee apparait vide, puis
+    // l'image s'y ajoute d'un coup : c'est ce saut qui se lit comme brusque.
+    // On attend donc les images du bloc avant de le reveler — au maximum
+    // 500 ms, pour ne jamais bloquer l'apparition sur un chargement lent.
+    function whenMediaReady(el, done) {
+      var imgs = el.tagName === 'IMG' ? [el] : el.querySelectorAll('img');
+      var pending = 0;
+      var fired = false;
+      var timer = null;
+
+      function fire() {
+        if (fired) return;
+        fired = true;
+        if (timer) clearTimeout(timer);
+        done();
+      }
+      function settle() {
+        pending -= 1;
+        if (pending <= 0) fire();
+      }
+
+      for (var i = 0; i < imgs.length; i++) {
+        if (imgs[i].complete) continue;
+        pending += 1;
+        imgs[i].addEventListener('load', settle, { once: true });
+        imgs[i].addEventListener('error', settle, { once: true });
+      }
+      if (pending === 0) { fire(); return; }
+      timer = setTimeout(fire, 500);
+    }
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-in');
-        io.unobserve(entry.target);
+        var el = entry.target;
+        io.unobserve(el);
+        whenMediaReady(el, function () { el.classList.add('is-in'); });
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    }, { rootMargin: '0px 0px 22% 0px', threshold: 0 });
     items.forEach(function (el) { io.observe(el); });
 
     // Nouveaux éléments injectés (recommandations, chargement AJAX)

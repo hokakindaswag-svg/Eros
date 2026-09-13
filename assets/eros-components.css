@@ -352,7 +352,13 @@
   .card-add__icon,.card-add__done{transition:opacity var(--t-fast) var(--ease);}
 }
 
-@media (hover:none){ .card:hover .card__img{transform:none;} }
+@media (hover:none){
+  .card:hover .card__img{transform:none;}
+  /* Sans survol, l'image secondaire ne sert jamais. En opacity:0 elle etait
+     tout de meme telechargee et decodee : display:none l'empeche de partir
+     en requete, ce qui divise par deux le poids image d'une grille. */
+  .card__img--alt{display:none;}
+}
 
 /* Grilles produits */
 .product-grid{
