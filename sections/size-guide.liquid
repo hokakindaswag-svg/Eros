@@ -22,7 +22,7 @@
     </nav>
 
     <div class="sg__body">
-      {% render 'size-guide-body', s: s %}
+      {% render 'size-guide-body' %}
     </div>
 
     {%- if s.footnote != blank -%}
@@ -41,13 +41,12 @@
     { "type": "text", "id": "lede", "label": "Phrase d'accroche", "default": "Toutes les mesures en centimètres. Le sélecteur de chaque fiche produit reprend la valeur d'origine." },
     {
       "type": "header",
-      "content": "Correspondance des tailles de bague"
+      "content": "Tailles de bague"
     },
     {
       "type": "paragraph",
-      "content": "Laissez vide tant que le système de taille des bagues (US, japonais, autre) n'est pas confirmé auprès du fournisseur. Le tableau n'apparaît pas si ce champ est vide. Format : une ligne par taille, trois valeurs séparées par une barre verticale — taille EROS | tour de doigt | taille française."
+      "content": "Les correspondances de tailles de bague se modifient dans Réglages > Guide des tailles. Elles sont partagées avec le tiroir des fiches produit."
     },
-    { "type": "textarea", "id": "ring_table", "label": "Tableau des bagues" },
     { "type": "text", "id": "footnote", "label": "Mention en bas", "default": "Une question sur une taille ? Écrivez-nous, nous vous répondons avant votre commande." }
   ],
   "presets": [{ "name": "Guide des tailles" }]

@@ -325,5 +325,36 @@
         "default": "@erosparis"
       }
     ]
+  },
+  {
+    "name": "Guide des tailles",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Source unique des correspondances de tailles de bague. Elle alimente à la fois la page Guide des tailles et le tiroir ouvert depuis les fiches produit : une seule modification ici met les deux à jour."
+      },
+      {
+        "type": "text",
+        "id": "ring_system_label",
+        "label": "Systeme de taille",
+        "default": "Numérotation américaine (US)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Une ligne par taille, trois valeurs séparées par une barre verticale : taille affichée sur la fiche produit | tour de doigt | taille FR/EU. Videz le champ pour masquer complètement le tableau."
+      },
+      {
+        "type": "textarea",
+        "id": "ring_table",
+        "label": "Correspondances",
+        "default": "6 | 51,9 mm | 52\n7 | 54,4 mm | 54\n8 | 57,0 mm | 57\n9 | 59,5 mm | 60\n10 | 62,1 mm | 62"
+      },
+      {
+        "type": "text",
+        "id": "ring_note",
+        "label": "Mention sous le tableau",
+        "default": "Correspondances indicatives, établies sur la numérotation américaine. Elles restent à confirmer : en cas de doute, mesurez votre tour de doigt et écrivez-nous avant de commander."
+      }
+    ]
   }
 ]

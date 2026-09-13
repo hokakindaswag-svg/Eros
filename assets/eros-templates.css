@@ -397,3 +397,8 @@ input:checked+.variant__opt--swatch{box-shadow:0 0 0 2px #000 inset,0 0 0 1px #f
   content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;
   background:var(--chrome-gradient);background-size:220% 100%;
 }
+.sg-syslabel{
+  margin-top:26px;font-size:var(--fs-nano);text-transform:uppercase;
+  letter-spacing:var(--ls-wider);font-weight:700;color:var(--eros-mute-2);
+}
+.sg-syslabel + .sg-rows{margin-top:12px;}

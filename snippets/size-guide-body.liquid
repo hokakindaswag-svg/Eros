@@ -45,10 +45,18 @@
       <div class="sg-row"><span class="sg-row__k">10</span><span class="sg-row__v">Bague Nicki</span></div>
     </div>
 
-    {%- if s.ring_table != blank -%}
+    {%- comment -%}
+      Correspondances lues dans Reglages > Guide des tailles : une source
+      unique pour la page et pour le tiroir des fiches produit. Champ vide
+      = tableau masque.
+    {%- endcomment -%}
+    {%- if settings.ring_table != blank -%}
+      {%- if settings.ring_system_label != blank -%}
+        <p class="sg-syslabel">{{ settings.ring_system_label }}</p>
+      {%- endif -%}
       <div class="sg-rows">
-        <div class="sg-rows__head sg-rows__head--3"><span>Taille EROS</span><span>Tour de doigt</span><span>Taille française</span></div>
-        {%- assign ring_lines = s.ring_table | newline_to_br | split: '<br />' -%}
+        <div class="sg-rows__head sg-rows__head--3"><span>Taille</span><span>Tour de doigt</span><span>Taille FR/EU</span></div>
+        {%- assign ring_lines = settings.ring_table | newline_to_br | split: '<br />' -%}
         {%- for line in ring_lines -%}
           {%- assign cells = line | strip | split: '|' -%}
           {%- if cells.size == 3 -%}
@@ -60,6 +68,9 @@
           {%- endif -%}
         {%- endfor -%}
       </div>
+      {%- if settings.ring_note != blank -%}
+        <p class="sg-note">{{ settings.ring_note }}</p>
+      {%- endif -%}
     {%- endif -%}
 
     <p class="sg-tip">Si vous êtes entre deux tailles, privilégiez la taille supérieure.</p>

@@ -16,7 +16,7 @@
     </div>
     <div class="drawer__body">
       <div class="sg sg--drawer">
-        {% render 'size-guide-body', only: focus, s: settings %}
+        {% render 'size-guide-body', only: focus %}
         {%- if page != blank -%}
           <a class="sg__all" href="{{ page.url }}">VOIR LE GUIDE COMPLET</a>
         {%- endif -%}
