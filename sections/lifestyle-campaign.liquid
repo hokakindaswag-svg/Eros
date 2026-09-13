@@ -23,7 +23,7 @@
       <img class="campaign__media--desktop"
         src="{{ s.image_desktop | image_url: width: 2400 }}"
         srcset="{{ s.image_desktop | image_url: width: 1400 }} 1400w, {{ s.image_desktop | image_url: width: 2400 }} 2400w"
-        sizes="100vw" alt="{{ s.image_desktop.alt | escape }}" loading="lazy"
+        sizes="100vw" alt="{{ s.image_desktop.alt | escape }}" loading="lazy" decoding="async"
         width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}"
         style="--focal:{{ s.image_desktop.presentation.focal_point }}">
     {%- endif -%}
@@ -32,11 +32,11 @@
       <img class="campaign__media--mobile"
         src="{{ s.image_mobile | image_url: width: 1200 }}"
         srcset="{{ s.image_mobile | image_url: width: 600 }} 600w, {{ s.image_mobile | image_url: width: 1200 }} 1200w"
-        sizes="100vw" alt="{{ s.image_mobile.alt | escape }}" loading="lazy"
+        sizes="100vw" alt="{{ s.image_mobile.alt | escape }}" loading="lazy" decoding="async"
         width="{{ s.image_mobile.width }}" height="{{ s.image_mobile.height }}"
         style="--focal:{{ s.image_mobile.presentation.focal_point }}">
     {%- elsif s.image_desktop != blank -%}
-      <img class="campaign__media--mobile" src="{{ s.image_desktop | image_url: width: 1200 }}" alt="{{ s.image_desktop.alt | escape }}" loading="lazy" width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}">
+      <img class="campaign__media--mobile" src="{{ s.image_desktop | image_url: width: 1200 }}" alt="{{ s.image_desktop.alt | escape }}" loading="lazy" decoding="async" width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}">
     {%- endif -%}
 
     {%- if s.image_desktop == blank and s.image_mobile == blank and s.video == blank -%}
@@ -71,7 +71,7 @@
         style="top:{{ block.settings.top }}%;left:{{ block.settings.left }}%"
         {{ block.shopify_attributes }}>
         {%- if p.featured_media -%}
-          <img src="{{ p.featured_media | image_url: width: 120 }}" alt="" loading="lazy" width="44" height="56">
+          <img src="{{ p.featured_media | image_url: width: 120 }}" alt="" loading="lazy" decoding="async" width="44" height="56">
         {%- endif -%}
         <span>
           <span class="hotspot__t">{{ p.title }}</span>

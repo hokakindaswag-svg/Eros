@@ -10,7 +10,7 @@
         <a href="{{ collection.url }}" class="cat reveal" style="--cat-ratio:4/5;--reveal-delay:{{ forloop.index0 | times: 40 }}ms">
           <div class="cat__media flash">
             {%- if collection.featured_image -%}
-              <img src="{{ collection.featured_image | image_url: width: 900 }}" alt="{{ collection.title | escape }}" loading="lazy" width="{{ collection.featured_image.width }}" height="{{ collection.featured_image.height }}">
+              <img src="{{ collection.featured_image | image_url: width: 900 }}" alt="{{ collection.title | escape }}" loading="lazy" decoding="async" width="{{ collection.featured_image.width }}" height="{{ collection.featured_image.height }}">
             {%- else -%}
               <div class="media__placeholder">{{ 'collection-1' | placeholder_svg_tag }}</div>
             {%- endif -%}

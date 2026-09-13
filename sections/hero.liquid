@@ -20,59 +20,86 @@
   "
 >
   <div class="hero__media">
-    {%- if s.video_desktop != blank -%}
-      <video
-        class="hero__media--desktop"
-        autoplay muted loop playsinline data-autoplay
-        {% if s.image_desktop %}poster="{{ s.image_desktop | image_url: width: 1600 }}"{% endif %}
-        style="position:absolute;inset:0;"
-      >
-        <source src="{{ s.video_desktop }}" type="video/mp4">
-      </video>
-    {%- elsif s.image_desktop != blank -%}
-      <img
-        class="hero__media--desktop"
-        src="{{ s.image_desktop | image_url: width: 2400 }}"
-        srcset="{{ s.image_desktop | image_url: width: 1200 }} 1200w,
-                {{ s.image_desktop | image_url: width: 1800 }} 1800w,
-                {{ s.image_desktop | image_url: width: 2400 }} 2400w"
-        sizes="100vw"
-        alt="{{ s.image_desktop.alt | escape }}"
-        width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}"
-        fetchpriority="high"
-        style="position:absolute;inset:0;--focal:{{ s.image_desktop.presentation.focal_point }}"
-      >
-    {%- endif -%}
+    {%- liquid
+      comment
+        Sans video, une seule <picture> : deux <img> dont un masque en CSS
+        restent tous les deux telecharges par le navigateur, ce qui fait
+        payer l'image desktop 2400px aux visiteurs mobiles.
+      endcomment
+      assign has_video = false
+      if s.video_desktop != blank or s.video_mobile != blank
+        assign has_video = true
+      endif
+    -%}
 
-    {%- if s.video_mobile != blank -%}
-      <video
-        class="hero__media--mobile"
-        autoplay muted loop playsinline data-autoplay
-        {% if s.image_mobile %}poster="{{ s.image_mobile | image_url: width: 900 }}"{% endif %}
-        style="position:absolute;inset:0;"
-      >
-        <source src="{{ s.video_mobile }}" type="video/mp4">
-      </video>
-    {%- elsif s.image_mobile != blank -%}
-      <img
-        class="hero__media--mobile"
-        src="{{ s.image_mobile | image_url: width: 1200 }}"
-        srcset="{{ s.image_mobile | image_url: width: 600 }} 600w, {{ s.image_mobile | image_url: width: 1200 }} 1200w"
-        sizes="100vw"
-        alt="{{ s.image_mobile.alt | escape }}"
-        width="{{ s.image_mobile.width }}" height="{{ s.image_mobile.height }}"
-        fetchpriority="high"
-        style="position:absolute;inset:0;--focal:{{ s.image_mobile.presentation.focal_point }}"
-      >
-    {%- elsif s.image_desktop != blank -%}
-      <img
-        class="hero__media--mobile"
-        src="{{ s.image_desktop | image_url: width: 1200 }}"
-        alt="{{ s.image_desktop.alt | escape }}"
-        fetchpriority="high"
-        width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}"
-        style="position:absolute;inset:0;--focal:{{ s.image_desktop.presentation.focal_point }}"
-      >
+    {%- if has_video -%}
+      {%- if s.video_desktop != blank -%}
+        <video
+          class="hero__media--desktop"
+          autoplay muted loop playsinline data-autoplay
+          {% if s.image_desktop %}poster="{{ s.image_desktop | image_url: width: 1600 }}"{% endif %}
+          style="position:absolute;inset:0;"
+        >
+          <source src="{{ s.video_desktop }}" type="video/mp4">
+        </video>
+      {%- elsif s.image_desktop != blank -%}
+        <img
+          class="hero__media--desktop"
+          src="{{ s.image_desktop | image_url: width: 2400 }}"
+          srcset="{{ s.image_desktop | image_url: width: 1200 }} 1200w,
+                  {{ s.image_desktop | image_url: width: 1800 }} 1800w,
+                  {{ s.image_desktop | image_url: width: 2400 }} 2400w"
+          sizes="100vw"
+          alt="{{ s.image_desktop.alt | escape }}"
+          width="{{ s.image_desktop.width }}" height="{{ s.image_desktop.height }}"
+          fetchpriority="high"
+          style="position:absolute;inset:0;--focal:{{ s.image_desktop.presentation.focal_point }}"
+        >
+      {%- endif -%}
+
+      {%- if s.video_mobile != blank -%}
+        <video
+          class="hero__media--mobile"
+          autoplay muted loop playsinline data-autoplay
+          {% if s.image_mobile %}poster="{{ s.image_mobile | image_url: width: 900 }}"{% endif %}
+          style="position:absolute;inset:0;"
+        >
+          <source src="{{ s.video_mobile }}" type="video/mp4">
+        </video>
+      {%- elsif s.image_mobile != blank -%}
+        <img
+          class="hero__media--mobile"
+          src="{{ s.image_mobile | image_url: width: 1200 }}"
+          srcset="{{ s.image_mobile | image_url: width: 600 }} 600w, {{ s.image_mobile | image_url: width: 1200 }} 1200w"
+          sizes="100vw"
+          alt="{{ s.image_mobile.alt | escape }}"
+          width="{{ s.image_mobile.width }}" height="{{ s.image_mobile.height }}"
+          fetchpriority="high"
+          style="position:absolute;inset:0;--focal:{{ s.image_mobile.presentation.focal_point }}"
+        >
+      {%- endif -%}
+
+    {%- elsif s.image_desktop != blank or s.image_mobile != blank -%}
+      {%- assign img_d = s.image_desktop | default: s.image_mobile -%}
+      {%- assign img_m = s.image_mobile | default: s.image_desktop -%}
+      <picture>
+        <source
+          media="(min-width: 990px)"
+          srcset="{{ img_d | image_url: width: 1200 }} 1200w,
+                  {{ img_d | image_url: width: 1800 }} 1800w,
+                  {{ img_d | image_url: width: 2400 }} 2400w"
+          sizes="100vw"
+        >
+        <img
+          src="{{ img_m | image_url: width: 1200 }}"
+          srcset="{{ img_m | image_url: width: 600 }} 600w, {{ img_m | image_url: width: 1200 }} 1200w"
+          sizes="100vw"
+          alt="{{ img_m.alt | escape }}"
+          width="{{ img_m.width }}" height="{{ img_m.height }}"
+          fetchpriority="high"
+          style="position:absolute;inset:0;--focal:{{ img_m.presentation.focal_point }};--focal-d:{{ img_d.presentation.focal_point }}"
+        >
+      </picture>
     {%- endif -%}
 
     {%- if s.image_desktop == blank and s.image_mobile == blank and s.video_desktop == blank -%}

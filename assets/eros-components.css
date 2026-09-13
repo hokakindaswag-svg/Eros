@@ -48,9 +48,7 @@
 }
 .header--transparent.is-stuck .header,
 .header.is-open{
-  background:rgba(0,0,0,.86);
-  backdrop-filter:saturate(160%) blur(14px);
-  -webkit-backdrop-filter:saturate(160%) blur(14px);
+  background:rgba(0,0,0,.94);
   border-color:var(--eros-line-soft);
   background-image:none;
 }
@@ -120,7 +118,7 @@
 .megamenu{
   position:absolute;top:100%;left:50%;transform:translate(-50%,8px);
   min-width:220px;padding:20px 24px;
-  background:rgba(6,6,6,.96);backdrop-filter:blur(16px);
+  background:rgba(6,6,6,.98);
   border:1px solid var(--eros-line-soft);
   opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity var(--t-fast) var(--ease),transform var(--t-fast) var(--ease),visibility var(--t-fast);
@@ -157,9 +155,8 @@
 }
 .drawer.is-open{visibility:visible;pointer-events:auto;}
 .drawer__overlay{
-  position:absolute;inset:0;background:rgba(0,0,0,.72);
+  position:absolute;inset:0;background:rgba(0,0,0,.78);
   opacity:0;transition:opacity var(--t) var(--ease);
-  backdrop-filter:blur(2px);
 }
 .drawer.is-open .drawer__overlay{opacity:1;}
 .drawer__panel{
@@ -379,7 +376,12 @@
    ------------------------------------------------------------ */
 .hero{position:relative;width:100%;overflow:hidden;background:#000;}
 .hero__media{position:absolute;inset:0;}
+.hero__media picture{position:absolute;inset:0;display:block;}
 .hero__media img,.hero__media video{width:100%;height:100%;object-fit:cover;object-position:var(--focal,center);}
+@media (min-width:990px){
+  /* Le <picture> sert l'image desktop : elle a son propre point focal. */
+  .hero__media img{object-position:var(--focal-d,var(--focal,center));}
+}
 .hero__media--desktop{display:none;}
 @media (min-width:750px){
   .hero__media--mobile{display:none;}
@@ -428,7 +430,7 @@
 }
 @media (min-width:750px){.door{min-height:var(--door-h-d,78svh);}}
 .door__media{position:absolute;inset:0;}
-.door__media img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease-out);}
+.door__media img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease-out);}
 .door:hover .door__media img{transform:scale(1.06);}
 .door__veil{
   position:absolute;inset:0;
@@ -476,7 +478,7 @@
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:var(--cat-fit,contain);object-position:center;
   padding:var(--cat-pad,7%);
-  transition:transform .8s var(--ease-out);
+  transition:transform .55s var(--ease-out);
 }
 /* Une image de catégorie éditoriale (non-packshot) peut remplir le cadre. */
 .cat--editorial .cat__media img{object-fit:cover;padding:0;}
@@ -537,7 +539,7 @@
 /* Pastille produit posée sur la campagne */
 .hotspot{
   position:absolute;z-index:3;display:flex;align-items:center;gap:10px;
-  padding:8px 14px 8px 8px;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);
+  padding:8px 14px 8px 8px;background:rgba(0,0,0,.68);
   border:1px solid rgba(255,255,255,.2);
   transition:background-color var(--t-fast) var(--ease);
 }
@@ -616,7 +618,7 @@
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:contain;object-position:center;
   padding:var(--media-pad);
-  transition:transform 1s var(--ease-out);
+  transition:transform .55s var(--ease-out);
 }
 .duo-media:hover .duo-media__surface img{transform:scale(1.04);}
 /* Un éclat traverse la pièce au survol, sans jamais la masquer. */
@@ -702,7 +704,7 @@
 .ugc{display:grid;gap:2px;grid-template-columns:repeat(2,1fr);}
 @media (min-width:750px){.ugc{grid-template-columns:repeat(4,1fr);gap:6px;}}
 .ugc__cell{position:relative;overflow:hidden;background:var(--eros-surface);}
-.ugc__cell img,.ugc__cell video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease-out);}
+.ugc__cell img,.ugc__cell video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease-out);}
 .ugc__cell:hover img{transform:scale(1.06);}
 .ugc__cell--a{aspect-ratio:3/4;}
 .ugc__cell--b{aspect-ratio:1/1;}

@@ -156,6 +156,11 @@ table{border-collapse:collapse;width:100%;}
 }
 @media (prefers-reduced-motion:reduce){.chrome-text{animation:none;}}
 
+/* Une animation infinie hors champ continue de repeindre a chaque frame.
+   Le JS pose .anim-idle des que l'element sort du viewport. */
+.anim-idle,.anim-idle::before,.anim-idle::after{animation-play-state:paused!important;}
+
+
 /* Filet chrome */
 .chrome-rule{
   height:1px;width:100%;border:0;margin:0;
@@ -245,15 +250,15 @@ table{border-collapse:collapse;width:100%;}
 /* Flash / éclat qui traverse au hover */
 .flash{position:relative;overflow:hidden;}
 .flash::before{
-  content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;
+  content:"";position:absolute;top:0;left:0;width:45%;height:100%;
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.30),transparent);
-  transform:skewX(-18deg);pointer-events:none;opacity:0;z-index:2;
+  transform:translateX(-160%) skewX(-18deg);pointer-events:none;opacity:0;z-index:2;
 }
 .flash:hover::before{animation:flash-sweep .75s var(--ease-out) forwards;}
 @keyframes flash-sweep{
-  0%{left:-60%;opacity:0;}
+  0%{transform:translateX(-160%) skewX(-18deg);opacity:0;}
   12%{opacity:1;}
-  100%{left:120%;opacity:0;}
+  100%{transform:translateX(320%) skewX(-18deg);opacity:0;}
 }
 @media (prefers-reduced-motion:reduce){.flash:hover::before{animation:none;}}
 
@@ -353,7 +358,7 @@ select.input option{background:#0B0B0C;color:#fff;}
   background:#fff;color:#000;
 }
 .badge--outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);}
-.badge--sold{background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);}
+.badge--sold{background:rgba(0,0,0,.82);color:#fff;border:1px solid rgba(255,255,255,.35);}
 
 /* ============================================================
    PRIX
@@ -366,10 +371,10 @@ select.input option{background:#0B0B0C;color:#fff;}
 /* ============================================================
    REVEAL AU SCROLL (rapide, discret)
    ============================================================ */
-.reveal{opacity:0;transform:translateY(18px);}
+.reveal{opacity:0;transform:translateY(12px);}
 .reveal.is-in{
   opacity:1;transform:none;
-  transition:opacity .5s var(--ease-out),transform .55s var(--ease-out);
+  transition:opacity .34s var(--ease-out),transform .4s var(--ease-out);
   transition-delay:var(--reveal-delay,0ms);
 }
 .no-js .reveal,.reveal--off{opacity:1!important;transform:none!important;}
@@ -412,3 +417,13 @@ select.input option{background:#0B0B0C;color:#fff;}
 
 /* Blocs contenus larges scrollables */
 .table-wrap{overflow-x:auto;}
+
+/* Sous 990px, le reflet chrome reste mais ne defile plus : anime, il force
+   un repaint du texte detoure a chaque frame, ce qui saccade le scroll sur
+   mobile. Le degrade est fige sur son reflet le plus net. */
+@media (max-width:989px){
+  .chrome-text,.btn--chrome{
+    animation:none;
+    background-position:50% 50%;
+  }
+}

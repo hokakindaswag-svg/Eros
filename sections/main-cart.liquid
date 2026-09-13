@@ -28,7 +28,7 @@
                     <div class="cart-row__product">
                       <a class="cart-row__media surface surface--{{ settings.card_surface | default: 'light' }}" href="{{ item.url }}">
                         {%- if item.image -%}
-                          <img src="{{ item.image | image_url: width: 300 }}" alt="{{ item.title | escape }}" loading="lazy" width="150" height="200">
+                          <img src="{{ item.image | image_url: width: 300 }}" alt="{{ item.title | escape }}" loading="lazy" decoding="async" width="150" height="200">
                         {%- endif -%}
                       </a>
                       <div>

@@ -17,7 +17,7 @@
                 {{ product.featured_media | image_url: width: 900 }} 900w"
         sizes="(min-width: 990px) 22vw, 42vw"
         alt=""
-        loading="lazy"
+        loading="lazy" decoding="async"
         width="{{ product.featured_media.preview_image.width }}"
         height="{{ product.featured_media.preview_image.height }}"
       >

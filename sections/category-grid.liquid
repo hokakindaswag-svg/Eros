@@ -31,7 +31,7 @@
                 srcset="{{ img | image_url: width: 400 }} 400w, {{ img | image_url: width: 800 }} 800w, {{ img | image_url: width: 1200 }} 1200w"
                 sizes="(min-width: 750px) 20vw, 50vw"
                 alt="{{ label | escape }}"
-                loading="lazy"
+                loading="lazy" decoding="async"
                 width="{{ img.width | default: 800 }}"
                 height="{{ img.height | default: 1000 }}"
               >

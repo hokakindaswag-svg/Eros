@@ -49,13 +49,24 @@
     var last = 0, ticking = false;
     var threshold = 10;
 
+    var stuck = null, hidden = null;
+
     function update() {
       var y = window.pageYOffset;
-      wrap.classList.toggle('is-stuck', y > threshold);
+      // On n'ecrit dans le DOM que sur changement reel : chaque ecriture de
+      // classe invalide le style de tout l'en-tete, a chaque frame sinon.
+      var nextStuck = y > threshold;
+      if (nextStuck !== stuck) {
+        wrap.classList.toggle('is-stuck', nextStuck);
+        stuck = nextStuck;
+      }
       var hideAfter = 260;
       if (!document.body.classList.contains('eros--locked')) {
-        if (y > last && y > hideAfter) wrap.classList.add('is-hidden');
-        else wrap.classList.remove('is-hidden');
+        var nextHidden = y > last && y > hideAfter;
+        if (nextHidden !== hidden) {
+          wrap.classList.toggle('is-hidden', nextHidden);
+          hidden = nextHidden;
+        }
       }
       last = y < 0 ? 0 : y;
       ticking = false;
@@ -175,6 +186,38 @@
         if (!el.classList.contains('is-in')) io.observe(el);
       });
     };
+  })();
+
+  /* ----------------------------------------------------------
+     Animations infinies : en pause hors du viewport
+     Un degrade chrome ou un bandeau defilant repeint a chaque frame,
+     meme invisible. On ne les laisse tourner que s'ils sont a l'ecran.
+     ---------------------------------------------------------- */
+  (function idleAnimations() {
+    var sel = '.chrome-text,.btn--chrome,.ticker__track,.announcement__track,.hero__scroll';
+    var els = $$(sel);
+    if (!els.length) return;
+    if (reduced || !('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('anim-idle', !entry.isIntersecting);
+      });
+    }, { rootMargin: '120px 0px' });
+
+    els.forEach(function (el) {
+      el.classList.add('anim-idle');
+      io.observe(el);
+    });
+
+    // Onglet en arriere-plan : rien ne doit tourner.
+    document.addEventListener('visibilitychange', function () {
+      var off = document.hidden;
+      els.forEach(function (el) {
+        if (off) el.classList.add('anim-idle');
+      });
+      if (!off) els.forEach(function (el) { io.observe(el); });
+    });
   })();
 
   /* ----------------------------------------------------------

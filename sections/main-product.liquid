@@ -60,7 +60,7 @@
                   sizes="(min-width: 990px) 55vw, 100vw"
                   alt="{{ media.alt | escape | default: product.title | escape }}"
                   width="{{ media.width }}" height="{{ media.height }}"
-                  {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                  {% if forloop.first %}fetchpriority="high"{% else %}loading="lazy" decoding="async"{% endif %}
                 >
               {%- endif -%}
             </div>

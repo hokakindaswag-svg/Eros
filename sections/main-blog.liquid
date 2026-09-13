@@ -10,7 +10,7 @@
             <a href="{{ article.url }}">
               <div class="card__media flash" style="--card-ratio:3/2">
                 {%- if article.image -%}
-                  <img class="card__img card__img--main" src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.title | escape }}" loading="lazy" width="{{ article.image.width }}" height="{{ article.image.height }}">
+                  <img class="card__img card__img--main" src="{{ article.image | image_url: width: 1000 }}" alt="{{ article.title | escape }}" loading="lazy" decoding="async" width="{{ article.image.width }}" height="{{ article.image.height }}">
                 {%- else -%}
                   <div class="media__placeholder">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>
                 {%- endif -%}
