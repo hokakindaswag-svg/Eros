@@ -337,23 +337,23 @@
         "type": "text",
         "id": "ring_system_label",
         "label": "Systeme de taille",
-        "default": "Numérotation américaine (US)"
+        "default": "Le sélecteur produit utilise les tailles américaines (US)"
       },
       {
         "type": "paragraph",
-        "content": "Une ligne par taille, trois valeurs séparées par une barre verticale : taille affichée sur la fiche produit | tour de doigt | taille FR/EU. Videz le champ pour masquer complètement le tableau."
+        "content": "Une ligne par taille, quatre valeurs séparées par une barre verticale : taille US affichée sur la fiche produit | diamètre intérieur | tour de doigt | référence FR/EU. Videz le champ pour masquer complètement le tableau."
       },
       {
         "type": "textarea",
         "id": "ring_table",
         "label": "Correspondances",
-        "default": "6 | 51,9 mm | 52\n7 | 54,4 mm | 54\n8 | 57,0 mm | 57\n9 | 59,5 mm | 60\n10 | 62,1 mm | 62"
+        "default": "6 | 16,5 mm | 51,9 mm | ~52\n7 | 17,3 mm | 54,4 mm | ~54\n8 | 18,1 mm | 57,0 mm | 57\n9 | 18,9 mm | 59,5 mm | ~60\n10 | 19,8 mm | 62,1 mm | 62"
       },
       {
         "type": "text",
         "id": "ring_note",
         "label": "Mention sous le tableau",
-        "default": "Correspondances indicatives, établies sur la numérotation américaine. Elles restent à confirmer : en cas de doute, mesurez votre tour de doigt et écrivez-nous avant de commander."
+        "default": "La référence française/européenne correspond au tour de doigt intérieur exprimé en millimètres. Mesures communiquées par notre fournisseur."
       }
     ]
   }

@@ -25,7 +25,9 @@
             "url_2": "shopify://pages/retours",
             "url_3": "shopify://pages/entretien",
             "url_4": "shopify://pages/faq",
-            "url_5": "shopify://pages/contact"
+            "url_5": "shopify://pages/contact",
+            "label_6": "GUIDE DES TAILLES",
+            "url_6": "shopify://pages/guide-des-tailles"
           }
         },
         "news": {

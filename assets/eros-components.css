@@ -20,7 +20,7 @@
 /* Mobile : un seul message à la fois (sauf mode défilant) */
 @media (max-width:749px){
   .announcement:not(.announcement--marquee) .announcement__item:not(:first-child){display:none;}
-  .announcement__item{white-space:nowrap;font-size:9px;letter-spacing:.2em;}
+  .announcement__item{white-space:nowrap;font-size:10px;letter-spacing:.16em;}
 }
 .announcement--marquee .announcement__track{
   justify-content:flex-start;white-space:nowrap;
@@ -240,7 +240,11 @@
 .cart-line__remove{font-size:var(--fs-nano);text-transform:uppercase;letter-spacing:var(--ls-wide);color:var(--eros-mute-2);text-decoration:underline;text-underline-offset:3px;}
 .cart-line__remove:hover{color:#fff;}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--eros-line);}
-.qty button{width:34px;height:34px;display:grid;place-items:center;font-size:14px;line-height:1;transition:background-color var(--t-fast) var(--ease);}
+.qty button{width:34px;height:34px;display:grid;place-items:center;font-size:14px;line-height:1;
+  position:relative;transition:background-color var(--t-fast) var(--ease);}
+/* Cible tactile portee a 44px sans agrandir le bouton visible. */
+.qty button::after{content:"";position:absolute;top:50%;left:50%;
+  width:44px;height:44px;transform:translate(-50%,-50%);}
 .qty button:hover{background:rgba(255,255,255,.08);}
 .qty input{width:36px;height:34px;text-align:center;background:none;border:0;font-size:var(--fs-xs);font-weight:600;-moz-appearance:textfield;}
 .qty input::-webkit-outer-spin-button,.qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}

@@ -11,12 +11,6 @@
             "text": "LIVRAISON GRATUITE"
           }
         },
-        "a2": {
-          "type": "message",
-          "settings": {
-            "text": "PAIEMENT EN 3X"
-          }
-        },
         "a3": {
           "type": "message",
           "settings": {
@@ -26,7 +20,6 @@
       },
       "block_order": [
         "a1",
-        "a2",
         "a3"
       ],
       "settings": {

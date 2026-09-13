@@ -65,7 +65,7 @@
       "new": "NOUVEAUTÉ",
       "price_from": "À partir de",
       "choose_options": "CHOISIR",
-      "taxes_note": "Taxes incluses. Livraison calculée au paiement.",
+      "taxes_note": "Taxes incluses. Livraison offerte.",
       "sku": "Référence",
       "media_zoom": "Agrandir l'image",
       "recommendations": "VOUS AIMEREZ AUSSI"
@@ -110,7 +110,7 @@
       "price": "Prix",
       "note": "Instructions de commande",
       "update": "Mettre à jour",
-      "taxes_and_shipping": "Taxes incluses. Livraison calculée au paiement.",
+      "taxes_and_shipping": "Taxes incluses. Livraison offerte.",
       "item_count": { "one": "{{ count }} article", "other": "{{ count }} articles" }
     }
   },
