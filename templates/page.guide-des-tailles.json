@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "guide": {
+      "type": "size-guide",
+      "settings": {
+        "eyebrow": "EROS PARIS",
+        "title": "GUIDE DES TAILLES",
+        "lede": "Toutes les mesures en centimètres. Le sélecteur de chaque fiche produit reprend la valeur d'origine.",
+        "footnote": "Une question sur une taille ? Écrivez-nous à erosparis.jewellers@gmail.com, nous vous répondons avant votre commande."
+      }
+    }
+  },
+  "order": [
+    "guide"
+  ]
+}

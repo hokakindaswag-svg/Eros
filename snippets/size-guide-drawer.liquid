@@ -1,0 +1,26 @@
+{%- comment -%}
+  Tiroir « Guide des tailles » ouvert depuis une fiche produit.
+  N'affiche que la section pertinente (bagues, bracelets, colliers) pour
+  rester lisible sur mobile, avec un lien vers le guide complet.
+  Params : focus (obligatoire), page (facultatif, lien vers le guide)
+{%- endcomment -%}
+
+<div class="drawer" id="eros-size-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Guide des tailles">
+  <div class="drawer__overlay" data-drawer-close></div>
+  <div class="drawer__panel">
+    <div class="drawer__head">
+      <span class="drawer__title">GUIDE DES TAILLES</span>
+      <button type="button" class="drawer__close" data-drawer-close aria-label="{{ 'accessibility.close' | t }}" data-drawer-focus>
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+    <div class="drawer__body">
+      <div class="sg sg--drawer">
+        {% render 'size-guide-body', only: focus, s: settings %}
+        {%- if page != blank -%}
+          <a class="sg__all" href="{{ page.url }}">VOIR LE GUIDE COMPLET</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>

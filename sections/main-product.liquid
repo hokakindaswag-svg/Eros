@@ -163,8 +163,39 @@
                     </div>
                   </div>
                 {%- endfor -%}
-                {%- if block.settings.size_guide_page != blank -%}
-                  <a href="{{ block.settings.size_guide_page.url }}" class="variant__link">{{ block.settings.size_guide_label }}</a>
+                {%- liquid
+                  comment
+                    Le guide ne s'affiche que si la piece demande un choix de
+                    taille ou de longueur, et il ouvre directement la section
+                    qui la concerne. Sans JS, le lien mene a la page complete.
+                  endcomment
+                  assign needs_size = false
+                  for opt in product.options_with_values
+                    assign on = opt.name | downcase
+                    if on contains 'taille' or on contains 'longueur' or on contains 'size'
+                      if opt.values.size > 1
+                        assign needs_size = true
+                      endif
+                    endif
+                  endfor
+
+                  assign t = product.title | downcase
+                  assign guide_focus = ''
+                  if t contains 'bague'
+                    assign guide_focus = 'bagues'
+                  elsif t contains 'bracelet'
+                    assign guide_focus = 'bracelets'
+                  elsif t contains 'collier' or t contains 'chaîne' or t contains 'chaine'
+                    assign guide_focus = 'colliers'
+                  endif
+                -%}
+                {%- if needs_size and guide_focus != blank -%}
+                  <a
+                    href="{{ block.settings.size_guide_page.url | default: routes.root_url }}"
+                    class="variant__link"
+                    data-drawer-open="eros-size-drawer"
+                  >{{ block.settings.size_guide_label }}</a>
+                  {% render 'size-guide-drawer', focus: guide_focus, page: block.settings.size_guide_page %}
                 {%- endif -%}
               </div>
             {%- endunless -%}

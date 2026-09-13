@@ -16,7 +16,8 @@
         "variants": {
           "type": "variants",
           "settings": {
-            "size_guide_label": "GUIDE DES TAILLES"
+            "size_guide_label": "GUIDE DES TAILLES",
+            "size_guide_page": "guide-des-tailles"
           }
         },
         "buy": {
